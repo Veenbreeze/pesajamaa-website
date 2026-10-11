@@ -1,0 +1,126 @@
+---
+/**
+ * LiveFeed — recent-contributions ticker for the Live Contributions showcase.
+ * New rows slide in at the top every few seconds with a soft teal highlight.
+ * Seeds with a few rows server-side so there's no empty flash; the client
+ * script then cycles in new ones (disabled under prefers-reduced-motion).
+ */
+const seed = [
+  { name: 'John M.', amount: 100_000, when: 'just now' },
+  { name: 'Mary K.', amount: 50_000, when: '1 min ago' },
+  { name: 'Anonymous', amount: 250_000, when: '2 min ago' },
+  { name: 'Grace N.', amount: 25_000, when: '3 min ago' },
+  { name: 'Peter S.', amount: 75_000, when: '4 min ago' },
+];
+const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
+---
+
+<div>
+  <div class="mb-3 flex items-center justify-between">
+    <h4 class="text-sm font-extrabold uppercase tracking-wider text-muted">
+      Recent contributions
+    </h4>
+    <span class="flex items-center gap-1.5 text-xs font-bold text-accent">
+      <span class="relative flex h-2 w-2">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+      </span>
+      Live
+    </span>
+  </div>
+
+  <ul
+    id="live-feed"
+    class="feed-scroll flex max-h-64 flex-col gap-2 overflow-hidden"
+    aria-live="polite"
+    aria-label="Recent contributions"
+  >
+    {
+      seed.map((row) => (
+        <li class="flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3">
+          <div class="flex items-center gap-3">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">
+              {row.name === 'Anonymous' ? '?' : row.name.charAt(0)}
+            </span>
+            <div>
+              <p class="text-sm font-bold text-heading">{row.name}</p>
+              <p class="text-xs text-muted">{row.when}</p>
+            </div>
+          </div>
+          <span class="text-sm font-extrabold text-accent">+{fmt(row.amount)}</span>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  // Cycle fresh contributions into the top of the feed.
+  const feed = document.getElementById('live-feed');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (feed && !reduce) {
+    const names = [
+      'Amina H.', 'David O.', 'Anonymous', 'Fatma A.', 'Joseph M.',
+      'Neema L.', 'Baraka T.', 'Esther W.', 'Anonymous', 'Samuel K.',
+      'Rehema J.', 'Daniel P.',
+    ];
+    const amounts = [10_000, 20_000, 25_000, 50_000, 75_000, 100_000, 150_000, 200_000, 250_000];
+    const fmt = (n) => 'TZS ' + n.toLocaleString('en-US');
+    const MAX_ROWS = 5;
+    let lastName = '';
+
+    function pickName() {
+      // Avoid showing the same name twice in a row (looks more realistic).
+      let name;
+      do {
+        name = names[Math.floor(Math.random() * names.length)];
+      } while (name === lastName && names.length > 1);
+      lastName = name;
+      return name;
+    }
+
+    function makeRow() {
+      const name = pickName();
+      const amount = amounts[Math.floor(Math.random() * amounts.length)];
+      const li = document.createElement('li');
+      li.className =
+        'feed-row-new flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3';
+      li.innerHTML = `
+        <div class="flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">${name === 'Anonymous' ? '?' : name.charAt(0)}</span>
+          <div>
+            <p class="text-sm font-bold text-heading">${name}</p>
+            <p class="text-xs text-muted">just now</p>
+          </div>
+        </div>
+        <span class="text-sm font-extrabold text-accent">+${fmt(amount)}</span>`;
+      return li;
+    }
+
+    let timer;
+    const tick = () => {
+      // Age the current top row's timestamp label, then add a new one on top.
+      const first = feed.querySelector('li .text-muted');
+      if (first && first.textContent === 'just now') first.textContent = '1 min ago';
+      feed.prepend(makeRow());
+      while (feed.children.length > MAX_ROWS) {
+        feed.removeChild(feed.lastElementChild);
+      }
+    };
+
+    // Only run the ticker while the showcase is on screen (saves battery).
+    const showcase = feed.closest('section') || feed;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!timer) timer = setInterval(tick, 2800);
+        } else {
+          clearInterval(timer);
+          timer = null;
+        }
+      });
+    });
+    io.observe(showcase);
+  }
+</script>

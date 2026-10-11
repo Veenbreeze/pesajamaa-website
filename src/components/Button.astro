@@ -1,0 +1,56 @@
+---
+/**
+ * Button — brand CTA. Renders an <a> when `href` is set, otherwise a <button>.
+ * Variants: primary (solid blue), secondary (white + blue border), ghost,
+ * light (for dark sections). Add `pill` for a fully rounded CTA.
+ */
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'light';
+  size?: 'md' | 'lg';
+  pill?: boolean;
+  class?: string;
+  type?: 'button' | 'submit';
+  [key: string]: any;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  pill = false,
+  class: className = '',
+  type = 'button',
+  ...rest
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 font-bold whitespace-nowrap transition-all duration-200 focus-visible:outline-none active:translate-y-0';
+
+const sizes = {
+  md: 'px-5 py-2.5 text-[15px]',
+  lg: 'px-7 py-3.5 text-base',
+};
+
+const variants = {
+  primary:
+    'bg-primary text-white shadow-soft hover:bg-primary-hover hover:-translate-y-0.5 hover:shadow-lift',
+  secondary:
+    'bg-white text-primary ring-1 ring-inset ring-primary/70 hover:bg-tint hover:-translate-y-0.5 hover:shadow-soft',
+  ghost: 'text-primary hover:bg-tint',
+  light:
+    'bg-white text-navy shadow-soft hover:-translate-y-0.5 hover:shadow-lift',
+};
+
+const radius = pill ? 'rounded-full' : 'rounded-btn';
+const cls = [base, sizes[size], variants[variant], radius, className].join(' ');
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class={cls}
+  {...(href ? { href } : { type })}
+  {...rest}
+>
+  <slot />
+</Tag>

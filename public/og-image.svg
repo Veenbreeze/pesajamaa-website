@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- PLACEHOLDER Open Graph image. Replace with a real 1200x630 /public/og-image.png for best social-sharing support. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EFF7FF"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="90" y="300" font-family="Nunito, Arial, sans-serif" font-size="30" font-weight="700" fill="#18B49C">PESAJAMAA</text>
+  <text x="90" y="372" font-family="Nunito, Arial, sans-serif" font-size="64" font-weight="800" fill="#212121">One Platform to Run Your</text>
+  <text x="90" y="448" font-family="Nunito, Arial, sans-serif" font-size="64" font-weight="800" fill="#212121">Community’s <tspan fill="#026DDE">Finances</tspan></text>
+  <text x="90" y="520" font-family="Nunito, Arial, sans-serif" font-size="28" font-weight="600" fill="#6B7280">Pledges · Group Savings · Events · Bulk SMS · Receipts &amp; Reports</text>
+</svg>

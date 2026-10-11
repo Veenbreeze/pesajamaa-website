@@ -1,0 +1,22 @@
+---
+/**
+ * AudienceCard — icon + title + one line, for "Built for every community".
+ */
+interface Props {
+  title: string;
+  line: string;
+}
+const { title, line } = Astro.props;
+---
+
+<div
+  class="group flex items-start gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift"
+>
+  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-tint text-primary transition-transform duration-200 group-hover:scale-110">
+    <slot />
+  </span>
+  <div>
+    <h3 class="text-base font-extrabold text-heading">{title}</h3>
+    <p class="mt-1 text-sm leading-relaxed text-muted">{line}</p>
+  </div>
+</div>

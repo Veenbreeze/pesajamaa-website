@@ -1,0 +1,31 @@
+---
+/**
+ * ModuleCard — a colorful rounded icon tile + label. Hover lift.
+ * `icon` is a slot (inline SVG); `tint` picks the tile colour.
+ */
+interface Props {
+  label: string;
+  tint?: 'blue' | 'teal' | 'navy' | 'amber' | 'violet' | 'rose';
+}
+const { label, tint = 'blue' } = Astro.props;
+
+const tints: Record<string, string> = {
+  blue: 'bg-tint text-primary',
+  teal: 'bg-accent/10 text-accent',
+  navy: 'bg-navy/5 text-navy',
+  amber: 'bg-amber-50 text-amber-600',
+  violet: 'bg-violet-50 text-violet-600',
+  rose: 'bg-rose-50 text-rose-600',
+};
+---
+
+<div
+  class="group flex flex-col items-center gap-3 rounded-2xl border border-slate-100 bg-white p-5 text-center shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-transparent hover:shadow-lift"
+>
+  <span
+    class={`flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110 ${tints[tint]}`}
+  >
+    <slot />
+  </span>
+  <span class="text-[15px] font-bold text-heading">{label}</span>
+</div>
