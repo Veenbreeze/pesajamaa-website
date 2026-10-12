@@ -47,8 +47,21 @@ const modules = [
   { label: 'Notifications', icon: icons.notifications, tint: 'violet' },
 ] as const;
 
-/* Trust strip — telcos & banks (text wordmarks as soft gray cards) */
-const partners = ['M-Pesa', 'Mixx by Yas', 'Airtel Money', 'HaloPesa', 'NMB Bank', 'CRDB Bank'];
+/* Trust strip — partner logos from public/partners */
+const partners = [
+  { name: 'Vodacom', file: 'vodacom.png' },
+  { name: 'Yas', file: 'yas.png' },
+  { name: 'Airtel', file: 'airtel.png' },
+  { name: 'Halotel', file: 'halotel.png' },
+  { name: 'NMB', file: 'nmb.png' },
+  { name: 'CRDB', file: 'crdb.png' },
+  { name: 'DTB', file: 'dtb.png' },
+  { name: 'Stanbic', file: 'stanbic.png' },
+  { name: 'NBC', file: 'nbc.svg' },
+  { name: 'Selcom Pesa', file: 'selcompesa.png' },
+  { name: 'Equity', file: 'equity.png' },
+  { name: 'Azania', file: 'azania.png' },
+];
 
 /* Shared goals */
 const goals = [
@@ -122,24 +135,39 @@ const insights = [
     <div class="container-px grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-8 lg:py-24">
       <!-- Copy -->
       <div data-reveal>
-        <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-bold text-slate shadow-soft">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-bold text-slate shadow-soft"
+          data-i18n
+          data-en="Community Finance &amp; Engagement, built for Tanzania"
+          data-sw="Fedha za Jamii na Ushirikiano, zilizojengwa kwa Tanzania"
+        >
           <span class="h-2 w-2 rounded-full bg-accent"></span>
           Community Finance &amp; Engagement, built for Tanzania
         </span>
         <h1 class="mt-5 text-4xl font-extrabold leading-[1.08] text-heading sm:text-5xl lg:text-[3.5rem]">
-          One Platform to Run Your Community’s
-          <span class="marker-underline text-accent">Finances</span>
+          <span data-i18n data-en="One Platform to Run Your Community’s" data-sw="Jukwaa Moja la Kuendesha Fedha za Jamii Yako">One Platform to Run Your Community’s</span>
+          <span class="marker-underline text-accent" data-i18n data-en="Finances" data-sw="Fedha">Finances</span>
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+        <p
+          class="mt-6 max-w-xl text-lg leading-relaxed text-muted"
+          data-i18n
+          data-en="From pledges to payments, PesaJamaa replaces paper lists and chat groups with one transparent platform, so your group can focus on its goals, not bookkeeping."
+          data-sw="Kutoka kwa ahadi hadi malipo, PesaJamaa inachukua nafasi ya orodha za karatasi na vikundi vya chat kwa kutumia jukwaa moja la uwazi, ili kikundi chako kiweze kuzingatia malengo yake, si uhasibu wa karatasi."
+        >
           From pledges to payments, PesaJamaa replaces paper lists and chat
           groups with one transparent platform, so your group can focus on its
           goals, not bookkeeping.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="#how-it-works" variant="primary" size="lg" pill>See How It Works</Button>
-          <Button href="#final-cta" variant="secondary" size="lg" pill>Talk to an Advisor</Button>
+          <Button href="#how-it-works" variant="primary" size="lg" pill data-i18n data-en="See How It Works" data-sw="Tazama Inavyo Fanya Kazi">See How It Works</Button>
+          <Button href="#final-cta" variant="secondary" size="lg" pill data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
         </div>
-        <p class="mt-4 text-sm font-semibold text-muted">
+        <p
+          class="mt-4 text-sm font-semibold text-muted"
+          data-i18n
+          data-en="Free to get started, no credit card required."
+          data-sw="Bila malipo kuanza, hakuna kadi ya mkopo inayohitajika."
+        >
           Free to get started, no credit card required.
         </p>
       </div>
@@ -206,17 +234,31 @@ const insights = [
   <!-- ============================= TRUST STRIP ============================= -->
   <section id="trust" class="border-y border-slate-100 bg-white py-12">
     <div class="container-px">
-      <p class="text-center text-sm font-extrabold uppercase tracking-wider text-muted" data-reveal>
+      <p
+        class="text-center text-sm font-extrabold uppercase tracking-wider text-muted"
+        data-reveal
+        data-i18n="trust-label"
+        data-en="Trusted by groups around Tanzania"
+        data-sw="Imetegemezwa na vikundi kote Tanzania"
+      >
         Trusted by groups around Tanzania
       </p>
-      <div class="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6" data-reveal-stagger>
-        {
-          partners.map((p) => (
-            <div class="flex items-center justify-center rounded-xl bg-gray-bg px-4 py-4 text-center text-[15px] font-extrabold text-slate/70 transition-colors hover:text-slate">
-              {p}
+
+      <div class="marquee-shell mt-7" data-reveal>
+        <div class="marquee-track">
+          {[...partners, ...partners].map((p, index) => (
+            <div
+              key={`${p.name}-${index}`}
+              class="marquee-item flex items-center justify-center rounded-xl border border-slate-100 bg-gray-bg px-4 py-4 shadow-sm"
+            >
+              <img
+                src={`/partners/${p.file}`}
+                alt={p.name}
+                class="max-h-12 w-auto max-w-full object-contain opacity-90 transition duration-200 hover:opacity-100"
+              />
             </div>
-          ))
-        }
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -226,8 +268,14 @@ const insights = [
     <div class="container-px">
       <SectionTitle
         eyebrow="Everything in one place"
+        eyebrowEn="Everything in one place"
+        eyebrowSw="Vyote kwenye sehemu moja"
         title="Our Community Finance Modules"
+        titleEn="Our Community Finance Modules"
+        titleSw="Moduli Zetu za Fedha za Jamii"
         subtitle="One platform covers the whole journey, from the first pledge to the monthly report."
+        subtitleEn="One platform covers the whole journey, from the first pledge to the monthly report."
+        subtitleSw="Jukwaa moja linashughulikia safari nzima, kutoka ahadi ya kwanza hadi ripoti ya kila mwezi."
       />
       <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4" data-reveal-stagger>
         {
@@ -336,8 +384,14 @@ const insights = [
     <div class="container-px">
       <SectionTitle
         eyebrow="How it works"
+        eyebrowEn="How it works"
+        eyebrowSw="Inafanyaje kazi"
         title="Real tools your group will actually use"
+        titleEn="Real tools your group will actually use"
+        titleSw="Zana halisi ambazo kikundi chako kitazitumia"
         subtitle="Each module is built for the way Tanzanian communities already organise and raise money."
+        subtitleEn="Each module is built for the way Tanzanian communities already organise and raise money."
+        subtitleSw="Kila moduli imejengwa kulingana na njia ambazo jamii za Tanzania zinalorganiza na kukusanya fedha."
       />
 
       <div class="mt-16 space-y-20">
@@ -565,8 +619,14 @@ const insights = [
     <div class="container-px">
       <SectionTitle
         eyebrow="Goals growing"
+        eyebrowEn="Goals growing"
+        eyebrowSw="Malengo yanakua"
         title="See every shared goal fill up"
+        titleEn="See every shared goal fill up"
+        titleSw="Tazama kila lengo la pamoja linazidi kujaza"
         subtitle="Animated progress keeps members motivated and gives leaders a live view of what’s on track."
+        subtitleEn="Animated progress keeps members motivated and gives leaders a live view of what’s on track."
+        subtitleSw="Maendeleo ya animated huchochea wanachama na kuwapa viongozi mtazamo wa moja kwa moja wa kile kinachoendelea vizuri."
       />
       <div class="mt-12 grid gap-5 sm:grid-cols-2" data-reveal-stagger>
         {
@@ -583,8 +643,14 @@ const insights = [
     <div class="container-px">
       <SectionTitle
         eyebrow="Built for every community"
+        eyebrowEn="Built for every community"
+        eyebrowSw="Imejengwa kwa kila jamii"
         title="Whoever you organise, PesaJamaa fits"
+        titleEn="Whoever you organise, PesaJamaa fits"
+        titleSw="Kama unavyopanga, PesaJamaa inafaa"
         subtitle="One flexible platform that adapts to how your community already works."
+        subtitleEn="One flexible platform that adapts to how your community already works."
+        subtitleSw="Jukwaa moja linalobadilika kwa mujibu wa jinsi jamii yako inavyofanya kazi tayari."
       />
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
         {
@@ -630,8 +696,14 @@ const insights = [
     <div class="container-px">
       <SectionTitle
         eyebrow="Why groups trust PesaJamaa"
+        eyebrowEn="Why groups trust PesaJamaa"
+        eyebrowSw="Kwa nini vikundi vinamwamini PesaJamaa"
         title="Trust your community can see"
+        titleEn="Trust your community can see"
+        titleSw="Uaminifu unaoonekana na jamii yako"
         subtitle="The things that make members confident and leaders accountable."
+        subtitleEn="The things that make members confident and leaders accountable."
+        subtitleSw="Vitu vinavyowafanya wanachama kuwa na ujasiri na viongozi kuwa na uwajibikaji."
       />
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
         {
@@ -654,8 +726,14 @@ const insights = [
     <div class="container-px">
       <SectionTitle
         eyebrow="Security"
+        eyebrowEn="Security"
+        eyebrowSw="Usalama"
         title="Built With Your Group’s Trust in Mind"
+        titleEn="Built With Your Group’s Trust in Mind"
+        titleSw="Imejengwa kwa Kupewa Kipaumbele Uaminifu wa Kikundi Chako"
         subtitle="Your community’s money and data are protected at every step."
+        subtitleEn="Your community’s money and data are protected at every step."
+        subtitleSw="Fedha na data za jamii yako zinalindwa katika kila hatua."
       />
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
         {
@@ -676,7 +754,7 @@ const insights = [
   <!-- ============================= TESTIMONIALS ============================= -->
   <section class="py-20">
     <div class="container-px">
-      <SectionTitle eyebrow="What our clients say" title="Communities that made the switch" />
+      <SectionTitle eyebrow="What our clients say" eyebrowEn="What our clients say" eyebrowSw="Wanasema nini wateja wetu" title="Communities that made the switch" titleEn="Communities that made the switch" titleSw="Jamii zilizobadilisha mfumo" />
       <div class="mt-12 grid gap-6 lg:grid-cols-3" data-reveal-stagger>
         {
           testimonials.map((t) => (
@@ -704,7 +782,7 @@ const insights = [
   <!-- ============================= INSIGHTS / BLOG ============================= -->
   <section id="insights" class="bg-gray-bg py-20">
     <div class="container-px">
-      <SectionTitle eyebrow="Latest insights" title="Ideas for running a stronger community" />
+      <SectionTitle eyebrow="Latest insights" eyebrowEn="Latest insights" eyebrowSw="Maarifa ya hivi punde" title="Ideas for running a stronger community" titleEn="Ideas for running a stronger community" titleSw="Mawazo ya kuendesha jamii yenye nguvu zaidi" />
       <div class="mt-12 grid gap-6 lg:grid-cols-3" data-reveal-stagger>
         {
           insights.map((a) => (
@@ -732,21 +810,36 @@ const insights = [
       <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy via-navy to-[#06204d] px-6 py-16 text-center shadow-lift sm:px-12" data-reveal>
         <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/20 blur-3xl"></div>
         <div class="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
-        <h2 class="mx-auto max-w-2xl text-3xl font-extrabold text-white sm:text-4xl">
+        <h2
+          class="mx-auto max-w-2xl text-3xl font-extrabold text-white sm:text-4xl"
+          data-i18n
+          data-en="Bring your group’s finances together"
+          data-sw="Leta fedha za kikundi chako pamoja"
+        >
           Bring your group’s finances together
         </h2>
-        <p class="mx-auto mt-4 max-w-xl text-lg text-slate-300">
+        <p
+          class="mx-auto mt-4 max-w-xl text-lg text-slate-300"
+          data-i18n
+          data-en="Join the communities across Tanzania running pledges, savings and events on one transparent platform."
+          data-sw="Jiunge na jamii kote Tanzania zinazotumia ahadi, akiba na matukio kwenye jukwaa moja la uwazi."
+        >
           Join the communities across Tanzania running pledges, savings and
           events on one transparent platform.
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href="https://portal.pesajamaa.co.tz/register" variant="primary" size="lg" pill>Start Free</Button>
+          <Button href="https://portal.pesajamaa.co.tz/register" variant="primary" size="lg" pill data-i18n data-en="Start Free" data-sw="Anza Bila Malipo">Start Free</Button>
           <Button href="https://play.google.com/store/apps/details?id=com.brickmas.pesajamaa" variant="light" size="lg" pill>
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2a1 1 0 0 0-.6.9v17.8a1 1 0 0 0 1.5.86l2.4-1.4-2.9-2.9 3.3-3.3-3.7-11.9Zm10.9 7.9 3-1.7-9.2-5.3 6.2 7Zm-9 9.6 9.2-5.3-3-1.7-6.2 7Zm11.6-6.7 2.9-1.7c.9-.5.9-1.8 0-2.3l-2.9-1.7-3.4 3.4 3.4 3.4Z"/></svg>
-            Get the Android App
+            <span data-i18n data-i18n-text data-en="Get the Android App" data-sw="Pata Programu ya Android">Get the Android App</span>
           </Button>
         </div>
-        <p class="mt-5 text-sm font-semibold text-slate-400">
+        <p
+          class="mt-5 text-sm font-semibold text-slate-400"
+          data-i18n
+          data-en="Free to get started, no credit card required."
+          data-sw="Bila malipo kuanza, hakuna kadi ya mkopo inayohitajika."
+        >
           Free to get started, no credit card required.
         </p>
       </div>

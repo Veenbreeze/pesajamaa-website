@@ -132,6 +132,35 @@
   border-radius: 999px;
 }
 
+/* ---------- Marquee trust strip ---------- */
+.marquee-shell {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.marquee-item {
+  min-width: 180px;
+  flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* ---------- Respect reduced-motion: disable all non-essential motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   :root {
@@ -149,5 +178,9 @@
   [data-reveal-stagger] > * {
     opacity: 1 !important;
     transform: none !important;
+  }
+  .marquee-track {
+    animation: none;
+    transform: none;
   }
 }

@@ -6,27 +6,39 @@
 const columns = [
   {
     title: 'Solutions',
+    swTitle: 'Ufumbuzi',
     links: ['Churches', 'VICOBA / Chamas', 'NGOs', 'Event Organizers', 'Schools'],
+    swLinks: ['Makanisa', 'VICOBA / Chamas', 'NGOs', 'Waandaji wa Matukio', 'Shule'],
   },
   {
     title: 'Features',
+    swTitle: 'Vipengele',
     links: ['Pledges', 'Events', 'Bulk SMS', 'Group Savings', 'Receipts'],
+    swLinks: ['Ahadi', 'Matukio', 'SMS za Wingi', 'Akiba ya Kikundi', 'Risiti'],
   },
   {
     title: 'Tools',
+    swTitle: 'Zana',
     links: ['Web Portal', 'Android App', 'Reports', 'Notifications', 'Payments'],
+    swLinks: ['Portal ya Wavuti', 'Programu ya Android', 'Ripoti', 'Arifa', 'Malipo'],
   },
   {
     title: 'Resources',
+    swTitle: 'Rasilimali',
     links: ['Insights', 'How it works', 'Help Center', 'Guides'],
+    swLinks: ['Maarifa', 'Inafanya kazi vipi', 'Kituo cha Usaidizi', 'Mwongozo'],
   },
   {
     title: 'Company',
+    swTitle: 'Kampuni',
     links: ['About', 'Careers', 'Contact', 'Partners'],
+    swLinks: ['Kuhusu', 'Kazi', 'Mawasiliano', 'Washirika'],
   },
   {
     title: 'Legal',
+    swTitle: 'Kisheria',
     links: ['Privacy', 'Terms', 'Security', 'Cookies'],
+    swLinks: ['Faragha', 'Masharti', 'Usalama', 'Vidakuzi'],
   },
 ];
 ---
@@ -39,7 +51,12 @@ const columns = [
         <div class="inline-flex rounded-xl bg-white p-3 shadow-soft">
           <img src="/pesajamaa-logo.png" alt="PesaJamaa" width="150" height="43" class="h-8 w-auto" />
         </div>
-        <p class="mt-5 text-[15px] leading-relaxed text-slate-400">
+        <p
+          class="mt-5 text-[15px] leading-relaxed text-slate-400"
+          data-i18n
+          data-en="One platform to run your community's finances: pledges, savings, events and reminders, all in one transparent place."
+          data-sw="Jukwaa moja la kuendesha fedha za jamii yako: ahadi, akiba, matukio na vikumbusho, vyote kwenye sehemu moja ya uwazi."
+        >
           One platform to run your community's finances: pledges, savings,
           events and reminders, all in one transparent place.
         </p>
@@ -62,11 +79,26 @@ const columns = [
         {
           columns.map((col) => (
             <div>
-              <h3 class="text-sm font-extrabold uppercase tracking-wider text-white">{col.title}</h3>
+              <h3
+                class="text-sm font-extrabold uppercase tracking-wider text-white"
+                data-i18n
+                data-en={col.title}
+                data-sw={col.swTitle}
+              >
+                {col.title}
+              </h3>
               <ul class="mt-4 space-y-2.5">
-                {col.links.map((link) => (
+                {col.links.map((link, index) => (
                   <li>
-                    <a href="#" class="text-[15px] text-slate-400 transition-colors hover:text-accent">{link}</a>
+                    <a
+                      href="#"
+                      class="text-[15px] text-slate-400 transition-colors hover:text-accent"
+                      data-i18n
+                      data-en={link}
+                      data-sw={col.swLinks[index]}
+                    >
+                      {link}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -77,7 +109,12 @@ const columns = [
     </div>
 
     <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
-      <p class="text-sm text-slate-400">
+      <p
+        class="text-sm text-slate-400"
+        data-i18n
+        data-en="© 2026 PesaJamaa. Designed, developed &amp; deployed with purpose."
+        data-sw="© 2026 PesaJamaa. Imeundwa, imejengwa na kutumwa kwa madhumuni."
+      >
         © 2026 PesaJamaa. Designed, developed &amp; deployed with purpose.
       </p>
       <p class="flex items-center gap-1.5 text-sm text-slate-400">
@@ -86,7 +123,7 @@ const columns = [
           <path d="M0 16 L0 12 L18 0 L24 0 L24 1 L4 16 Z" fill="#000" />
           <path d="M0 16 L0 15 L23 0 L24 0 L24 1 L1 16 Z" fill="#FCD116" />
         </svg>
-        Developed in Tanzania
+        TZ
       </p>
     </div>
   </div>

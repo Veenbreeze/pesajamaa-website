@@ -12,35 +12,39 @@ import Button from './Button.astro';
 const nav = [
   {
     label: 'Features',
+    swLabel: 'Vipengele',
     items: [
-      { label: 'Pledges & Events', href: '#features' },
-      { label: 'Bulk SMS', href: '#features' },
-      { label: 'Group Savings', href: '#features' },
-      { label: 'Receipts & Reports', href: '#features' },
+      { label: 'Pledges & Events', swLabel: 'Ahadi na Matukio', href: '#features' },
+      { label: 'Bulk SMS', swLabel: 'SMS za Wingi', href: '#features' },
+      { label: 'Group Savings', swLabel: 'Akiba ya Kikundi', href: '#features' },
+      { label: 'Receipts & Reports', swLabel: 'Risiti na Ripoti', href: '#features' },
     ],
   },
   {
     label: 'Solutions',
+    swLabel: 'Ufumbuzi',
     items: [
-      { label: 'Churches', href: '#audiences' },
-      { label: 'VICOBA / Chamas', href: '#audiences' },
-      { label: 'NGOs & Organizations', href: '#audiences' },
-      { label: 'Event Organizers', href: '#audiences' },
+      { label: 'Churches', swLabel: 'Makanisa', href: '#audiences' },
+      { label: 'VICOBA / Chamas', swLabel: 'VICOBA / Chamas', href: '#audiences' },
+      { label: 'NGOs & Organizations', swLabel: 'NGOs na Mashirika', href: '#audiences' },
+      { label: 'Event Organizers', swLabel: 'Waandaji wa Matukio', href: '#audiences' },
     ],
   },
   {
     label: 'Pricing',
+    swLabel: 'Bei',
     items: [
-      { label: 'Free to start', href: '#final-cta' },
-      { label: 'Talk to an advisor', href: '#final-cta' },
+      { label: 'Free to start', swLabel: 'Bila malipo kuanza', href: '#final-cta' },
+      { label: 'Talk to an advisor', swLabel: 'Zungumza na mshauri', href: '#final-cta' },
     ],
   },
   {
     label: 'Resources',
+    swLabel: 'Rasilimali',
     items: [
-      { label: 'Latest insights', href: '#insights' },
-      { label: 'How it works', href: '#ecosystem' },
-      { label: 'Why trust us', href: '#trust' },
+      { label: 'Latest insights', swLabel: 'Maarifa ya hivi karibuni', href: '#insights' },
+      { label: 'How it works', swLabel: 'Inafanya kazi vipi', href: '#ecosystem' },
+      { label: 'Why trust us', swLabel: 'Kwa nini tunatokana na imani', href: '#trust' },
     ],
   },
 ];
@@ -72,6 +76,9 @@ const nav = [
               class="flex items-center gap-1 rounded-md px-3 py-2 text-[15px] font-bold text-heading transition-colors hover:text-primary focus-visible:text-primary"
               aria-expanded="false"
               aria-haspopup="true"
+              data-i18n
+              data-en={group.label}
+              data-sw={group.swLabel}
             >
               {group.label}
               <svg class="h-4 w-4 text-muted transition-transform group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -86,6 +93,9 @@ const nav = [
                     <a
                       href={item.href}
                       class="block rounded-lg px-3 py-2 text-[15px] font-semibold text-muted transition-colors hover:bg-tint hover:text-primary"
+                      data-i18n
+                      data-en={item.label}
+                      data-sw={item.swLabel}
                     >
                       {item.label}
                     </a>
@@ -98,8 +108,16 @@ const nav = [
       }
     </ul>
 
-    <!-- Right side: badge + CTAs (desktop) -->
+    <!-- Right side: language + badge + CTAs (desktop) -->
     <div class="hidden items-center gap-3 lg:flex">
+      <button
+        id="language-toggle"
+        type="button"
+        class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-extrabold uppercase tracking-wide text-slate transition-colors hover:border-primary hover:text-primary"
+        aria-label="Switch language to Swahili"
+      >
+        SW
+      </button>
       <span
         class="flex items-center gap-1.5 rounded-full bg-tint px-3 py-1.5 text-xs font-bold text-slate"
         title="Developed in Tanzania"
@@ -113,10 +131,10 @@ const nav = [
           <path d="M0 16 L1 16 L24 1 L24 0 L23 0 L0 15 Z" fill="#FCD116" />
           <path d="M0 16 L0 15 L23 0 L24 0 L24 1 L1 16 Z" fill="#FCD116" />
         </svg>
-        Developed in Tanzania
+        TZ
       </span>
-      <Button href="#final-cta" variant="secondary">Talk to an Advisor</Button>
-      <Button href="#final-cta" variant="primary">Start Free</Button>
+      <Button href="#final-cta" variant="secondary" data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
+      <Button href="#final-cta" variant="primary" data-i18n data-en="Start Free" data-sw="Anza Bila Malipo">Start Free</Button>
     </div>
 
     <!-- Mobile hamburger -->
@@ -159,8 +177,15 @@ const nav = [
         ))
       }
       <div class="flex flex-col gap-2 pt-3">
-        <Button href="#final-cta" variant="secondary" class="w-full">Talk to an Advisor</Button>
-        <Button href="#final-cta" variant="primary" class="w-full">Start Free</Button>
+        <button
+          id="mobile-language-toggle"
+          type="button"
+          class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold uppercase tracking-wide text-slate"
+        >
+          SW
+        </button>
+        <Button href="#final-cta" variant="secondary" class="w-full" data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
+        <Button href="#final-cta" variant="primary" class="w-full" data-i18n data-en="Start Free" data-sw="Anza Bila Malipo">Start Free</Button>
       </div>
     </div>
   </div>
@@ -171,6 +196,64 @@ const nav = [
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const header = document.getElementById('site-header');
+  const languageToggle = document.getElementById('language-toggle');
+  const mobileLanguageToggle = document.getElementById('mobile-language-toggle');
+
+  const labels = {
+    en: {
+      toggle: 'SW',
+      aria: 'Switch language to Swahili',
+    },
+    sw: {
+      toggle: 'EN',
+      aria: 'Badilisha lugha kuwa Kiingereza',
+    },
+  };
+
+  let currentLang = 'en';
+
+  const textNodes = document.querySelectorAll('[data-i18n]');
+
+  const applyLanguage = (lang) => {
+    currentLang = lang;
+    const copy = labels[lang];
+
+    textNodes.forEach((el) => {
+      const nextText = el.getAttribute(lang === 'en' ? 'data-en' : 'data-sw');
+      if (!nextText) return;
+
+      const labelTarget = el.querySelector('[data-i18n-text]');
+      if (labelTarget) {
+        labelTarget.textContent = nextText;
+        return;
+      }
+
+      if (el.querySelector('svg')) {
+        return;
+      }
+
+      el.textContent = nextText;
+    });
+
+    if (languageToggle) {
+      languageToggle.textContent = copy.toggle;
+      languageToggle.setAttribute('aria-label', copy.aria);
+    }
+
+    if (mobileLanguageToggle) {
+      mobileLanguageToggle.textContent = copy.toggle;
+      mobileLanguageToggle.setAttribute('aria-label', copy.aria);
+    }
+
+    document.documentElement.lang = lang;
+  };
+
+  const toggleLanguage = () => {
+    applyLanguage(currentLang === 'en' ? 'sw' : 'en');
+  };
+
+  languageToggle?.addEventListener('click', toggleLanguage);
+  mobileLanguageToggle?.addEventListener('click', toggleLanguage);
 
   function closeMenu() {
     if (!menu || !toggle) return;
