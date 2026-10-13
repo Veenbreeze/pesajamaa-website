@@ -154,10 +154,36 @@
 
 @keyframes marquee-scroll {
   0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ---------- Horizontal module carousel ---------- */
+.modules-marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.modules-marquee-track {
+  animation: modules-scroll 34s linear infinite;
+  will-change: transform;
+}
+
+.modules-marquee:hover .modules-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes modules-scroll {
+  0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% - 0.5rem));
   }
 }
 

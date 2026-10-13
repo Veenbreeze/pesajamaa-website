@@ -273,7 +273,7 @@ const faqs = [
   </section>
 
   <!-- ============================= TRUST STRIP ============================= -->
-  <section id="trust" class="border-y border-slate-100 bg-white py-12">
+  <section id="trust" class="border-y border-slate-100 bg-white py-8">
     <div class="container-px">
       <p
         class="text-center text-sm font-extrabold uppercase tracking-wider text-muted"
@@ -285,7 +285,7 @@ const faqs = [
         Trusted by groups around Tanzania
       </p>
 
-      <div class="marquee-shell mt-7" data-reveal>
+      <div class="marquee-shell mt-5" data-reveal>
         <div class="marquee-track">
           {[...partners, ...partners].map((p, index) => (
             <div
@@ -305,7 +305,7 @@ const faqs = [
   </section>
 
   <!-- ============================= MODULES GRID ============================= -->
-  <section id="features" class="py-20">
+  <section id="features" class="py-12 sm:py-14">
     <div class="container-px">
       <SectionTitle
         eyebrow="Everything in one place"
@@ -318,22 +318,24 @@ const faqs = [
         subtitleEn="One platform covers the whole journey, from the first pledge to the monthly report."
         subtitleSw="Jukwaa moja linashughulikia safari nzima, kutoka ahadi ya kwanza hadi ripoti ya kila mwezi."
       />
-      <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4" data-reveal-stagger>
-        {
-          modules.map((m) => (
-            <ModuleCard
-              label={m.label}
-              labelSw={m.sw}
-              description={m.description}
-              descriptionSw={m.descriptionSw}
-              tint={m.tint}
-            >
-              <Fragment set:html={m.icon} />
-            </ModuleCard>
-          ))
-        }
+      <div class="modules-marquee mt-8" data-reveal>
+        <div class="modules-marquee-track flex w-max gap-4 py-2">
+          {[...modules, ...modules].map((m, index) => (
+            <div class="w-[220px] shrink-0 sm:w-[236px]" key={`${m.label}-${index}`}>
+              <ModuleCard
+                label={m.label}
+                labelSw={m.sw}
+                description={m.description}
+                descriptionSw={m.descriptionSw}
+                tint={m.tint}
+              >
+                <Fragment set:html={m.icon} />
+              </ModuleCard>
+            </div>
+          ))}
+        </div>
       </div>
-      <div class="mt-10 text-center" data-reveal>
+      <div class="mt-6 text-center" data-reveal>
         <Button href="#demo" variant="ghost" data-i18n data-en="View all modules →" data-sw="Ona moduli zote →">View all modules →</Button>
       </div>
     </div>
