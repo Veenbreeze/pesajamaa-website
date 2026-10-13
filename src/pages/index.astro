@@ -8,6 +8,7 @@ import AudienceCard from '../components/AudienceCard.astro';
 import StatCounter from '../components/StatCounter.astro';
 import ProgressBar from '../components/ProgressBar.astro';
 import LiveFeed from '../components/LiveFeed.astro';
+import AppDemo from '../components/AppDemo.astro';
 
 /* ------------------------------------------------------------------
    Inline SVG icon helpers. Outline, 24x24, stroke currentColor so the
@@ -33,18 +34,18 @@ const icons = {
 };
 
 const modules = [
-  { label: 'Pledges', icon: icons.pledge, tint: 'rose' },
-  { label: 'Events', icon: icons.event, tint: 'blue' },
-  { label: 'Bulk SMS', icon: icons.sms, tint: 'teal' },
-  { label: 'Group Savings', icon: icons.savings, tint: 'amber' },
-  { label: 'Members', icon: icons.members, tint: 'violet' },
-  { label: 'Payments', icon: icons.payments, tint: 'blue' },
-  { label: 'Financial Footprint', icon: icons.footprint, tint: 'teal' },
-  { label: 'Mobile App', icon: icons.mobile, tint: 'navy' },
-  { label: 'Web Portal', icon: icons.web, tint: 'blue' },
-  { label: 'Reports', icon: icons.reports, tint: 'amber' },
-  { label: 'Receipts', icon: icons.receipts, tint: 'rose' },
-  { label: 'Notifications', icon: icons.notifications, tint: 'violet' },
+  { label: 'Pledges', sw: 'Ahadi', icon: icons.pledge, tint: 'rose' },
+  { label: 'Events', sw: 'Matukio', icon: icons.event, tint: 'blue' },
+  { label: 'Bulk SMS', sw: 'SMS za Wingi', icon: icons.sms, tint: 'teal' },
+  { label: 'Group Savings', sw: 'Akiba ya Kikundi', icon: icons.savings, tint: 'amber' },
+  { label: 'Members', sw: 'Wanachama', icon: icons.members, tint: 'violet' },
+  { label: 'Payments', sw: 'Malipo', icon: icons.payments, tint: 'blue' },
+  { label: 'Financial Footprint', sw: 'Alama ya Kifedha', icon: icons.footprint, tint: 'teal' },
+  { label: 'Mobile App', sw: 'Programu ya Simu', icon: icons.mobile, tint: 'navy' },
+  { label: 'Web Portal', sw: 'Portal ya Wavuti', icon: icons.web, tint: 'blue' },
+  { label: 'Reports', sw: 'Ripoti', icon: icons.reports, tint: 'amber' },
+  { label: 'Receipts', sw: 'Risiti', icon: icons.receipts, tint: 'rose' },
+  { label: 'Notifications', sw: 'Arifa', icon: icons.notifications, tint: 'violet' },
 ] as const;
 
 /* Trust strip — partner logos from public/partners */
@@ -65,62 +66,102 @@ const partners = [
 
 /* Shared goals */
 const goals = [
-  { label: 'Church Building', value: 78_000_000, goal: 100_000_000, fill: 'accent' as const },
-  { label: 'Wedding Fund', value: 8_200_000, goal: 10_000_000, fill: 'primary' as const },
-  { label: 'School Project', value: 4_500_000, goal: 6_000_000, fill: 'accent' as const },
-  { label: 'Investment Fund', value: 18_000_000, goal: 25_000_000, fill: 'primary' as const },
+  { label: 'Church Building', sw: 'Ujenzi wa Kanisa', value: 78_000_000, goal: 100_000_000, fill: 'accent' as const },
+  { label: 'Wedding Fund', sw: 'Mfuko wa Harusi', value: 8_200_000, goal: 10_000_000, fill: 'primary' as const },
+  { label: 'School Project', sw: 'Mradi wa Shule', value: 4_500_000, goal: 6_000_000, fill: 'accent' as const },
+  { label: 'Investment Fund', sw: 'Mfuko wa Uwekezaji', value: 18_000_000, goal: 25_000_000, fill: 'primary' as const },
 ];
 
 /* Audiences */
 const audiences = [
-  { title: 'Churches', line: 'Run building funds, tithes and offerings with full transparency.', icon: svg('<path d="M12 2v6M9 5h6M6 22v-9l6-4 6 4v9M9.5 22v-4a2.5 2.5 0 0 1 5 0v4"/>') },
-  { title: 'Families', line: 'Coordinate family contributions for weddings, funerals and projects.', icon: svg('<circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><path d="M3 19a5 5 0 0 1 10 0M11 19a5 5 0 0 1 10 0"/>') },
-  { title: 'VICOBA / Chamas', line: 'Manage group savings and loans with a clear, shared ledger.', icon: svg('<path d="M3 10.5 12 5l9 5.5M5 10v8h14v-8M3 21h18"/>') },
-  { title: 'Organizations', line: 'Keep membership dues and projects organised in one place.', icon: svg('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h3M8 11h3M8 15h3M15 21v-5h3v5"/>') },
-  { title: 'NGOs', line: 'Track donor pledges and show exactly where every shilling goes.', icon: svg('<path d="M12 21s-7-4.35-9.5-8.5C1 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.5C10.8 7.2 12 6 14 6c3.5 0 5 3.5 3.5 6.5C19 16.65 12 21 12 21Z"/>') },
-  { title: 'Schools', line: 'Collect fees and project contributions from parents with receipts.', icon: svg('<path d="M12 4 2 9l10 5 10-5-10-5ZM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/>') },
-  { title: 'Investment Groups', line: 'Pool capital, track returns and keep members accountable.', icon: svg('<path d="M4 20V4M4 20h16M7 16l3-4 3 2 5-7"/>') },
-  { title: 'Event Organizers', line: 'Sell tickets, track RSVPs and manage event budgets end to end.', icon: svg('<path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h15A1.5 1.5 0 0 1 21 8.5v2a2 2 0 0 0 0 4v2a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16.5v-2a2 2 0 0 0 0-4Z"/><path d="M14 7v10"/>') },
+  { title: 'Churches', titleSw: 'Makanisa', line: 'Run building funds, tithes and offerings with full transparency.', lineSw: 'Endesha mifuko ya ujenzi, zaka na sadaka kwa uwazi kamili.', icon: svg('<path d="M12 2v6M9 5h6M6 22v-9l6-4 6 4v9M9.5 22v-4a2.5 2.5 0 0 1 5 0v4"/>') },
+  { title: 'Families', titleSw: 'Familia', line: 'Coordinate family contributions for weddings, funerals and projects.', lineSw: 'Ratibu michango ya familia kwa harusi, misiba na miradi.', icon: svg('<circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><path d="M3 19a5 5 0 0 1 10 0M11 19a5 5 0 0 1 10 0"/>') },
+  { title: 'VICOBA / Chamas', titleSw: 'VICOBA / Chamas', line: 'Manage group savings and loans with a clear, shared ledger.', lineSw: 'Simamia akiba na mikopo ya kikundi kwa daftari wazi la pamoja.', icon: svg('<path d="M3 10.5 12 5l9 5.5M5 10v8h14v-8M3 21h18"/>') },
+  { title: 'Organizations', titleSw: 'Mashirika', line: 'Keep membership dues and projects organised in one place.', lineSw: 'Weka ada za uanachama na miradi kwa mpangilio sehemu moja.', icon: svg('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h3M8 11h3M8 15h3M15 21v-5h3v5"/>') },
+  { title: 'NGOs', titleSw: 'NGOs', line: 'Track donor pledges and show exactly where every shilling goes.', lineSw: 'Fuatilia ahadi za wafadhili na onyesha kila shilingi inakoenda.', icon: svg('<path d="M12 21s-7-4.35-9.5-8.5C1 9.5 2.5 6 6 6c2 0 3.2 1.2 4 2.5C10.8 7.2 12 6 14 6c3.5 0 5 3.5 3.5 6.5C19 16.65 12 21 12 21Z"/>') },
+  { title: 'Schools', titleSw: 'Shule', line: 'Collect fees and project contributions from parents with receipts.', lineSw: 'Kusanya ada na michango ya miradi kutoka kwa wazazi na risiti.', icon: svg('<path d="M12 4 2 9l10 5 10-5-10-5ZM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/>') },
+  { title: 'Investment Groups', titleSw: 'Vikundi vya Uwekezaji', line: 'Pool capital, track returns and keep members accountable.', lineSw: 'Changanya mtaji, fuatilia faida na uwajibishe wanachama.', icon: svg('<path d="M4 20V4M4 20h16M7 16l3-4 3 2 5-7"/>') },
+  { title: 'Event Organizers', titleSw: 'Waandaji wa Matukio', line: 'Sell tickets, track RSVPs and manage event budgets end to end.', lineSw: 'Uza tiketi, fuatilia mahudhurio na simamia bajeti za matukio.', icon: svg('<path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h15A1.5 1.5 0 0 1 21 8.5v2a2 2 0 0 0 0 4v2a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 16.5v-2a2 2 0 0 0 0-4Z"/><path d="M14 7v10"/>') },
 ];
 
 /* Ecosystem flow */
 const flow = [
-  { step: 'Create', line: 'Set up your group and goals in minutes.', icon: svg('<path d="M12 5v14M5 12h14"/>') },
-  { step: 'Connect', line: 'Invite members by phone or SMS link.', icon: svg('<path d="M9 12a3 3 0 0 1 3-3h3a3 3 0 0 1 0 6M15 12a3 3 0 0 1-3 3H9a3 3 0 0 1 0-6"/>') },
-  { step: 'Contribute', line: 'Members pay via mobile money or cash.', icon: svg('<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19"/>') },
-  { step: 'Engage', line: 'Send reminders and updates by bulk SMS.', icon: svg('<path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L3 20l1.8-5.3A7.5 7.5 0 1 1 21 11.5Z"/>') },
-  { step: 'Track', line: 'Watch progress with live reports.', icon: svg('<path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6"/>') },
-  { step: 'Grow', line: 'Build a financial footprint that opens doors.', icon: svg('<path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>') },
+  { step: 'Create', stepSw: 'Tengeneza', line: 'Set up your group and goals in minutes.', lineSw: 'Weka kikundi chako na malengo kwa dakika chache.', icon: svg('<path d="M12 5v14M5 12h14"/>') },
+  { step: 'Connect', stepSw: 'Unganisha', line: 'Invite members by phone or SMS link.', lineSw: 'Alika wanachama kwa simu au kiungo cha SMS.', icon: svg('<path d="M9 12a3 3 0 0 1 3-3h3a3 3 0 0 1 0 6M15 12a3 3 0 0 1-3 3H9a3 3 0 0 1 0-6"/>') },
+  { step: 'Contribute', stepSw: 'Changia', line: 'Members pay via mobile money or cash.', lineSw: 'Wanachama hulipa kupitia pesa za simu au taslimu.', icon: svg('<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19"/>') },
+  { step: 'Engage', stepSw: 'Shirikisha', line: 'Send reminders and updates by bulk SMS.', lineSw: 'Tuma vikumbusho na taarifa kwa SMS za wingi.', icon: svg('<path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L3 20l1.8-5.3A7.5 7.5 0 1 1 21 11.5Z"/>') },
+  { step: 'Track', stepSw: 'Fuatilia', line: 'Watch progress with live reports.', lineSw: 'Angalia maendeleo kwa ripoti za moja kwa moja.', icon: svg('<path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6"/>') },
+  { step: 'Grow', stepSw: 'Kua', line: 'Build a financial footprint that opens doors.', lineSw: 'Jenga alama ya kifedha inayofungua milango.', icon: svg('<path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>') },
 ];
 
 /* Why trust */
 const whyTrust = [
-  { title: 'Transparency You Can Show', line: 'Every contribution is recorded and visible to members, with no more disputes.', icon: svg('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>') },
-  { title: 'Fewer Bookkeeping Errors', line: 'Automatic totals and receipts replace error-prone paper lists.', icon: svg('<path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>') },
-  { title: 'Clear Communication', line: 'Reach every member instantly with bulk SMS, even without smartphones.', icon: svg('<path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L3 20l1.8-5.3A7.5 7.5 0 1 1 21 11.5Z"/>') },
-  { title: 'Financial Inclusion', line: 'Give unbanked groups a credible, data-backed financial identity.', icon: svg('<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>') },
+  { title: 'Transparency You Can Show', titleSw: 'Uwazi Unaoweza Kuonyesha', line: 'Every contribution is recorded and visible to members, with no more disputes.', lineSw: 'Kila mchango unarekodiwa na kuonekana na wanachama, bila migogoro tena.', icon: svg('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>') },
+  { title: 'Fewer Bookkeeping Errors', titleSw: 'Makosa Machache ya Uhasibu', line: 'Automatic totals and receipts replace error-prone paper lists.', lineSw: 'Jumla za kiotomatiki na risiti huondoa orodha za karatasi zenye makosa.', icon: svg('<path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>') },
+  { title: 'Clear Communication', titleSw: 'Mawasiliano Wazi', line: 'Reach every member instantly with bulk SMS, even without smartphones.', lineSw: 'Fikia kila mwanachama papo hapo kwa SMS za wingi, hata bila simu janja.', icon: svg('<path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L3 20l1.8-5.3A7.5 7.5 0 1 1 21 11.5Z"/>') },
+  { title: 'Financial Inclusion', titleSw: 'Ujumuishwaji wa Kifedha', line: 'Give unbanked groups a credible, data-backed financial identity.', lineSw: 'Ipe vikundi visivyo na benki utambulisho wa kifedha wenye uhakika.', icon: svg('<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>') },
 ];
 
 /* Security */
 const security = [
-  { title: 'Protected Access', line: 'Role-based permissions keep sensitive data in the right hands.', icon: svg('<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 15v2"/>') },
-  { title: 'Transparent Records', line: 'An immutable activity trail every member can review.', icon: svg('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M8 13h8M8 17h5"/>') },
-  { title: 'Reliable Backups', line: 'Your group’s data is backed up automatically and safely stored.', icon: svg('<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>') },
-  { title: 'Real Support', line: 'A Tanzanian team ready to help your group by phone or chat.', icon: svg('<path d="M4 18v-6a8 8 0 0 1 16 0v6"/><path d="M4 16a2 2 0 0 1 2-2h1v6H6a2 2 0 0 1-2-2ZM20 16a2 2 0 0 0-2-2h-1v6h1a2 2 0 0 0 2-2Z"/>') },
+  { title: 'Protected Access', titleSw: 'Ufikiaji Uliolindwa', line: 'Role-based permissions keep sensitive data in the right hands.', lineSw: 'Ruhusa kulingana na majukumu huhakikisha data nyeti iko mikononi sahihi.', icon: svg('<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 15v2"/>') },
+  { title: 'Transparent Records', titleSw: 'Kumbukumbu Wazi', line: 'An immutable activity trail every member can review.', lineSw: 'Historia ya shughuli isiyobadilika ambayo kila mwanachama anaweza kukagua.', icon: svg('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M8 13h8M8 17h5"/>') },
+  { title: 'Reliable Backups', titleSw: 'Nakala za Uhakika', line: 'Your group’s data is backed up automatically and safely stored.', lineSw: 'Data ya kikundi chako huhifadhiwa kiotomatiki na kwa usalama.', icon: svg('<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>') },
+  { title: 'Real Support', titleSw: 'Msaada wa Kweli', line: 'A Tanzanian team ready to help your group by phone or chat.', lineSw: 'Timu ya Kitanzania tayari kukusaidia kwa simu au gumzo.', icon: svg('<path d="M4 18v-6a8 8 0 0 1 16 0v6"/><path d="M4 16a2 2 0 0 1 2-2h1v6H6a2 2 0 0 1-2-2ZM20 16a2 2 0 0 0-2-2h-1v6h1a2 2 0 0 0 2-2Z"/>') },
 ];
 
 /* Testimonials */
 const testimonials = [
-  { quote: 'Our building fund used to live on paper and WhatsApp. Now every member sees exactly what we’ve raised, and pledges have never been higher.', name: 'Pastor Emanuel M.', role: 'Church Leader, Dodoma' },
-  { quote: 'Collecting VICOBA savings was chaos. PesaJamaa gives us one clean ledger and SMS reminders, so no one forgets their weekly share.', name: 'Asha R.', role: 'Chairperson, Mwanza Chama' },
-  { quote: 'The receipts and monthly reports saved us hours and ended every “where did the money go?” argument in our group.', name: 'Daniel K.', role: 'Treasurer, Arusha Investment Group' },
+  { quote: 'Our building fund used to live on paper and WhatsApp. Now every member sees exactly what we’ve raised, and pledges have never been higher.', quoteSw: 'Mfuko wetu wa ujenzi ulikuwa kwenye karatasi na WhatsApp. Sasa kila mwanachama anaona hasa tulichokusanya, na ahadi hazijawahi kuwa juu hivi.', name: 'Pastor Emanuel M.', role: 'Church Leader, Dodoma', roleSw: 'Kiongozi wa Kanisa, Dodoma' },
+  { quote: 'Collecting VICOBA savings was chaos. PesaJamaa gives us one clean ledger and SMS reminders, so no one forgets their weekly share.', quoteSw: 'Kukusanya akiba za VICOBA kulikuwa vurugu. PesaJamaa inatupa daftari moja safi na vikumbusho vya SMS, hivyo hakuna anayesahau mchango wake wa wiki.', name: 'Asha R.', role: 'Chairperson, Mwanza Chama', roleSw: 'Mwenyekiti, Chama cha Mwanza' },
+  { quote: 'The receipts and monthly reports saved us hours and ended every “where did the money go?” argument in our group.', quoteSw: 'Risiti na ripoti za kila mwezi zilituokolea masaa na kumaliza kila mgogoro wa "fedha zimeenda wapi?" kwenye kikundi chetu.', name: 'Daniel K.', role: 'Treasurer, Arusha Investment Group', roleSw: 'Mweka Hazina, Kikundi cha Uwekezaji Arusha' },
 ];
 
 /* Insights */
 const insights = [
-  { category: 'Guides', date: 'Oct 2026', read: '5 min', title: 'How to run a transparent church building fund', excerpt: 'A step-by-step playbook for collecting pledges and showing members where every shilling goes.' },
-  { category: 'VICOBA', date: 'Sep 2026', read: '4 min', title: '5 ways SMS reminders boost group savings', excerpt: 'Simple nudges that keep chama members contributing on time, every cycle.' },
-  { category: 'Inclusion', date: 'Sep 2026', read: '6 min', title: 'Building a financial footprint for your group', excerpt: 'Why a clear contribution history is the key to unlocking credit and growth.' },
+  { category: 'Guides', categorySw: 'Miongozo', date: 'Oct 2026', read: '5 min read', readSw: 'dakika 5', title: 'How to run a transparent church building fund', titleSw: 'Jinsi ya kuendesha mfuko wa ujenzi wa kanisa kwa uwazi', excerpt: 'A step-by-step playbook for collecting pledges and showing members where every shilling goes.', excerptSw: 'Mwongozo wa hatua kwa hatua wa kukusanya ahadi na kuonyesha wanachama kila shilingi inakoenda.' },
+  { category: 'VICOBA', categorySw: 'VICOBA', date: 'Sep 2026', read: '4 min read', readSw: 'dakika 4', title: '5 ways SMS reminders boost group savings', titleSw: 'Njia 5 ambazo vikumbusho vya SMS huongeza akiba ya kikundi', excerpt: 'Simple nudges that keep chama members contributing on time, every cycle.', excerptSw: 'Mikumbusho rahisi inayowafanya wanachama wa chama kuchangia kwa wakati, kila mzunguko.' },
+  { category: 'Inclusion', categorySw: 'Ujumuishwaji', date: 'Sep 2026', read: '6 min read', readSw: 'dakika 6', title: 'Building a financial footprint for your group', titleSw: 'Kujenga alama ya kifedha kwa kikundi chako', excerpt: 'Why a clear contribution history is the key to unlocking credit and growth.', excerptSw: 'Kwa nini historia wazi ya michango ndiyo ufunguo wa kupata mikopo na ukuaji.' },
+];
+
+/* FAQ */
+const faqs = [
+  {
+    q: 'Is my group’s money safe with PesaJamaa?',
+    qSw: 'Je, fedha za kikundi changu ziko salama na PesaJamaa?',
+    a: 'Yes. PesaJamaa records every transaction with role-based access, transparent records every member can review, and automatic backups. We never move your money ourselves; contributions go through trusted mobile-money and bank channels.',
+    aSw: 'Ndiyo. PesaJamaa inarekodi kila muamala kwa ruhusa za majukumu, kumbukumbu wazi ambazo kila mwanachama anaweza kukagua, na nakala za kiotomatiki. Hatuhamishi fedha zako sisi wenyewe; michango hupita kwenye njia za kuaminika za pesa za simu na benki.',
+  },
+  {
+    q: 'Do our members need smartphones?',
+    qSw: 'Je, wanachama wetu wanahitaji simu janja?',
+    a: 'No. Members can contribute via mobile money (USSD) and receive confirmations and reminders by SMS, so even members without smartphones stay fully included.',
+    aSw: 'Hapana. Wanachama wanaweza kuchangia kupitia pesa za simu (USSD) na kupokea uthibitisho na vikumbusho kwa SMS, hivyo hata wasio na simu janja hujumuishwa kikamilifu.',
+  },
+  {
+    q: 'How much does PesaJamaa cost?',
+    qSw: 'PesaJamaa inagharimu kiasi gani?',
+    a: 'You can get started for free, with no credit card required. As your group grows, flexible plans are available; talk to an advisor for what fits your group.',
+    aSw: 'Unaweza kuanza bila malipo, bila kuhitaji kadi ya mkopo. Kikundi chako kinapokua, kuna mipango inayobadilika; zungumza na mshauri kupata inayofaa kikundi chako.',
+  },
+  {
+    q: 'How do contributions come in?',
+    qSw: 'Michango inaingiaje?',
+    a: 'Through the mobile-money and bank channels your members already use (M-Pesa, Mixx by Yas, Airtel Money, HaloPesa, NMB, CRDB and more). Each payment is matched to the member and gets an instant receipt.',
+    aSw: 'Kupitia njia za pesa za simu na benki ambazo wanachama wako tayari wanazitumia (M-Pesa, Mixx by Yas, Airtel Money, HaloPesa, NMB, CRDB na nyingine). Kila malipo huunganishwa na mwanachama na kupata risiti papo hapo.',
+  },
+  {
+    q: 'Can we use PesaJamaa in Kiswahili?',
+    qSw: 'Je, tunaweza kutumia PesaJamaa kwa Kiswahili?',
+    a: 'Yes! The whole platform and this site work in both English and Kiswahili; switch anytime with the language button in the menu.',
+    aSw: 'Ndiyo! Jukwaa zima na tovuti hii hufanya kazi kwa Kiingereza na Kiswahili; badilisha wakati wowote kwa kitufe cha lugha kwenye menyu.',
+  },
+  {
+    q: 'How do we get started?',
+    qSw: 'Tunaanzaje?',
+    a: 'Click “Start Free” to create your group in minutes, or talk to an advisor and we’ll help you set everything up.',
+    aSw: 'Bofya "Anza Bila Malipo" kutengeneza kikundi chako kwa dakika chache, au zungumza na mshauri nasi tutakusaidia kuweka kila kitu.',
+  },
 ];
 ---
 
@@ -139,27 +180,27 @@ const insights = [
           class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-bold text-slate shadow-soft"
           data-i18n
           data-en="Community Finance &amp; Engagement, built for Tanzania"
-          data-sw="Fedha za Jamii na Ushirikiano, zilizojengwa kwa Tanzania"
+          data-sw="Fedha na Ushirikiano wa Jamii, kwa ajili ya Tanzania"
         >
           <span class="h-2 w-2 rounded-full bg-accent"></span>
           Community Finance &amp; Engagement, built for Tanzania
         </span>
         <h1 class="mt-5 text-4xl font-extrabold leading-[1.08] text-heading sm:text-5xl lg:text-[3.5rem]">
-          <span data-i18n data-en="One Platform to Run Your Community’s" data-sw="Jukwaa Moja la Kuendesha Fedha za Jamii Yako">One Platform to Run Your Community’s</span>
-          <span class="marker-underline text-accent" data-i18n data-en="Finances" data-sw="Fedha">Finances</span>
+          <span data-i18n data-en="One Platform to Run Your Community’s" data-sw="Jukwaa Moja la Kuendesha">One Platform to Run Your Community’s</span>
+          <span class="marker-underline text-accent" data-i18n data-en="Finances" data-sw="Fedha za Jamii Yako">Finances</span>
         </h1>
         <p
           class="mt-6 max-w-xl text-lg leading-relaxed text-muted"
           data-i18n
           data-en="From pledges to payments, PesaJamaa replaces paper lists and chat groups with one transparent platform, so your group can focus on its goals, not bookkeeping."
-          data-sw="Kutoka kwa ahadi hadi malipo, PesaJamaa inachukua nafasi ya orodha za karatasi na vikundi vya chat kwa kutumia jukwaa moja la uwazi, ili kikundi chako kiweze kuzingatia malengo yake, si uhasibu wa karatasi."
+          data-sw="Kutoka kwa ahadi hadi malipo, PesaJamaa inachukua nafasi ya orodha za karatasi na vikundi vya gumzo kwa kutumia jukwaa moja la uwazi, ili kikundi chako kiweze kuzingatia malengo yake, si uhasibu wa karatasi."
         >
           From pledges to payments, PesaJamaa replaces paper lists and chat
           groups with one transparent platform, so your group can focus on its
           goals, not bookkeeping.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="#how-it-works" variant="primary" size="lg" pill data-i18n data-en="See How It Works" data-sw="Tazama Inavyo Fanya Kazi">See How It Works</Button>
+          <Button href="#demo" variant="primary" size="lg" pill data-i18n data-en="See How It Works" data-sw="Tazama Inavyofanya Kazi">See How It Works</Button>
           <Button href="#final-cta" variant="secondary" size="lg" pill data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
         </div>
         <p
@@ -175,20 +216,20 @@ const insights = [
       <!-- Product mockup -->
       <div class="relative" data-reveal>
         <!-- floating accent chips -->
-        <div class="absolute -left-4 top-10 z-10 hidden animate-float rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-lift sm:block">
-          <p class="text-xs font-bold text-muted">New pledge</p>
+        <div class="absolute -top-14 right-6 z-10 hidden animate-float rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-lift lg:block">
+          <p class="text-xs font-bold text-muted" data-i18n data-en="New pledge" data-sw="Ahadi mpya">New pledge</p>
           <p class="text-sm font-extrabold text-accent">+ TZS 100,000</p>
         </div>
-        <div class="absolute -right-3 bottom-16 z-10 hidden animate-float-slow rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-lift sm:block">
-          <p class="text-xs font-bold text-muted">Members</p>
-          <p class="text-sm font-extrabold text-primary">9,200+ active</p>
+        <div class="absolute -bottom-14 left-6 z-10 hidden animate-float-slow rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-lift lg:block">
+          <p class="text-xs font-bold text-muted" data-i18n data-en="Members" data-sw="Wanachama">Members</p>
+          <p class="text-sm font-extrabold text-primary" data-i18n data-en="9,200+ active" data-sw="9,200+ hai">9,200+ active</p>
         </div>
 
         <!-- Dashboard card -->
         <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-muted">Group dashboard</p>
+              <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Group dashboard" data-sw="Dashibodi ya Kikundi">Group dashboard</p>
               <p class="text-lg font-extrabold text-heading">Imani Community Group</p>
             </div>
             <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-tint text-primary">
@@ -198,18 +239,18 @@ const insights = [
 
           <div class="mt-5 grid grid-cols-2 gap-3">
             <div class="rounded-2xl bg-tint p-4">
-              <p class="text-xs font-bold text-muted">Total raised</p>
+              <p class="text-xs font-bold text-muted" data-i18n data-en="Total raised" data-sw="Jumla iliyokusanywa">Total raised</p>
               <p class="mt-1 text-xl font-extrabold text-heading">TZS 52.3M</p>
             </div>
             <div class="rounded-2xl bg-accent/10 p-4">
-              <p class="text-xs font-bold text-muted">This month</p>
+              <p class="text-xs font-bold text-muted" data-i18n data-en="This month" data-sw="Mwezi huu">This month</p>
               <p class="mt-1 text-xl font-extrabold text-accent">+ TZS 6.1M</p>
             </div>
           </div>
 
           <div class="mt-4 rounded-2xl border border-slate-100 p-4">
             <div class="mb-2 flex items-center justify-between text-sm">
-              <span class="font-bold text-heading">Church Building</span>
+              <span class="font-bold text-heading" data-i18n data-en="Church Building" data-sw="Ujenzi wa Kanisa">Church Building</span>
               <span class="font-bold text-accent">52%</span>
             </div>
             <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-100" data-progress="52">
@@ -221,7 +262,7 @@ const insights = [
                 <span class="text-sm font-bold text-accent">+ TZS 50,000</span>
               </div>
               <div class="flex items-center justify-between rounded-xl bg-gray-bg px-3 py-2">
-                <span class="text-sm font-semibold text-heading">Anonymous</span>
+                <span class="text-sm font-semibold text-heading" data-i18n data-en="Anonymous" data-sw="Bila jina">Anonymous</span>
                 <span class="text-sm font-bold text-accent">+ TZS 250,000</span>
               </div>
             </div>
@@ -237,9 +278,9 @@ const insights = [
       <p
         class="text-center text-sm font-extrabold uppercase tracking-wider text-muted"
         data-reveal
-        data-i18n="trust-label"
+        data-i18n
         data-en="Trusted by groups around Tanzania"
-        data-sw="Imetegemezwa na vikundi kote Tanzania"
+        data-sw="Inaaminiwa na vikundi kote Tanzania"
       >
         Trusted by groups around Tanzania
       </p>
@@ -280,15 +321,22 @@ const insights = [
       <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4" data-reveal-stagger>
         {
           modules.map((m) => (
-            <ModuleCard label={m.label} tint={m.tint}>
+            <ModuleCard label={m.label} labelSw={m.sw} tint={m.tint}>
               <Fragment set:html={m.icon} />
             </ModuleCard>
           ))
         }
       </div>
       <div class="mt-10 text-center" data-reveal>
-        <Button href="#how-it-works" variant="ghost">View all modules →</Button>
+        <Button href="#demo" variant="ghost" data-i18n data-en="View all modules →" data-sw="Ona moduli zote →">View all modules →</Button>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================= APP DEMO (self-playing) ============================= -->
+  <section id="demo" class="bg-gradient-to-b from-white to-tint py-20">
+    <div class="container-px">
+      <AppDemo />
     </div>
   </section>
 
@@ -296,9 +344,9 @@ const insights = [
   <section class="bg-gray-bg py-20">
     <div class="container-px">
       <div class="grid gap-10 sm:grid-cols-3">
-        <StatCounter value={150} suffix="+" caption="Community Groups" />
-        <StatCounter value={9200} suffix="+" caption="Active Members" />
-        <StatCounter value={480} prefix="TZS " suffix="M+" caption="Pledges Tracked" />
+        <StatCounter value={150} suffix="+" caption="Community Groups" captionSw="Vikundi vya Jamii" />
+        <StatCounter value={9200} suffix="+" caption="Active Members" captionSw="Wanachama Hai" />
+        <StatCounter value={480} prefix="TZS " suffix="M+" caption="Pledges Tracked" captionSw="Ahadi Zilizofuatiliwa" />
       </div>
     </div>
   </section>
@@ -310,11 +358,11 @@ const insights = [
 
     <div class="container-px">
       <div class="mx-auto max-w-2xl text-center" data-reveal>
-        <p class="mb-3 text-sm font-extrabold uppercase tracking-wider text-accent">Live on PesaJamaa</p>
-        <h2 class="text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+        <p class="mb-3 text-sm font-extrabold uppercase tracking-wider text-accent" data-i18n data-en="Live on PesaJamaa" data-sw="Moja kwa moja kwenye PesaJamaa">Live on PesaJamaa</p>
+        <h2 class="text-3xl font-extrabold leading-tight text-white sm:text-4xl" data-i18n data-en="Watch your community’s money move in real time" data-sw="Angalia fedha za jamii yako zikisogea papo hapo">
           Watch your community’s money move in real time
         </h2>
-        <p class="mt-4 text-lg leading-relaxed text-slate-300">
+        <p class="mt-4 text-lg leading-relaxed text-slate-300" data-i18n data-en="Every contribution appears the moment it lands, so members always see progress toward the goal." data-sw="Kila mchango huonekana mara tu unapoingia, hivyo wanachama huona maendeleo kuelekea lengo kila wakati.">
           Every contribution appears the moment it lands, so members always see
           progress toward the goal.
         </p>
@@ -324,17 +372,17 @@ const insights = [
         <div class="grid gap-8 lg:grid-cols-2">
           <!-- Campaign side -->
           <div>
-            <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-extrabold text-accent">
+            <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-extrabold text-accent" data-i18n data-en="Active campaign" data-sw="Kampeni hai">
               Active campaign
             </span>
-            <h3 class="mt-3 text-2xl font-extrabold text-heading">Build Our Church</h3>
+            <h3 class="mt-3 text-2xl font-extrabold text-heading" data-i18n data-en="Build Our Church" data-sw="Tujenge Kanisa Letu">Build Our Church</h3>
 
             <div class="mt-5">
-              <p class="text-sm font-bold text-muted">Raised</p>
+              <p class="text-sm font-bold text-muted" data-i18n data-en="Raised" data-sw="Imekusanywa">Raised</p>
               <p class="text-3xl font-extrabold text-heading sm:text-4xl">
                 TZS <span data-countup="52350000" data-duration="2400">0</span>
               </p>
-              <p class="mt-1 text-sm font-semibold text-muted">
+              <p class="mt-1 text-sm font-semibold text-muted" data-i18n data-en="of TZS 100,000,000 goal" data-sw="kati ya lengo la TZS 100,000,000">
                 of TZS 100,000,000 goal
               </p>
             </div>
@@ -346,7 +394,7 @@ const insights = [
               aria-valuenow="52"
               aria-valuemin="0"
               aria-valuemax="100"
-              aria-label="Build Our Church: 52% of goal"
+              aria-label="Build Our Church: 52%"
             >
               <div class="h-full w-0 rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-[1600ms] ease-out" data-progress-fill></div>
             </div>
@@ -354,19 +402,19 @@ const insights = [
             <div class="mt-5 grid grid-cols-2 gap-3">
               <div class="rounded-2xl bg-tint p-4">
                 <p class="text-2xl font-extrabold text-primary">52%</p>
-                <p class="text-xs font-bold text-muted">of goal reached</p>
+                <p class="text-xs font-bold text-muted" data-i18n data-en="of goal reached" data-sw="ya lengo imefikiwa">of goal reached</p>
               </div>
               <div class="rounded-2xl bg-accent/10 p-4">
                 <p class="text-2xl font-extrabold text-accent">
                   <span data-countup="1284" data-duration="2200">0</span>
                 </p>
-                <p class="text-xs font-bold text-muted">Contributions</p>
+                <p class="text-xs font-bold text-muted" data-i18n data-en="Contributions" data-sw="Michango">Contributions</p>
               </div>
             </div>
 
             <div class="mt-5 flex gap-3">
-              <Button href="#final-cta" variant="primary" class="flex-1">Contribute</Button>
-              <Button href="#final-cta" variant="secondary" class="flex-1">Share</Button>
+              <Button href="#final-cta" variant="primary" class="flex-1" data-i18n data-en="Contribute" data-sw="Changia">Contribute</Button>
+              <Button href="#final-cta" variant="secondary" class="flex-1" data-i18n data-en="Share" data-sw="Shiriki">Share</Button>
             </div>
           </div>
 
@@ -391,26 +439,34 @@ const insights = [
         titleSw="Zana halisi ambazo kikundi chako kitazitumia"
         subtitle="Each module is built for the way Tanzanian communities already organise and raise money."
         subtitleEn="Each module is built for the way Tanzanian communities already organise and raise money."
-        subtitleSw="Kila moduli imejengwa kulingana na njia ambazo jamii za Tanzania zinalorganiza na kukusanya fedha."
+        subtitleSw="Kila moduli imejengwa kulingana na jinsi ambavyo jamii za Tanzania tayari zinavyojipanga na kukusanya fedha."
       />
 
       <div class="mt-16 space-y-20">
         <!-- 1. Pledge & Event Management -->
         <FeatureRow
           label="Pledges & Events"
+          labelSw="Ahadi na Matukio"
           title="Pledge & Event Management"
+          titleSw="Usimamizi wa Ahadi na Matukio"
           description="Create a campaign or event, invite members, and track who has paid and who still owes, all without a single paper list."
+          descriptionSw="Tengeneza kampeni au tukio, alika wanachama, na fuatilia nani amelipa na nani bado anadaiwa, yote bila orodha ya karatasi hata moja."
           bullets={[
             'Paid / unpaid status for every member at a glance',
             'Event ticketing and RSVP tracking built in',
             'Automatic reminders for outstanding pledges',
           ]}
+          bulletsSw={[
+            'Hali ya kulipa / kutolipa kwa kila mwanachama kwa mtazamo mmoja',
+            'Tiketi za matukio na ufuatiliaji wa mahudhurio vimejengwa ndani',
+            'Vikumbusho vya kiotomatiki kwa ahadi zinazodaiwa',
+          ]}
         >
           <!-- Mockup: pledge table -->
           <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
             <div class="flex items-center justify-between">
-              <p class="font-extrabold text-heading">Harvest Pledges</p>
-              <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary">124 members</span>
+              <p class="font-extrabold text-heading" data-i18n data-en="Harvest Pledges" data-sw="Ahadi za Mavuno">Harvest Pledges</p>
+              <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary" data-i18n data-en="124 members" data-sw="wanachama 124">124 members</span>
             </div>
             <div class="mt-4 space-y-2 text-sm">
               {[
@@ -424,7 +480,12 @@ const insights = [
                   <span class="font-semibold text-heading">{name}</span>
                   <div class="flex items-center gap-3">
                     <span class="font-bold text-heading">{amt}</span>
-                    <span class={`rounded-full px-2.5 py-0.5 text-xs font-bold ${status === 'Paid' ? 'bg-accent/15 text-accent' : 'bg-rose-100 text-rose-600'}`}>{status}</span>
+                    <span
+                      class={`rounded-full px-2.5 py-0.5 text-xs font-bold ${status === 'Paid' ? 'bg-accent/15 text-accent' : 'bg-rose-100 text-rose-600'}`}
+                      data-i18n
+                      data-en={status}
+                      data-sw={status === 'Paid' ? 'Imelipwa' : 'Haijalipwa'}
+                    >{status}</span>
                   </div>
                 </div>
               ))}
@@ -436,19 +497,27 @@ const insights = [
         <FeatureRow
           reverse
           label="Communication"
+          labelSw="Mawasiliano"
           title="Bulk SMS Communication"
+          titleSw="Mawasiliano ya SMS za Wingi"
           description="Reach every member in seconds, even those without smartphones, with reminders, receipts and updates sent straight to their phones."
+          descriptionSw="Fikia kila mwanachama kwa sekunde, hata wale wasio na simu janja, kwa vikumbusho, risiti na taarifa zinazotumwa moja kwa moja kwenye simu zao."
           bullets={[
             'Send to all members or targeted groups',
             'Automatic payment confirmations by SMS',
             'Scheduled reminders before every deadline',
           ]}
+          bulletsSw={[
+            'Tuma kwa wanachama wote au vikundi vilivyolengwa',
+            'Uthibitisho wa malipo wa kiotomatiki kwa SMS',
+            'Vikumbusho vilivyopangwa kabla ya kila mwisho wa muda',
+          ]}
         >
           <!-- Mockup: SMS composer -->
           <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
             <div class="flex items-center justify-between">
-              <p class="font-extrabold text-heading">New message</p>
-              <span class="rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-accent">1,284 recipients</span>
+              <p class="font-extrabold text-heading" data-i18n data-en="New message" data-sw="Ujumbe mpya">New message</p>
+              <span class="rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-accent" data-i18n data-en="1,284 recipients" data-sw="wapokeaji 1,284">1,284 recipients</span>
             </div>
             <div class="mt-4 rounded-2xl bg-gray-bg p-4">
               <p class="text-sm leading-relaxed text-heading">
@@ -458,12 +527,12 @@ const insights = [
               </p>
             </div>
             <div class="mt-3 flex items-center justify-between text-xs text-muted">
-              <span>160 / 160 characters</span>
-              <span class="font-bold text-primary">Deliver now</span>
+              <span data-i18n data-en="160 / 160 characters" data-sw="herufi 160 / 160">160 / 160 characters</span>
+              <span class="font-bold text-primary" data-i18n data-en="Deliver now" data-sw="Tuma sasa">Deliver now</span>
             </div>
             <div class="mt-4 flex items-center justify-end">
               <span class="inline-flex items-center gap-2 rounded-btn bg-primary px-4 py-2 text-sm font-bold text-white">
-                Send SMS
+                <span data-i18n data-i18n-text data-en="Send SMS" data-sw="Tuma SMS">Send SMS</span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </div>
@@ -473,29 +542,37 @@ const insights = [
         <!-- 3. Group Savings -->
         <FeatureRow
           label="Accountability"
+          labelSw="Uwajibikaji"
           title="Group Savings & Accountability"
+          titleSw="Akiba ya Kikundi na Uwajibikaji"
           description="Run your VICOBA or chama with a transparent, shared ledger. Every deposit, loan and balance is visible to the members who matter."
+          descriptionSw="Endesha VICOBA au chama chako kwa daftari wazi la pamoja. Kila amana, mkopo na salio huonekana kwa wanachama wanaohusika."
           bullets={[
             'Shared group-fund ledger updated in real time',
             'Track member shares, loans and repayments',
             'No more disputes about who paid what',
           ]}
+          bulletsSw={[
+            'Daftari la mfuko wa kikundi linalosasishwa papo hapo',
+            'Fuatilia hisa za wanachama, mikopo na marejesho',
+            'Hakuna migogoro tena kuhusu nani alilipa nini',
+          ]}
         >
           <!-- Mockup: ledger -->
           <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
             <div class="flex items-center justify-between">
-              <p class="font-extrabold text-heading">Group Fund Ledger</p>
-              <span class="text-sm font-extrabold text-accent">Balance: TZS 18.0M</span>
+              <p class="font-extrabold text-heading" data-i18n data-en="Group Fund Ledger" data-sw="Daftari la Mfuko wa Kikundi">Group Fund Ledger</p>
+              <span class="text-sm font-extrabold text-accent" data-i18n data-en="Balance: TZS 18.0M" data-sw="Salio: TZS 18.0M">Balance: TZS 18.0M</span>
             </div>
             <div class="mt-4 space-y-2 text-sm">
               {[
-                ['Weekly shares', '+ TZS 420,000', 'in'],
-                ['Loan: Baraka T.', '− TZS 300,000', 'out'],
-                ['Repayment: Neema L.', '+ TZS 150,000', 'in'],
-                ['Interest earned', '+ TZS 36,000', 'in'],
-              ].map(([label, amt, dir]) => (
+                ['Weekly shares', 'Hisa za wiki', '+ TZS 420,000', 'in'],
+                ['Loan: Baraka T.', 'Mkopo: Baraka T.', '− TZS 300,000', 'out'],
+                ['Repayment: Neema L.', 'Marejesho: Neema L.', '+ TZS 150,000', 'in'],
+                ['Interest earned', 'Riba iliyopatikana', '+ TZS 36,000', 'in'],
+              ].map(([label, labelSw, amt, dir]) => (
                 <div class="flex items-center justify-between rounded-xl bg-gray-bg px-3 py-2.5">
-                  <span class="font-semibold text-heading">{label}</span>
+                  <span class="font-semibold text-heading" data-i18n data-en={label} data-sw={labelSw}>{label}</span>
                   <span class={`font-bold ${dir === 'in' ? 'text-accent' : 'text-rose-600'}`}>{amt}</span>
                 </div>
               ))}
@@ -507,19 +584,27 @@ const insights = [
         <FeatureRow
           reverse
           label="Data & Inclusion"
+          labelSw="Data na Ujumuishwaji"
           title="Data-Driven Financial Inclusion"
+          titleSw="Ujumuishwaji wa Kifedha Unaoendeshwa na Data"
           description="Turn your group’s contribution history into a credible financial footprint, the foundation for credit, grants and growth."
+          descriptionSw="Geuza historia ya michango ya kikundi chako kuwa alama ya kifedha yenye uhakika, msingi wa mikopo, ruzuku na ukuaji."
           bullets={[
             'A clear financial identity for every group',
             'Contribution trends and member insights',
             'Export-ready data for partners and lenders',
           ]}
+          bulletsSw={[
+            'Utambulisho wa kifedha ulio wazi kwa kila kikundi',
+            'Mienendo ya michango na maarifa ya wanachama',
+            'Data tayari kusafirishwa kwa washirika na wakopeshaji',
+          ]}
         >
           <!-- Mockup: footprint chart -->
           <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
             <div class="flex items-center justify-between">
-              <p class="font-extrabold text-heading">Financial Footprint</p>
-              <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary">+18% YoY</span>
+              <p class="font-extrabold text-heading" data-i18n data-en="Financial Footprint" data-sw="Alama ya Kifedha">Financial Footprint</p>
+              <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary" data-i18n data-en="+18% YoY" data-sw="+18% kwa mwaka">+18% YoY</span>
             </div>
             <div class="mt-6 flex h-40 items-end justify-between gap-2.5">
               {[35, 52, 44, 68, 60, 82, 74, 95].map((h, i) => (
@@ -538,12 +623,20 @@ const insights = [
         <!-- 5. Web or Mobile -->
         <FeatureRow
           label="Anywhere"
+          labelSw="Popote"
           title="Manage on Web or Mobile"
+          titleSw="Simamia kwa Wavuti au Simu"
           description="Run everything from a full-featured web portal at the office, or from the Android app in the field. Your data stays in sync."
+          descriptionSw="Endesha kila kitu kutoka portal kamili ya wavuti ofisini, au kutoka programu ya Android ukiwa uwandani. Data yako hubaki sawa."
           bullets={[
             'Full web portal for admins and treasurers',
             'Android app for members on the go',
             'Everything syncs instantly across devices',
+          ]}
+          bulletsSw={[
+            'Portal kamili ya wavuti kwa wasimamizi na waweka hazina',
+            'Programu ya Android kwa wanachama wanaosafiri',
+            'Kila kitu husawazishwa papo hapo kwenye vifaa vyote',
           ]}
         >
           <!-- Mockup: web + phone -->
@@ -564,7 +657,7 @@ const insights = [
             <!-- phone -->
             <div class="absolute -bottom-4 right-6 w-28 rounded-[1.4rem] border-4 border-navy bg-white p-2 shadow-lift">
               <div class="rounded-xl bg-navy p-2 text-center">
-                <p class="text-[9px] font-bold text-slate-300">Raised</p>
+                <p class="text-[9px] font-bold text-slate-300" data-i18n data-en="Raised" data-sw="Imekusanywa">Raised</p>
                 <p class="text-xs font-extrabold text-white">TZS 52.3M</p>
                 <div class="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/20">
                   <div class="h-full w-1/2 rounded-full bg-accent"></div>
@@ -578,30 +671,38 @@ const insights = [
         <FeatureRow
           reverse
           label="Paperwork, solved"
+          labelSw="Karatasi, zimetatuliwa"
           title="Receipts & Monthly Reports"
+          titleSw="Risiti na Ripoti za Kila Mwezi"
           description="Every contribution generates an instant receipt, and every month a clear report is ready to share with members and leadership."
+          descriptionSw="Kila mchango hutengeneza risiti papo hapo, na kila mwezi ripoti wazi iko tayari kushirikiwa na wanachama na uongozi."
           bullets={[
             'Automatic receipts for every payment',
             'One-click monthly and annual reports',
             'Professional PDFs ready to share or print',
+          ]}
+          bulletsSw={[
+            'Risiti za kiotomatiki kwa kila malipo',
+            'Ripoti za kila mwezi na mwaka kwa mbofyo mmoja',
+            'PDF za kitaalamu tayari kushiriki au kuchapisha',
           ]}
         >
           <!-- Mockup: receipt + report -->
           <div class="relative">
             <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
               <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-3">
-                <p class="font-extrabold text-heading">Receipt</p>
-                <span class="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-bold text-accent">Paid</span>
+                <p class="font-extrabold text-heading" data-i18n data-en="Receipt" data-sw="Risiti">Receipt</p>
+                <span class="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-bold text-accent" data-i18n data-en="Paid" data-sw="Imelipwa">Paid</span>
               </div>
               <div class="mt-3 space-y-2 text-sm">
-                <div class="flex justify-between"><span class="text-muted">Receipt no.</span><span class="font-bold text-heading">#PJ-204815</span></div>
-                <div class="flex justify-between"><span class="text-muted">Member</span><span class="font-bold text-heading">Mary K.</span></div>
-                <div class="flex justify-between"><span class="text-muted">Campaign</span><span class="font-bold text-heading">Build Our Church</span></div>
-                <div class="flex justify-between border-t border-slate-100 pt-2"><span class="text-muted">Amount</span><span class="font-extrabold text-accent">TZS 50,000</span></div>
+                <div class="flex justify-between"><span class="text-muted" data-i18n data-en="Receipt no." data-sw="Nambari ya risiti">Receipt no.</span><span class="font-bold text-heading">#PJ-204815</span></div>
+                <div class="flex justify-between"><span class="text-muted" data-i18n data-en="Member" data-sw="Mwanachama">Member</span><span class="font-bold text-heading">Mary K.</span></div>
+                <div class="flex justify-between"><span class="text-muted" data-i18n data-en="Campaign" data-sw="Kampeni">Campaign</span><span class="font-bold text-heading" data-i18n data-en="Build Our Church" data-sw="Tujenge Kanisa Letu">Build Our Church</span></div>
+                <div class="flex justify-between border-t border-slate-100 pt-2"><span class="text-muted" data-i18n data-en="Amount" data-sw="Kiasi">Amount</span><span class="font-extrabold text-accent">TZS 50,000</span></div>
               </div>
             </div>
             <div class="absolute -bottom-5 -right-3 hidden w-40 rotate-3 rounded-2xl border border-slate-100 bg-white p-3 shadow-lift sm:block">
-              <p class="text-xs font-extrabold text-heading">October Report</p>
+              <p class="text-xs font-extrabold text-heading" data-i18n data-en="October Report" data-sw="Ripoti ya Oktoba">October Report</p>
               <div class="mt-2 flex h-14 items-end gap-1.5">
                 {[40,70,55,85].map((h) => (
                   <div class="flex-1 rounded-t bg-primary/70" style={`height:${h}%`}></div>
@@ -623,15 +724,15 @@ const insights = [
         eyebrowSw="Malengo yanakua"
         title="See every shared goal fill up"
         titleEn="See every shared goal fill up"
-        titleSw="Tazama kila lengo la pamoja linazidi kujaza"
+        titleSw="Tazama kila lengo la pamoja likijaa"
         subtitle="Animated progress keeps members motivated and gives leaders a live view of what’s on track."
         subtitleEn="Animated progress keeps members motivated and gives leaders a live view of what’s on track."
-        subtitleSw="Maendeleo ya animated huchochea wanachama na kuwapa viongozi mtazamo wa moja kwa moja wa kile kinachoendelea vizuri."
+        subtitleSw="Maendeleo yanayosonga huwahamasisha wanachama na kuwapa viongozi mtazamo wa moja kwa moja wa kile kinachoendelea vizuri."
       />
       <div class="mt-12 grid gap-5 sm:grid-cols-2" data-reveal-stagger>
         {
           goals.map((g) => (
-            <ProgressBar value={g.value} goal={g.goal} label={g.label} fill={g.fill} />
+            <ProgressBar value={g.value} goal={g.goal} label={g.label} labelSw={g.sw} fill={g.fill} />
           ))
         }
       </div>
@@ -647,7 +748,7 @@ const insights = [
         eyebrowSw="Imejengwa kwa kila jamii"
         title="Whoever you organise, PesaJamaa fits"
         titleEn="Whoever you organise, PesaJamaa fits"
-        titleSw="Kama unavyopanga, PesaJamaa inafaa"
+        titleSw="Chochote unachopanga, PesaJamaa inafaa"
         subtitle="One flexible platform that adapts to how your community already works."
         subtitleEn="One flexible platform that adapts to how your community already works."
         subtitleSw="Jukwaa moja linalobadilika kwa mujibu wa jinsi jamii yako inavyofanya kazi tayari."
@@ -655,7 +756,7 @@ const insights = [
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
         {
           audiences.map((a) => (
-            <AudienceCard title={a.title} line={a.line}>
+            <AudienceCard title={a.title} titleSw={a.titleSw} line={a.line} lineSw={a.lineSw}>
               <Fragment set:html={a.icon} />
             </AudienceCard>
           ))
@@ -668,8 +769,8 @@ const insights = [
   <section id="ecosystem" class="bg-navy py-20 text-white">
     <div class="container-px">
       <div class="mx-auto max-w-2xl text-center" data-reveal>
-        <p class="mb-3 text-sm font-extrabold uppercase tracking-wider text-accent">The PesaJamaa flow</p>
-        <h2 class="text-3xl font-extrabold text-white sm:text-4xl">From first pledge to lasting growth</h2>
+        <p class="mb-3 text-sm font-extrabold uppercase tracking-wider text-accent" data-i18n data-en="The PesaJamaa flow" data-sw="Mtiririko wa PesaJamaa">The PesaJamaa flow</p>
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl" data-i18n data-en="From first pledge to lasting growth" data-sw="Kutoka ahadi ya kwanza hadi ukuaji wa kudumu">From first pledge to lasting growth</h2>
       </div>
       <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6" data-reveal-stagger>
         {
@@ -682,8 +783,8 @@ const insights = [
                 <Fragment set:html={f.icon} />
                 <span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] font-extrabold text-navy">{i + 1}</span>
               </div>
-              <h3 class="mt-4 text-base font-extrabold text-white">{f.step}</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-slate-300">{f.line}</p>
+              <h3 class="mt-4 text-base font-extrabold text-white" data-i18n data-en={f.step} data-sw={f.stepSw}>{f.step}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-slate-300" data-i18n data-en={f.line} data-sw={f.lineSw}>{f.line}</p>
             </div>
           ))
         }
@@ -712,8 +813,8 @@ const insights = [
               <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-tint text-primary transition-transform duration-200 group-hover:scale-110">
                 <Fragment set:html={w.icon} />
               </span>
-              <h3 class="mt-4 text-base font-extrabold text-heading">{w.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted">{w.line}</p>
+              <h3 class="mt-4 text-base font-extrabold text-heading" data-i18n data-en={w.title} data-sw={w.titleSw}>{w.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted" data-i18n data-en={w.line} data-sw={w.lineSw}>{w.line}</p>
             </div>
           ))
         }
@@ -730,7 +831,7 @@ const insights = [
         eyebrowSw="Usalama"
         title="Built With Your Group’s Trust in Mind"
         titleEn="Built With Your Group’s Trust in Mind"
-        titleSw="Imejengwa kwa Kupewa Kipaumbele Uaminifu wa Kikundi Chako"
+        titleSw="Imejengwa kwa Kuzingatia Uaminifu wa Kikundi Chako"
         subtitle="Your community’s money and data are protected at every step."
         subtitleEn="Your community’s money and data are protected at every step."
         subtitleSw="Fedha na data za jamii yako zinalindwa katika kila hatua."
@@ -742,8 +843,8 @@ const insights = [
               <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-200 group-hover:scale-110">
                 <Fragment set:html={s.icon} />
               </span>
-              <h3 class="mt-4 text-base font-extrabold text-heading">{s.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted">{s.line}</p>
+              <h3 class="mt-4 text-base font-extrabold text-heading" data-i18n data-en={s.title} data-sw={s.titleSw}>{s.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted" data-i18n data-en={s.line} data-sw={s.lineSw}>{s.line}</p>
             </div>
           ))
         }
@@ -764,12 +865,12 @@ const insights = [
                   <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 15l-5.2 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5Z"/></svg>
                 ))}
               </div>
-              <blockquote class="flex-1 text-[15px] leading-relaxed text-heading">“{t.quote}”</blockquote>
+              <blockquote class="flex-1 text-[15px] leading-relaxed text-heading" data-i18n data-en={`“${t.quote}”`} data-sw={`“${t.quoteSw}”`}>“{t.quote}”</blockquote>
               <figcaption class="mt-5 flex items-center gap-3 border-t border-slate-100 pt-4">
                 <span class="flex h-10 w-10 items-center justify-center rounded-full bg-tint text-sm font-extrabold text-primary">{t.name.charAt(0)}</span>
                 <div>
                   <p class="text-sm font-extrabold text-heading">{t.name}</p>
-                  <p class="text-xs text-muted">{t.role}</p>
+                  <p class="text-xs text-muted" data-i18n data-en={t.role} data-sw={t.roleSw}>{t.role}</p>
                 </div>
               </figcaption>
             </figure>
@@ -788,16 +889,45 @@ const insights = [
           insights.map((a) => (
             <a href="#" class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
               <div class="relative flex h-40 items-center justify-center bg-gradient-to-br from-tint to-accent/10">
-                <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-extrabold text-primary shadow-soft">{a.category}</span>
+                <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-extrabold text-primary shadow-soft" data-i18n data-en={a.category} data-sw={a.categorySw}>{a.category}</span>
                 <svg class="h-12 w-12 text-primary/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="flex flex-1 flex-col p-5">
-                <p class="text-xs font-bold text-muted">{a.date} · {a.read} read</p>
-                <h3 class="mt-2 text-lg font-extrabold leading-snug text-heading group-hover:text-primary">{a.title}</h3>
-                <p class="mt-2 flex-1 text-sm leading-relaxed text-muted">{a.excerpt}</p>
-                <span class="mt-4 text-sm font-bold text-primary">Read more →</span>
+                <p class="text-xs font-bold text-muted" data-i18n data-en={`${a.date} · ${a.read}`} data-sw={`${a.date} · ${a.readSw}`}>{a.date} · {a.read}</p>
+                <h3 class="mt-2 text-lg font-extrabold leading-snug text-heading group-hover:text-primary" data-i18n data-en={a.title} data-sw={a.titleSw}>{a.title}</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-muted" data-i18n data-en={a.excerpt} data-sw={a.excerptSw}>{a.excerpt}</p>
+                <span class="mt-4 text-sm font-bold text-primary" data-i18n data-en="Read more →" data-sw="Soma zaidi →">Read more →</span>
               </div>
             </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FAQ ============================= -->
+  <section id="faq" class="py-20">
+    <div class="container-px">
+      <SectionTitle
+        eyebrow="Questions"
+        eyebrowEn="Questions"
+        eyebrowSw="Maswali"
+        title="Frequently asked questions"
+        titleEn="Frequently asked questions"
+        titleSw="Maswali yanayoulizwa mara kwa mara"
+      />
+      <div class="mx-auto mt-12 max-w-3xl space-y-3" data-reveal>
+        {
+          faqs.map((f) => (
+            <details class="group rounded-2xl border border-slate-100 bg-white px-5 shadow-soft transition-shadow open:shadow-lift">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 marker:content-none">
+                <span class="text-[15px] font-extrabold text-heading sm:text-base" data-i18n data-en={f.q} data-sw={f.qSw}>{f.q}</span>
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-tint text-primary transition-transform duration-200 group-open:rotate-45">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <p class="pb-5 text-[15px] leading-relaxed text-muted" data-i18n data-en={f.a} data-sw={f.aSw}>{f.a}</p>
+            </details>
           ))
         }
       </div>

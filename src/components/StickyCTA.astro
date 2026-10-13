@@ -1,0 +1,89 @@
+---
+/**
+ * StickyCTA — a slim bar that slides up from the bottom once the visitor has
+ * scrolled past the hero, keeping "Start Free" always one tap away.
+ * Hides itself while the final CTA section is on screen (no double CTA), and
+ * can be dismissed for the session. Fully translatable via data-i18n.
+ */
+import Button from './Button.astro';
+---
+
+<div
+  id="sticky-cta"
+  class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 shadow-[0_-8px_30px_rgba(16,24,40,0.12)] backdrop-blur-md"
+  role="region"
+  aria-label="Get started with PesaJamaa"
+>
+  <div class="container-px flex items-center justify-between gap-3 py-3">
+    <div class="flex items-center gap-3">
+      <span class="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-tint text-primary sm:flex">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6"/></svg>
+      </span>
+      <div class="leading-tight">
+        <p class="text-sm font-extrabold text-heading" data-i18n data-en="Ready to run your group’s finances?" data-sw="Tayari kuendesha fedha za kikundi chako?">
+          Ready to run your group’s finances?
+        </p>
+        <p class="hidden text-xs font-semibold text-muted sm:block" data-i18n data-en="Free to get started, no credit card required." data-sw="Bila malipo kuanza, hakuna kadi ya mkopo inayohitajika.">
+          Free to get started, no credit card required.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <Button
+        href="https://portal.pesajamaa.co.tz/register"
+        variant="primary"
+        pill
+        class="whitespace-nowrap"
+        data-i18n
+        data-en="Start Free"
+        data-sw="Anza Bila Malipo">Start Free</Button>
+      <button
+        id="sticky-cta-close"
+        type="button"
+        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:bg-gray-bg hover:text-heading"
+        aria-label="Dismiss"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Show the bar after the hero scrolls away; hide it over the final CTA
+  // and once dismissed for the session.
+  const bar = document.getElementById('sticky-cta');
+  const closeBtn = document.getElementById('sticky-cta-close');
+  const finalCta = document.getElementById('final-cta');
+
+  if (bar) {
+    let dismissed = sessionStorage.getItem('pj-cta-dismissed') === '1';
+    let finalInView = false;
+
+    // Track whether the final CTA section is visible — don't double up.
+    if (finalCta && 'IntersectionObserver' in window) {
+      new IntersectionObserver(
+        (entries) => {
+          finalInView = entries[0].isIntersecting;
+          update();
+        },
+        { threshold: 0.15 },
+      ).observe(finalCta);
+    }
+
+    const update = () => {
+      const show = !dismissed && !finalInView && window.scrollY > 700;
+      bar.classList.toggle('is-shown', show);
+    };
+
+    closeBtn?.addEventListener('click', () => {
+      dismissed = true;
+      sessionStorage.setItem('pj-cta-dismissed', '1');
+      update();
+    });
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+</script>

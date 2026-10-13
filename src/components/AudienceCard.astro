@@ -1,12 +1,15 @@
 ---
 /**
  * AudienceCard — icon + title + one line, for "Built for every community".
+ * Pass `titleSw` / `lineSw` for the language toggle.
  */
 interface Props {
   title: string;
   line: string;
+  titleSw?: string;
+  lineSw?: string;
 }
-const { title, line } = Astro.props;
+const { title, line, titleSw, lineSw } = Astro.props;
 ---
 
 <div
@@ -16,7 +19,7 @@ const { title, line } = Astro.props;
     <slot />
   </span>
   <div>
-    <h3 class="text-base font-extrabold text-heading">{title}</h3>
-    <p class="mt-1 text-sm leading-relaxed text-muted">{line}</p>
+    <h3 class="text-base font-extrabold text-heading" data-i18n data-en={title} data-sw={titleSw ?? title}>{title}</h3>
+    <p class="mt-1 text-sm leading-relaxed text-muted" data-i18n data-en={line} data-sw={lineSw ?? line}>{line}</p>
   </div>
 </div>

@@ -4,15 +4,30 @@
  * Text column: category label, heading, paragraph, 3-point checklist.
  * Visual column: a product-UI mockup passed in via the default slot.
  * Pass `reverse` to flip the image to the left on desktop.
+ * The *Sw props drive the language toggle; they fall back to the English.
  */
 interface Props {
   label: string;
   title: string;
   description: string;
   bullets: string[];
+  labelSw?: string;
+  titleSw?: string;
+  descriptionSw?: string;
+  bulletsSw?: string[];
   reverse?: boolean;
 }
-const { label, title, description, bullets, reverse = false } = Astro.props;
+const {
+  label,
+  title,
+  description,
+  bullets,
+  labelSw,
+  titleSw,
+  descriptionSw,
+  bulletsSw,
+  reverse = false,
+} = Astro.props;
 ---
 
 <div
@@ -21,23 +36,47 @@ const { label, title, description, bullets, reverse = false } = Astro.props;
 >
   <!-- Text -->
   <div class={reverse ? 'lg:order-2' : ''}>
-    <span class="inline-block rounded-full bg-tint px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-primary">
+    <span
+      class="inline-block rounded-full bg-tint px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-primary"
+      data-i18n
+      data-en={label}
+      data-sw={labelSw ?? label}
+    >
       {label}
     </span>
-    <h3 class="mt-4 text-2xl font-extrabold leading-tight text-heading sm:text-3xl">
+    <h3
+      class="mt-4 text-2xl font-extrabold leading-tight text-heading sm:text-3xl"
+      data-i18n
+      data-en={title}
+      data-sw={titleSw ?? title}
+    >
       {title}
     </h3>
-    <p class="mt-4 text-lg leading-relaxed text-muted">{description}</p>
+    <p
+      class="mt-4 text-lg leading-relaxed text-muted"
+      data-i18n
+      data-en={description}
+      data-sw={descriptionSw ?? description}
+    >
+      {description}
+    </p>
     <ul class="mt-6 space-y-3">
       {
-        bullets.map((b) => (
+        bullets.map((b, i) => (
           <li class="flex items-start gap-3">
             <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
               <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M2 6.2 4.6 9 10 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
-            <span class="text-[15px] font-semibold text-heading">{b}</span>
+            <span
+              class="text-[15px] font-semibold text-heading"
+              data-i18n
+              data-en={b}
+              data-sw={bulletsSw?.[i] ?? b}
+            >
+              {b}
+            </span>
           </li>
         ))
       }

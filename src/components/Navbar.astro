@@ -42,9 +42,10 @@ const nav = [
     label: 'Resources',
     swLabel: 'Rasilimali',
     items: [
+      { label: 'See a demo', swLabel: 'Ona onyesho', href: '#demo' },
       { label: 'Latest insights', swLabel: 'Maarifa ya hivi karibuni', href: '#insights' },
-      { label: 'How it works', swLabel: 'Inafanya kazi vipi', href: '#ecosystem' },
-      { label: 'Why trust us', swLabel: 'Kwa nini tunatokana na imani', href: '#trust' },
+      { label: 'FAQ', swLabel: 'Maswali', href: '#faq' },
+      { label: 'Why trust us', swLabel: 'Kwa nini kutuamini', href: '#trust' },
     ],
   },
 ];
@@ -159,7 +160,7 @@ const nav = [
         nav.map((group) => (
           <details class="group rounded-lg">
             <summary class="flex cursor-pointer items-center justify-between rounded-lg px-3 py-3 text-[15px] font-bold text-heading marker:content-none">
-              {group.label}
+              <span data-i18n data-en={group.label} data-sw={group.swLabel}>{group.label}</span>
               <svg class="h-4 w-4 text-muted transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.38a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z" clip-rule="evenodd" />
               </svg>
@@ -167,7 +168,7 @@ const nav = [
             <ul class="space-y-0.5 pb-2 pl-3">
               {group.items.map((item) => (
                 <li>
-                  <a href={item.href} class="block rounded-lg px-3 py-2 text-[15px] font-semibold text-muted hover:text-primary" data-close-menu>
+                  <a href={item.href} class="block rounded-lg px-3 py-2 text-[15px] font-semibold text-muted hover:text-primary" data-close-menu data-i18n data-en={item.label} data-sw={item.swLabel}>
                     {item.label}
                   </a>
                 </li>

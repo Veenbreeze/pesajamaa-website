@@ -2,12 +2,14 @@
 /**
  * ModuleCard — a colorful rounded icon tile + label. Hover lift.
  * `icon` is a slot (inline SVG); `tint` picks the tile colour.
+ * Pass `labelSw` to make the label switch with the language toggle.
  */
 interface Props {
   label: string;
+  labelSw?: string;
   tint?: 'blue' | 'teal' | 'navy' | 'amber' | 'violet' | 'rose';
 }
-const { label, tint = 'blue' } = Astro.props;
+const { label, labelSw, tint = 'blue' } = Astro.props;
 
 const tints: Record<string, string> = {
   blue: 'bg-tint text-primary',
@@ -27,5 +29,9 @@ const tints: Record<string, string> = {
   >
     <slot />
   </span>
-  <span class="text-[15px] font-bold text-heading">{label}</span>
+  <span
+    class="text-[15px] font-bold text-heading"
+    data-i18n
+    data-en={label}
+    data-sw={labelSw ?? label}>{label}</span>
 </div>

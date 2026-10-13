@@ -161,6 +161,72 @@
   }
 }
 
+/* ---------- Self-playing app demo (phone "screen recording") ----------
+   Five screens stacked on top of each other; each fades in for its slice of
+   a shared 25s loop. The step chips beside the phone light up in sync. */
+.demo-screen {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: demo-screen 25s infinite;
+}
+.demo-screen:nth-child(1) { animation-delay: 0s; }
+.demo-screen:nth-child(2) { animation-delay: 5s; }
+.demo-screen:nth-child(3) { animation-delay: 10s; }
+.demo-screen:nth-child(4) { animation-delay: 15s; }
+.demo-screen:nth-child(5) { animation-delay: 20s; }
+
+@keyframes demo-screen {
+  0% { opacity: 0; transform: translateY(10px) scale(0.99); }
+  3% { opacity: 1; transform: translateY(0) scale(1); }
+  18% { opacity: 1; transform: translateY(0) scale(1); }
+  21% { opacity: 0; transform: translateY(-8px) scale(0.99); }
+  100% { opacity: 0; }
+}
+
+/* Step chips beside the phone — highlight in sync with the screens */
+.demo-step {
+  transition: all 0.4s ease;
+  animation: demo-step 25s infinite;
+}
+.demo-step:nth-child(1) { animation-delay: 0s; }
+.demo-step:nth-child(2) { animation-delay: 5s; }
+.demo-step:nth-child(3) { animation-delay: 10s; }
+.demo-step:nth-child(4) { animation-delay: 15s; }
+.demo-step:nth-child(5) { animation-delay: 20s; }
+
+@keyframes demo-step {
+  0%, 20%, 100% {
+    background-color: transparent;
+    border-color: rgba(226, 232, 240, 1);
+    transform: translateX(0);
+  }
+  3%, 17% {
+    background-color: #eff7ff;
+    border-color: rgba(2, 109, 222, 0.5);
+    transform: translateX(4px);
+  }
+}
+
+/* The little mini progress bar inside the demo that fills on its screen */
+.demo-fill {
+  animation: demo-fill 5s ease-out infinite;
+  animation-delay: 10s; /* lines up with screen 3 */
+}
+@keyframes demo-fill {
+  0% { width: 8%; }
+  60%, 100% { width: 52%; }
+}
+
+/* ---------- Sticky CTA bar (slides up after scrolling past the hero) ---------- */
+#sticky-cta {
+  transform: translateY(120%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+#sticky-cta.is-shown {
+  transform: translateY(0);
+}
+
 /* ---------- Respect reduced-motion: disable all non-essential motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   :root {
@@ -182,5 +248,28 @@
   .marquee-track {
     animation: none;
     transform: none;
+  }
+  /* Demo: freeze on the first screen / first step, fill the bar */
+  .demo-screen {
+    animation: none;
+    opacity: 0;
+  }
+  .demo-screen:first-child {
+    opacity: 1;
+  }
+  .demo-step {
+    animation: none;
+  }
+  .demo-step:first-child {
+    background-color: #eff7ff;
+    border-color: rgba(2, 109, 222, 0.5);
+  }
+  .demo-fill {
+    animation: none;
+    width: 52%;
+  }
+  /* Sticky CTA: still slide (short), but respect no-motion by snapping */
+  #sticky-cta {
+    transition: none;
   }
 }

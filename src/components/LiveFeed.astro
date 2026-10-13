@@ -4,20 +4,22 @@
  * New rows slide in at the top every few seconds with a soft teal highlight.
  * Seeds with a few rows server-side so there's no empty flash; the client
  * script then cycles in new ones (disabled under prefers-reduced-motion).
+ * Static labels + seed rows switch with the language toggle; the JS-generated
+ * rows read the current language when they are created.
  */
 const seed = [
-  { name: 'John M.', amount: 100_000, when: 'just now' },
-  { name: 'Mary K.', amount: 50_000, when: '1 min ago' },
-  { name: 'Anonymous', amount: 250_000, when: '2 min ago' },
-  { name: 'Grace N.', amount: 25_000, when: '3 min ago' },
-  { name: 'Peter S.', amount: 75_000, when: '4 min ago' },
+  { name: 'John M.', amount: 100_000, when: 'just now', whenSw: 'sasa hivi' },
+  { name: 'Mary K.', amount: 50_000, when: '1 min ago', whenSw: 'dakika 1 iliyopita' },
+  { name: 'Anonymous', amount: 250_000, when: '2 min ago', whenSw: 'dakika 2 zilizopita' },
+  { name: 'Grace N.', amount: 25_000, when: '3 min ago', whenSw: 'dakika 3 zilizopita' },
+  { name: 'Peter S.', amount: 75_000, when: '4 min ago', whenSw: 'dakika 4 zilizopita' },
 ];
 const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
 ---
 
 <div>
   <div class="mb-3 flex items-center justify-between">
-    <h4 class="text-sm font-extrabold uppercase tracking-wider text-muted">
+    <h4 class="text-sm font-extrabold uppercase tracking-wider text-muted" data-i18n data-en="Recent contributions" data-sw="Michango ya hivi karibuni">
       Recent contributions
     </h4>
     <span class="flex items-center gap-1.5 text-xs font-bold text-accent">
@@ -25,7 +27,7 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
         <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
         <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
       </span>
-      Live
+      <span data-i18n data-en="Live" data-sw="Moja kwa moja">Live</span>
     </span>
   </div>
 
@@ -43,8 +45,12 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
               {row.name === 'Anonymous' ? '?' : row.name.charAt(0)}
             </span>
             <div>
-              <p class="text-sm font-bold text-heading">{row.name}</p>
-              <p class="text-xs text-muted">{row.when}</p>
+              {row.name === 'Anonymous' ? (
+                <p class="text-sm font-bold text-heading" data-i18n data-en="Anonymous" data-sw="Bila jina">{row.name}</p>
+              ) : (
+                <p class="text-sm font-bold text-heading">{row.name}</p>
+              )}
+              <p class="text-xs text-muted" data-i18n data-en={row.when} data-sw={row.whenSw}>{row.when}</p>
             </div>
           </div>
           <span class="text-sm font-extrabold text-accent">+{fmt(row.amount)}</span>
@@ -70,6 +76,16 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
     const MAX_ROWS = 5;
     let lastName = '';
 
+    // Language-aware labels for the dynamically-created rows.
+    const t = () => {
+      const sw = document.documentElement.lang === 'sw';
+      return {
+        now: sw ? 'sasa hivi' : 'just now',
+        ago: sw ? 'dakika 1 iliyopita' : '1 min ago',
+        anon: sw ? 'Bila jina' : 'Anonymous',
+      };
+    };
+
     function pickName() {
       // Avoid showing the same name twice in a row (looks more realistic).
       let name;
@@ -81,17 +97,19 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
     }
 
     function makeRow() {
-      const name = pickName();
+      const raw = pickName();
+      const labels = t();
       const amount = amounts[Math.floor(Math.random() * amounts.length)];
+      const display = raw === 'Anonymous' ? labels.anon : raw;
       const li = document.createElement('li');
       li.className =
         'feed-row-new flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3';
       li.innerHTML = `
         <div class="flex items-center gap-3">
-          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">${name === 'Anonymous' ? '?' : name.charAt(0)}</span>
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">${raw === 'Anonymous' ? '?' : raw.charAt(0)}</span>
           <div>
-            <p class="text-sm font-bold text-heading">${name}</p>
-            <p class="text-xs text-muted">just now</p>
+            <p class="text-sm font-bold text-heading">${display}</p>
+            <p class="text-xs text-muted">${labels.now}</p>
           </div>
         </div>
         <span class="text-sm font-extrabold text-accent">+${fmt(amount)}</span>`;
@@ -101,8 +119,11 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
     let timer;
     const tick = () => {
       // Age the current top row's timestamp label, then add a new one on top.
+      const labels = t();
       const first = feed.querySelector('li .text-muted');
-      if (first && first.textContent === 'just now') first.textContent = '1 min ago';
+      if (first && (first.textContent === 'just now' || first.textContent === 'sasa hivi')) {
+        first.textContent = labels.ago;
+      }
       feed.prepend(makeRow());
       while (feed.children.length > MAX_ROWS) {
         feed.removeChild(feed.lastElementChild);

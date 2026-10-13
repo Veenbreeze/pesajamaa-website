@@ -3,15 +3,17 @@
  * ProgressBar — animated fill toward a shared goal.
  * `value`/`goal` compute the percentage; the fill width animates on scroll
  * (motion.js reads data-progress). `fill` picks the bar colour.
+ * Pass `labelSw` for the language toggle ("of" also switches to "kati ya").
  */
 interface Props {
   value: number;
   goal: number;
   label: string;
+  labelSw?: string;
   format?: (n: number) => string;
   fill?: 'primary' | 'accent';
 }
-const { value, goal, label, fill = 'accent' } = Astro.props;
+const { value, goal, label, labelSw, fill = 'accent' } = Astro.props;
 
 const pct = Math.round((value / goal) * 100);
 const fmt = (n: number) =>
@@ -25,7 +27,7 @@ const fills: Record<string, string> = {
 
 <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-soft" data-reveal>
   <div class="mb-3 flex items-baseline justify-between gap-3">
-    <h3 class="text-base font-extrabold text-heading">{label}</h3>
+    <h3 class="text-base font-extrabold text-heading" data-i18n data-en={label} data-sw={labelSw ?? label}>{label}</h3>
     <span class="text-sm font-bold text-accent">{pct}%</span>
   </div>
   <div
@@ -35,7 +37,7 @@ const fills: Record<string, string> = {
     aria-valuenow={pct}
     aria-valuemin="0"
     aria-valuemax="100"
-    aria-label={`${label}: ${pct}% of goal`}
+    aria-label={`${label}: ${pct}%`}
   >
     <div
       class={`h-full w-0 rounded-full transition-[width] duration-1000 ease-out ${fills[fill]}`}
@@ -45,6 +47,6 @@ const fills: Record<string, string> = {
   </div>
   <div class="mt-3 flex items-center justify-between text-sm">
     <span class="font-bold text-heading">{fmt(value)}</span>
-    <span class="text-muted">of {fmt(goal)}</span>
+    <span class="text-muted"><span data-i18n data-en="of" data-sw="kati ya">of</span> {fmt(goal)}</span>
   </div>
 </div>

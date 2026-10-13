@@ -1,0 +1,161 @@
+---
+/**
+ * AppDemo — a self-playing "screen recording" of the PesaJamaa app.
+ * A phone frame whose screen loops through 5 app moments (create → invite →
+ * contribute → remind → receipt). CSS drives the whole thing (see
+ * .demo-screen / .demo-step / .demo-fill in global.css), so there's no JS and
+ * it degrades to a single static screen under prefers-reduced-motion.
+ * The step chips on the left light up in sync with the screen on the right.
+ */
+
+const steps = [
+  { en: 'Create a campaign', sw: 'Tengeneza kampeni' },
+  { en: 'Invite your members', sw: 'Alika wanachama wako' },
+  { en: 'Collect contributions', sw: 'Kusanya michango' },
+  { en: 'Send SMS reminders', sw: 'Tuma vikumbusho vya SMS' },
+  { en: 'Share receipts & reports', sw: 'Shiriki risiti na ripoti' },
+];
+---
+
+<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+  <!-- Steps (light up in sync) -->
+  <div data-reveal>
+    <span class="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent" data-i18n data-en="30-second demo" data-sw="Onyesho la sekunde 30">30-second demo</span>
+    <h2 class="mt-4 text-3xl font-extrabold leading-tight text-heading sm:text-4xl" data-i18n data-en="See PesaJamaa in action" data-sw="Ona PesaJamaa ikifanya kazi">
+      See PesaJamaa in action
+    </h2>
+    <p class="mt-4 text-lg leading-relaxed text-muted" data-i18n data-en="From setting a goal to sharing receipts, here’s the whole journey in one quick loop." data-sw="Kutoka kuweka lengo hadi kushiriki risiti, hii ni safari nzima kwenye mzunguko mmoja wa haraka.">
+      From setting a goal to sharing receipts, here’s the whole journey in one quick loop.
+    </p>
+
+    <ol class="mt-8 space-y-2.5">
+      {
+        steps.map((s, i) => (
+          <li class="demo-step flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
+            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-extrabold text-white">{i + 1}</span>
+            <span class="text-[15px] font-bold text-heading" data-i18n data-en={s.en} data-sw={s.sw}>{s.en}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <!-- Phone -->
+  <div class="flex justify-center" data-reveal>
+    <div class="relative w-[270px] rounded-[2.4rem] border-[7px] border-navy bg-navy shadow-lift">
+      <!-- notch -->
+      <div class="absolute left-1/2 top-0 z-20 h-5 w-28 -translate-x-1/2 rounded-b-2xl bg-navy"></div>
+
+      <!-- screen -->
+      <div class="relative h-[540px] overflow-hidden rounded-[1.9rem] bg-tint">
+        <!-- REC badge -->
+        <div class="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-white/80 px-2 py-0.5 text-[10px] font-extrabold text-rose-600 backdrop-blur">
+          <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-rose-500"></span> REC
+        </div>
+
+        <!-- screens (wrapped so nth-child counts only screens) -->
+        <div class="absolute inset-0">
+        <!-- ===== Screen 1: Create a campaign ===== -->
+        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+          <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="New campaign" data-sw="Kampeni mpya">New campaign</p>
+          <div class="rounded-2xl bg-white p-4 shadow-soft">
+            <p class="text-[11px] font-bold text-muted" data-i18n data-en="Campaign name" data-sw="Jina la kampeni">Campaign name</p>
+            <p class="mt-1 text-lg font-extrabold text-heading">Tujenge Kanisa Letu</p>
+            <div class="mt-3 h-px w-full bg-slate-100"></div>
+            <p class="mt-3 text-[11px] font-bold text-muted" data-i18n data-en="Goal" data-sw="Lengo">Goal</p>
+            <p class="mt-1 text-lg font-extrabold text-primary">TZS 100,000,000</p>
+          </div>
+          <div class="mt-1 rounded-btn bg-primary py-3 text-center text-sm font-bold text-white" data-i18n data-en="Create campaign" data-sw="Tengeneza kampeni">Create campaign</div>
+        </div>
+
+        <!-- ===== Screen 2: Invite members ===== -->
+        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+          <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Invite members" data-sw="Alika wanachama">Invite members</p>
+          <div class="rounded-2xl bg-white p-3 shadow-soft">
+            {[
+              ['Mary K.', '+255 7••• •••'],
+              ['John M.', '+255 7••• •••'],
+              ['Grace N.', '+255 7••• •••'],
+            ].map(([n, p]) => (
+              <div class="flex items-center justify-between border-b border-slate-100 py-2 last:border-0">
+                <div class="flex items-center gap-2">
+                  <span class="flex h-7 w-7 items-center justify-center rounded-full bg-tint text-[11px] font-extrabold text-primary">{n.charAt(0)}</span>
+                  <div>
+                    <p class="text-xs font-bold text-heading">{n}</p>
+                    <p class="text-[10px] text-muted">{p}</p>
+                  </div>
+                </div>
+                <span class="rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-bold text-accent" data-i18n data-en="Invited" data-sw="Amealikwa">Invited</span>
+              </div>
+            ))}
+          </div>
+          <div class="mt-1 rounded-btn bg-accent py-3 text-center text-sm font-bold text-white" data-i18n data-en="Send SMS invites" data-sw="Tuma mialiko ya SMS">Send SMS invites</div>
+        </div>
+
+        <!-- ===== Screen 3: Contribute + progress ===== -->
+        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+          <p class="text-xs font-bold uppercase tracking-wider text-muted">Tujenge Kanisa Letu</p>
+          <div class="rounded-2xl bg-white p-4 shadow-soft">
+            <p class="text-[11px] font-bold text-muted" data-i18n data-en="Raised" data-sw="Imekusanywa">Raised</p>
+            <p class="text-2xl font-extrabold text-heading">TZS 52.3M</p>
+            <div class="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
+              <div class="demo-fill h-full rounded-full bg-gradient-to-r from-accent to-primary" style="width:8%"></div>
+            </div>
+            <p class="mt-2 text-[11px] font-bold text-accent">52% • <span data-i18n data-en="1,284 contributions" data-sw="michango 1,284">1,284 contributions</span></p>
+          </div>
+          <div class="rounded-2xl bg-white p-3 shadow-soft">
+            <div class="flex items-center justify-between py-1">
+              <span class="text-xs font-bold text-heading">Anonymous</span>
+              <span class="text-xs font-extrabold text-accent">+ TZS 250,000</span>
+            </div>
+            <div class="flex items-center justify-between py-1">
+              <span class="text-xs font-bold text-heading">Mary K.</span>
+              <span class="text-xs font-extrabold text-accent">+ TZS 50,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Screen 4: SMS reminder ===== -->
+        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+          <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Bulk SMS sent" data-sw="SMS za wingi zimetumwa">Bulk SMS sent</p>
+          <div class="rounded-2xl bg-white p-3 shadow-soft">
+            <div class="rounded-2xl rounded-bl-sm bg-tint p-3">
+              <p class="text-[11px] leading-relaxed text-heading">
+                Habari! Mchango wa Tujenge Kanisa Letu umefika <span class="font-bold text-accent">TZS 52.3M</span>. Asante kwa ahadi yako. Lipa *150*00#. PesaJamaa
+              </p>
+            </div>
+            <p class="mt-2 text-right text-[10px] font-bold text-accent" data-i18n data-en="Delivered to 1,284" data-sw="Imefika kwa 1,284">Delivered to 1,284</p>
+          </div>
+          <div class="flex items-center justify-center gap-1.5 rounded-btn bg-accent/10 py-2.5 text-xs font-bold text-accent">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n data-en="All members notified" data-sw="Wanachama wote wamearifiwa">All members notified</span>
+          </div>
+        </div>
+
+        <!-- ===== Screen 5: Receipt + report ===== -->
+        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+          <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Receipt" data-sw="Risiti">Receipt</p>
+          <div class="rounded-2xl bg-white p-4 shadow-soft">
+            <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-2">
+              <span class="text-sm font-extrabold text-heading">#PJ-204815</span>
+              <span class="rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-bold text-accent" data-i18n data-en="Paid" data-sw="Imelipwa">Paid</span>
+            </div>
+            <div class="mt-2 space-y-1.5 text-[11px]">
+              <div class="flex justify-between"><span class="text-muted" data-i18n data-en="Member" data-sw="Mwanachama">Member</span><span class="font-bold text-heading">Mary K.</span></div>
+              <div class="flex justify-between"><span class="text-muted" data-i18n data-en="Amount" data-sw="Kiasi">Amount</span><span class="font-extrabold text-accent">TZS 50,000</span></div>
+            </div>
+          </div>
+          <div class="rounded-2xl bg-white p-3 shadow-soft">
+            <p class="text-[11px] font-extrabold text-heading" data-i18n data-en="Monthly report" data-sw="Ripoti ya mwezi">Monthly report</p>
+            <div class="mt-2 flex h-12 items-end gap-1.5">
+              {[40, 70, 55, 85, 68].map((h) => (
+                <div class="flex-1 rounded-t bg-primary/70" style={`height:${h}%`}></div>
+              ))}
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

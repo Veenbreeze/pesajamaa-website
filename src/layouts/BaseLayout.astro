@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import StickyCTA from '../components/StickyCTA.astro';
 
 interface Props {
   title?: string;
@@ -65,5 +66,6 @@ const ogImage = new URL('/og-image.svg', Astro.site).toString();
       <slot />
     </main>
     <Footer />
+    <StickyCTA />
   </body>
 </html>
