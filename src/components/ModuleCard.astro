@@ -2,14 +2,16 @@
 /**
  * ModuleCard — a colorful rounded icon tile + label. Hover lift.
  * `icon` is a slot (inline SVG); `tint` picks the tile colour.
- * Pass `labelSw` to make the label switch with the language toggle.
+ * Pass `labelSw` and the bilingual description to switch content with the language toggle.
  */
 interface Props {
   label: string;
   labelSw?: string;
+  description?: string;
+  descriptionSw?: string;
   tint?: 'blue' | 'teal' | 'navy' | 'amber' | 'violet' | 'rose';
 }
-const { label, labelSw, tint = 'blue' } = Astro.props;
+const { label, labelSw, description, descriptionSw, tint = 'blue' } = Astro.props;
 
 const tints: Record<string, string> = {
   blue: 'bg-tint text-primary',
@@ -22,7 +24,7 @@ const tints: Record<string, string> = {
 ---
 
 <div
-  class="group flex flex-col items-center gap-3 rounded-2xl border border-slate-100 bg-white p-5 text-center shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-transparent hover:shadow-lift"
+  class="group flex min-h-[220px] flex-col items-center gap-3 rounded-2xl border border-slate-100 bg-white p-5 text-center shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-transparent hover:shadow-lift"
 >
   <span
     class={`flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110 ${tints[tint]}`}
@@ -34,4 +36,12 @@ const tints: Record<string, string> = {
     data-i18n
     data-en={label}
     data-sw={labelSw ?? label}>{label}</span>
+  <p
+    class="mt-auto text-[11px] leading-relaxed text-muted"
+    data-i18n
+    data-en={description ?? ''}
+    data-sw={descriptionSw ?? description ?? ''}
+  >
+    {description ?? ''}
+  </p>
 </div>

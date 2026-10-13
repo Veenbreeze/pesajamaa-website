@@ -34,18 +34,18 @@ const icons = {
 };
 
 const modules = [
-  { label: 'Pledges', sw: 'Ahadi', icon: icons.pledge, tint: 'rose' },
-  { label: 'Events', sw: 'Matukio', icon: icons.event, tint: 'blue' },
-  { label: 'Bulk SMS', sw: 'SMS za Wingi', icon: icons.sms, tint: 'teal' },
-  { label: 'Group Savings', sw: 'Akiba ya Kikundi', icon: icons.savings, tint: 'amber' },
-  { label: 'Members', sw: 'Wanachama', icon: icons.members, tint: 'violet' },
-  { label: 'Payments', sw: 'Malipo', icon: icons.payments, tint: 'blue' },
-  { label: 'Financial Footprint', sw: 'Alama ya Kifedha', icon: icons.footprint, tint: 'teal' },
-  { label: 'Mobile App', sw: 'Programu ya Simu', icon: icons.mobile, tint: 'navy' },
-  { label: 'Web Portal', sw: 'Portal ya Wavuti', icon: icons.web, tint: 'blue' },
-  { label: 'Reports', sw: 'Ripoti', icon: icons.reports, tint: 'amber' },
-  { label: 'Receipts', sw: 'Risiti', icon: icons.receipts, tint: 'rose' },
-  { label: 'Notifications', sw: 'Arifa', icon: icons.notifications, tint: 'violet' },
+  { label: 'Pledges', sw: 'Ahadi', description: 'Track member commitments and align payments around clear due dates.', descriptionSw: 'Fuatilia ahadi za wanachama na upangilie malipo kwenye tarehe zilizo wazi za kulipa.', icon: icons.pledge, tint: 'rose' },
+  { label: 'Events', sw: 'Matukio', description: 'Plan fundraising campaigns and event budgets with one shared view.', descriptionSw: 'Panga kampeni za kukusanya fedha na bajeti za matukio kwa mtazamo mmoja wa pamoja.', icon: icons.event, tint: 'blue' },
+  { label: 'Bulk SMS', sw: 'SMS za Wingi', description: 'Send reminders, updates and payment prompts to every member quickly.', descriptionSw: 'Tuma vikumbusho, taarifa na vidokezo vya malipo kwa kila mwanachama haraka.', icon: icons.sms, tint: 'teal' },
+  { label: 'Group Savings', sw: 'Akiba ya Kikundi', description: 'Keep weekly or monthly savings organized and visible to everyone.', descriptionSw: 'Hifadhi akiba ya kila wiki au mwezi kwa mpangilio na kuonekana kwa kila mtu.', icon: icons.savings, tint: 'amber' },
+  { label: 'Members', sw: 'Wanachama', description: 'Manage profiles, access and participation from one central register.', descriptionSw: 'Dhibiti wasifu, ufikiaji na ushiriki kutoka kwa rejista moja kuu.', icon: icons.members, tint: 'violet' },
+  { label: 'Payments', sw: 'Malipo', description: 'Capture contributions and monitor incoming money without manual confusion.', descriptionSw: 'Kusanya michango na ufuatilia fedha zinazoingia bila mkanganyiko wa manu', icon: icons.payments, tint: 'blue' },
+  { label: 'Financial Footprint', sw: 'Alama ya Kifedha', description: 'See the full story of where funds came from and where they went.', descriptionSw: 'Angalia hadithi nzima ya fedha zilikotoka na zilipoenda.', icon: icons.footprint, tint: 'teal' },
+  { label: 'Mobile App', sw: 'Programu ya Simu', description: 'Give members a simple way to contribute from their phones anytime.', descriptionSw: 'Toa wanachama njia rahisi ya kuchangia kupitia simu zao wakati wowote.', icon: icons.mobile, tint: 'navy' },
+  { label: 'Web Portal', sw: 'Portal ya Wavuti', description: 'Provide a secure dashboard for admins, leaders and members to review progress.', descriptionSw: 'Toa dashboard salama kwa wasimamizi, viongozi na wanachama kukagua maendeleo.', icon: icons.web, tint: 'blue' },
+  { label: 'Reports', sw: 'Ripoti', description: 'Generate clean summaries for meetings, reviews and monthly updates.', descriptionSw: 'Tengeneza muhtasari safi kwa mikutano, ukaguzi na taarifa za kila mwezi.', icon: icons.reports, tint: 'amber' },
+  { label: 'Receipts', sw: 'Risiti', description: 'Issue proof of payment instantly so every transaction stays trustworthy.', descriptionSw: 'Toa uthibitisho wa malipo papo hapo ili kila shughuli ibaki kuwa ya kuaminika.', icon: icons.receipts, tint: 'rose' },
+  { label: 'Notifications', sw: 'Arifa', description: 'Keep everyone informed with reminders, milestones and urgent updates.', descriptionSw: 'Hakikisha kila mtu anafahamika kwa vikumbusho, hatua za maendeleo na taarifa za haraka.', icon: icons.notifications, tint: 'violet' },
 ] as const;
 
 /* Trust strip — partner logos from public/partners */
@@ -321,7 +321,13 @@ const faqs = [
       <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4" data-reveal-stagger>
         {
           modules.map((m) => (
-            <ModuleCard label={m.label} labelSw={m.sw} tint={m.tint}>
+            <ModuleCard
+              label={m.label}
+              labelSw={m.sw}
+              description={m.description}
+              descriptionSw={m.descriptionSw}
+              tint={m.tint}
+            >
               <Fragment set:html={m.icon} />
             </ModuleCard>
           ))

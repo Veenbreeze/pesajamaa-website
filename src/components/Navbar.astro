@@ -215,6 +215,19 @@ const nav = [
 
   const textNodes = document.querySelectorAll('[data-i18n]');
 
+  const setI18nText = (el, nextText) => {
+    const textNode = Array.from(el.childNodes).find(
+      (node) => node.nodeType === Node.TEXT_NODE && node.textContent && node.textContent.trim(),
+    );
+
+    if (textNode) {
+      textNode.textContent = nextText;
+      return;
+    }
+
+    el.textContent = nextText;
+  };
+
   const applyLanguage = (lang) => {
     currentLang = lang;
     const copy = labels[lang];
@@ -229,11 +242,7 @@ const nav = [
         return;
       }
 
-      if (el.querySelector('svg')) {
-        return;
-      }
-
-      el.textContent = nextText;
+      setI18nText(el, nextText);
     });
 
     if (languageToggle) {
