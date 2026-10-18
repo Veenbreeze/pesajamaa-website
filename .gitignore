@@ -17,3 +17,9 @@ pnpm-debug.log*
 .DS_Store
 .vscode/
 .idea/
+
+# raw brand asset drop (source logos) — used ones are copied into public/
+PESAJAMAA/
+__MACOSX/
+# local logo backup
+public/pesajamaa-logo-OLD.png.bak

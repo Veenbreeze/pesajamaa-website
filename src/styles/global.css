@@ -25,7 +25,7 @@
 @layer base {
   html {
     @apply font-sans text-muted antialiased;
-    scroll-padding-top: 5.5rem; /* offset sticky navbar on anchor jumps */
+    scroll-padding-top: 6rem; /* offset sticky navbar on anchor jumps */
   }
   body {
     @apply bg-white text-muted;
