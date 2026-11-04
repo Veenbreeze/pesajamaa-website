@@ -289,7 +289,6 @@ const faqs = [
         <div class="marquee-track">
           {[...partners, ...partners].map((p, index) => (
             <div
-              key={`${p.name}-${index}`}
               class="marquee-item flex items-center justify-center rounded-xl border border-slate-100 bg-gray-bg px-4 py-4 shadow-sm"
             >
               <img
@@ -321,7 +320,7 @@ const faqs = [
       <div class="modules-marquee mt-8" data-reveal>
         <div class="modules-marquee-track flex w-max gap-4 py-2">
           {[...modules, ...modules].map((m, index) => (
-            <div class="w-[220px] shrink-0 sm:w-[236px]" key={`${m.label}-${index}`}>
+            <div class="w-[220px] shrink-0 sm:w-[236px]">
               <ModuleCard
                 label={m.label}
                 labelSw={m.sw}

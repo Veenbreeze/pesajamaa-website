@@ -72,7 +72,7 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
       'Rehema J.', 'Daniel P.',
     ];
     const amounts = [10_000, 20_000, 25_000, 50_000, 75_000, 100_000, 150_000, 200_000, 250_000];
-    const fmt = (n) => 'TZS ' + n.toLocaleString('en-US');
+    const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
     const MAX_ROWS = 5;
     let lastName = '';
 
@@ -116,7 +116,7 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
       return li;
     }
 
-    let timer;
+    let timer: ReturnType<typeof setInterval> | null = null;
     const tick = () => {
       // Age the current top row's timestamp label, then add a new one on top.
       const labels = t();
@@ -126,7 +126,8 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
       }
       feed.prepend(makeRow());
       while (feed.children.length > MAX_ROWS) {
-        feed.removeChild(feed.lastElementChild);
+        const last = feed.lastElementChild;
+        if (last) feed.removeChild(last);
       }
     };
 
@@ -137,7 +138,7 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
         if (entry.isIntersecting) {
           if (!timer) timer = setInterval(tick, 2800);
         } else {
-          clearInterval(timer);
+          if (timer) clearInterval(timer);
           timer = null;
         }
       });

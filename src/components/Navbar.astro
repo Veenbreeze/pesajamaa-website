@@ -211,11 +211,11 @@ const nav = [
     },
   };
 
-  let currentLang = 'en';
+  let currentLang: 'en' | 'sw' = 'en';
 
-  const textNodes = document.querySelectorAll('[data-i18n]');
+  const textNodes = document.querySelectorAll<HTMLElement>('[data-i18n]');
 
-  const setI18nText = (el, nextText) => {
+  const setI18nText = (el: Element, nextText: string) => {
     const textNode = Array.from(el.childNodes).find(
       (node) => node.nodeType === Node.TEXT_NODE && node.textContent && node.textContent.trim(),
     );
@@ -228,7 +228,7 @@ const nav = [
     el.textContent = nextText;
   };
 
-  const applyLanguage = (lang) => {
+  const applyLanguage = (lang: 'en' | 'sw') => {
     currentLang = lang;
     const copy = labels[lang];
 
