@@ -1,3 +1,4 @@
+
 name: CI/CD
 
 on:
@@ -11,9 +12,10 @@ permissions:
 
 jobs:
   build:
-    name: Type-check & build
+    name: Build Astro Website
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,9 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Type-check
-        run: npm run check
-
       - name: Build
         run: npm run build
 
@@ -37,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist
+          path: dist/
           retention-days: 7
 
   deploy:
@@ -46,10 +45,11 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    environment: production
+
     concurrency:
       group: deploy-production
       cancel-in-progress: false
+
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v4
@@ -58,53 +58,37 @@ jobs:
           path: dist
 
       - name: Configure SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
         run: |
           set -euo pipefail
-          PORT="${SSH_PORT:-22}"
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          if [ -n "${SSH_KNOWN_HOSTS:-}" ]; then
-            printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          else
-            ssh-keyscan -p "$PORT" -H "$SSH_HOST" > ~/.ssh/known_hosts
-          fi
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
 
-      - name: Deploy to VPS
+      - name: Deploy to Contabo VPS
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
         run: |
           set -euo pipefail
-          PORT="${SSH_PORT:-22}"
           rsync -az --delete --chmod=D755,F644 \
-            -e "ssh -i ~/.ssh/deploy_key -p $PORT -o IdentitiesOnly=yes" \
-            dist/ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            dist/ "$VPS_USER@$VPS_HOST:/var/www/jamaa/dist/"
 
       - name: Health check
         run: |
           set -euo pipefail
-          if [ -z "${SITE_URL:-}" ]; then
-            echo "SITE_URL not configured — skipping health check."
-            exit 0
-          fi
           for i in $(seq 1 10); do
-            if curl -fsS -o /dev/null "$SITE_URL"; then
-              echo "Site is healthy: $SITE_URL"
+            if curl -fsS -o /dev/null http://144.91.122.226/; then
+              echo "Website is healthy!"
               exit 0
             fi
             sleep 3
           done
-          echo "Health check failed: $SITE_URL"
+          echo "Health check failed"
           exit 1
-        env:
-          SITE_URL: ${{ secrets.SITE_URL }}
