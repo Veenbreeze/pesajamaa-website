@@ -22,16 +22,69 @@ npm run build    # outputs a static site to ./dist
 npm run preview  # serves the production build locally
 ```
 
-## Deploy to Vercel
+## Deploy to a Contabo VPS (GitHub Actions CI/CD)
 
-This is a plain static build — no adapter needed.
+The site is a plain static build (`dist/`), served by Nginx on the VPS. Every
+push to `main` runs type-check + build, then rsyncs `dist/` to the server.
 
-- **Framework preset:** Astro
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
+### 1. Provision the VPS (one time)
 
-Push to a Git repo and import it in Vercel, or run `vercel` / `vercel --prod`
-from the project root.
+Point the `pesajamaa.co.tz` and `www` DNS records at the Contabo VPS, then SSH
+in and run the provisioning script from a checkout of this repo:
+
+```bash
+git clone https://github.com/Veenbreeze/pesajamaa-website.git
+cd pesajamaa-website
+sudo DOMAIN=pesajamaa.co.tz \
+     DEPLOY_PUBKEY="ssh-ed25519 AAAA... your CI public key ..." \
+     bash deploy/setup-vps.sh
+```
+
+It installs Nginx, rsync and certbot, creates the `deploy` user, enables the
+site, configures UFW and (once DNS resolves) obtains a Let's Encrypt
+certificate. Nginx config lives at `deploy/nginx/pesajamaa.conf`.
+
+### 2. Create a deploy SSH key
+
+On your machine:
+
+```bash
+ssh-keygen -t ed25519 -C "github-actions@pesajamaa" -f ./pesajamaa_deploy -N ""
+```
+
+- Put the **public** key (`pesajamaa_deploy.pub`) on the VPS (pass it as
+  `DEPLOY_PUBKEY` above, or append it to
+  `/home/deploy/.ssh/authorized_keys`).
+- Store the **private** key (`pesajamaa_deploy`) in GitHub.
+
+### 3. Add GitHub Actions secrets
+
+Repo → **Settings → Secrets and variables → Actions → New repository secret**:
+
+| Secret | Example | Required |
+| --- | --- | --- |
+| `SSH_HOST` | `203.0.113.10` or `vps.pesajamaa.co.tz` | yes |
+| `SSH_USER` | `deploy` | yes |
+| `SSH_PRIVATE_KEY` | full contents of `pesajamaa_deploy` | yes |
+| `SSH_PORT` | `22` | no (defaults to 22) |
+| `DEPLOY_PATH` | `/var/www/pesajamaa` | yes |
+| `SSH_KNOWN_HOSTS` | output of `ssh-keyscan -H <host>` | no (keyscanned if empty) |
+| `SITE_URL` | `https://pesajamaa.co.tz` | no (enables health check) |
+
+### 4. Deploy
+
+Push to `main` (or run the workflow manually via **Actions → CI/CD → Run
+workflow**). The workflow is `.github/workflows/deploy.yml`. Pull requests only
+run type-check + build; deploys happen only from `main`.
+
+### Manual build check
+
+```bash
+npm ci
+npm run check    # astro check (TypeScript)
+npm run build    # outputs ./dist
+npm run ci       # check + build
+```
 
 ## Brand tokens — change in ONE place
 
@@ -57,6 +110,8 @@ so there's nothing to swap for those — edit them directly in
 ## Project structure
 
 ```
+.github/workflows/      CI/CD (type-check, build, deploy on push to main)
+deploy/                 VPS setup script + Nginx config (Contabo)
 public/                 logo, favicon, OG image
 src/
   components/           Navbar, Footer, Button, SectionTitle, ModuleCard,
