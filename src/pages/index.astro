@@ -9,6 +9,7 @@ import StatCounter from '../components/StatCounter.astro';
 import ProgressBar from '../components/ProgressBar.astro';
 import LiveFeed from '../components/LiveFeed.astro';
 import AppDemo from '../components/AppDemo.astro';
+import { insights } from '../data/insights';
 
 /* ------------------------------------------------------------------
    Inline SVG icon helpers. Outline, 24x24, stroke currentColor so the
@@ -115,13 +116,6 @@ const testimonials = [
   { quote: 'Our building fund used to live on paper and WhatsApp. Now every member sees exactly what we’ve raised, and pledges have never been higher.', quoteSw: 'Mfuko wetu wa ujenzi ulikuwa kwenye karatasi na WhatsApp. Sasa kila mwanachama anaona hasa tulichokusanya, na ahadi hazijawahi kuwa juu hivi.', name: 'Pastor Emanuel M.', role: 'Church Leader, Dodoma', roleSw: 'Kiongozi wa Kanisa, Dodoma' },
   { quote: 'Collecting VICOBA savings was chaos. PesaJamaa gives us one clean ledger and SMS reminders, so no one forgets their weekly share.', quoteSw: 'Kukusanya akiba za VICOBA kulikuwa vurugu. PesaJamaa inatupa daftari moja safi na vikumbusho vya SMS, hivyo hakuna anayesahau mchango wake wa wiki.', name: 'Asha R.', role: 'Chairperson, Mwanza Chama', roleSw: 'Mwenyekiti, Chama cha Mwanza' },
   { quote: 'The receipts and monthly reports saved us hours and ended every “where did the money go?” argument in our group.', quoteSw: 'Risiti na ripoti za kila mwezi zilituokolea masaa na kumaliza kila mgogoro wa "fedha zimeenda wapi?" kwenye kikundi chetu.', name: 'Daniel K.', role: 'Treasurer, Arusha Investment Group', roleSw: 'Mweka Hazina, Kikundi cha Uwekezaji Arusha' },
-];
-
-/* Insights */
-const insights = [
-  { category: 'Guides', categorySw: 'Miongozo', date: 'Oct 2026', read: '5 min read', readSw: 'dakika 5', title: 'How to run a transparent church building fund', titleSw: 'Jinsi ya kuendesha mfuko wa ujenzi wa kanisa kwa uwazi', excerpt: 'A step-by-step playbook for collecting pledges and showing members where every shilling goes.', excerptSw: 'Mwongozo wa hatua kwa hatua wa kukusanya ahadi na kuonyesha wanachama kila shilingi inakoenda.' },
-  { category: 'VICOBA', categorySw: 'VICOBA', date: 'Sep 2026', read: '4 min read', readSw: 'dakika 4', title: '5 ways SMS reminders boost group savings', titleSw: 'Njia 5 ambazo vikumbusho vya SMS huongeza akiba ya kikundi', excerpt: 'Simple nudges that keep chama members contributing on time, every cycle.', excerptSw: 'Mikumbusho rahisi inayowafanya wanachama wa chama kuchangia kwa wakati, kila mzunguko.' },
-  { category: 'Inclusion', categorySw: 'Ujumuishwaji', date: 'Sep 2026', read: '6 min read', readSw: 'dakika 6', title: 'Building a financial footprint for your group', titleSw: 'Kujenga alama ya kifedha kwa kikundi chako', excerpt: 'Why a clear contribution history is the key to unlocking credit and growth.', excerptSw: 'Kwa nini historia wazi ya michango ndiyo ufunguo wa kupata mikopo na ukuaji.' },
 ];
 
 /* FAQ */
@@ -894,7 +888,7 @@ const faqs = [
       <div class="mt-12 grid gap-6 lg:grid-cols-3" data-reveal-stagger>
         {
           insights.map((a) => (
-            <a href="#" class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+            <a href="/insights" class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
               <div class="relative flex h-40 items-center justify-center bg-gradient-to-br from-tint to-accent/10">
                 <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-extrabold text-primary shadow-soft" data-i18n data-en={a.category} data-sw={a.categorySw}>{a.category}</span>
                 <svg class="h-12 w-12 text-primary/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>

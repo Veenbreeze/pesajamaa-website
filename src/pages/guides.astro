@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InfoPage from '../components/InfoPage.astro';
+import { guidesPage } from '../data/info-pages';
+---
+
+<BaseLayout title="Guides · PesaJamaa" description={guidesPage.intro}>
+  <InfoPage page={guidesPage} category="Resources" categorySw="Rasilimali" />
+</BaseLayout>

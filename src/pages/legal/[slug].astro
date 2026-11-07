@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InfoPage from '../../components/InfoPage.astro';
+import { legalPages } from '../../data/info-pages';
+import type { InfoPage as InfoPageData } from '../../data/types';
+
+export function getStaticPaths() {
+  return legalPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+interface Props {
+  page: InfoPageData;
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={`${page.title} · PesaJamaa`} description={page.intro}>
+  <InfoPage page={page} category="Legal" categorySw="Kisheria" />
+</BaseLayout>

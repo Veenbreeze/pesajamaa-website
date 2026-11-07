@@ -1,0 +1,242 @@
+---
+import type { InfoPage } from '../data/types';
+
+interface Props {
+  page: InfoPage;
+  category: string;
+  categorySw: string;
+}
+
+const { page, category, categorySw } = Astro.props;
+const { title, titleSw, intro, introSw, stats, sections, cards } = page;
+---
+
+<!-- ============================= SUB-PAGE HERO ============================= -->
+<section class="relative overflow-hidden">
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-tint via-white to-white"></div>
+  <div class="pointer-events-none absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute -left-20 top-24 -z-10 h-72 w-72 rounded-full bg-accent/10 blur-3xl"></div>
+
+  <div class="container-px py-14 lg:py-20">
+    <nav class="mb-6 text-sm font-semibold text-muted" aria-label="Breadcrumb" data-reveal>
+      <ol class="flex flex-wrap items-center gap-2">
+        <li><a href="/" class="text-primary hover:underline" data-i18n data-en="Home" data-sw="Mwanzo">Home</a></li>
+        <li aria-hidden="true" class="text-slate-300">/</li>
+        <li data-i18n data-en={category} data-sw={categorySw}>{category}</li>
+      </ol>
+    </nav>
+
+    <div class="max-w-3xl" data-reveal>
+      <p
+        class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-slate shadow-soft"
+        data-i18n
+        data-en={page.eyebrow}
+        data-sw={page.eyebrowSw}
+      >
+        <span class="h-2 w-2 rounded-full bg-accent"></span>
+        {page.eyebrow}
+      </p>
+      <h1
+        class="mt-5 text-4xl font-extrabold leading-[1.1] text-heading sm:text-5xl"
+        data-i18n
+        data-en={title}
+        data-sw={titleSw}
+      >
+        {title}
+      </h1>
+      <p
+        class="mt-5 max-w-2xl text-lg leading-relaxed text-muted"
+        data-i18n
+        data-en={intro}
+        data-sw={introSw}
+      >
+        {intro}
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="https://portal.pesajamaa.co.tz/register"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-lift"
+          data-i18n
+          data-en="Start Free"
+          data-sw="Anza Bila Malipo"
+        >
+          Start Free
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-tint hover:shadow-soft"
+          data-i18n
+          data-en="Talk to an Advisor"
+          data-sw="Zungumza na Mshauri"
+        >
+          Talk to an Advisor
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= STATS ============================= -->
+{
+  stats && stats.length > 0 && (
+    <section class="border-y border-slate-100 bg-gray-bg py-10">
+      <div class="container-px grid gap-8 sm:grid-cols-3" data-reveal-stagger>
+        {stats.map((stat) => (
+          <div>
+            <p class="text-3xl font-extrabold text-primary">{stat.value}</p>
+            <p
+              class="mt-1 text-sm font-semibold text-muted"
+              data-i18n
+              data-en={stat.label}
+              data-sw={stat.labelSw}
+            >
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<!-- ============================= SECTIONS ============================= -->
+<section class="py-16 lg:py-20">
+  <div class="container-px">
+    <div class="mx-auto max-w-4xl space-y-12">
+      {
+        sections.map((section) => (
+          <article class="grid gap-5 border-b border-slate-100 pb-12 last:border-b-0 last:pb-0 lg:grid-cols-[0.9fr_1.1fr]" data-reveal>
+            <h2
+              class="text-2xl font-extrabold leading-tight text-heading"
+              data-i18n
+              data-en={section.heading}
+              data-sw={section.headingSw}
+            >
+              {section.heading}
+            </h2>
+            <div>
+              <p
+                class="text-[17px] leading-relaxed text-muted"
+                data-i18n
+                data-en={section.body}
+                data-sw={section.bodySw}
+              >
+                {section.body}
+              </p>
+              {section.bullets && (
+                <ul class="mt-5 space-y-3">
+                  {section.bullets.map((bullet) => (
+                    <li class="flex items-start gap-3">
+                      <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
+                        <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+                          <path d="M4 10.5l3.5 3.5L16 5.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                      <span
+                        class="text-[15px] font-semibold text-heading"
+                        data-i18n
+                        data-en={bullet.en}
+                        data-sw={bullet.sw}
+                      >
+                        {bullet.en}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CARDS ============================= -->
+{
+  cards && cards.length > 0 && (
+    <section class="bg-gray-bg py-16 lg:py-20">
+      <div class="container-px">
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+          {cards.map((card) => {
+            const Tag = card.href ? 'a' : 'div';
+            return (
+              <Tag
+                class="group flex flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift"
+                {...(card.href ? { href: card.href } : {})}
+              >
+                <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-tint text-primary transition-transform duration-200 group-hover:scale-110">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+                <h3
+                  class="mt-4 text-base font-extrabold text-heading"
+                  data-i18n
+                  data-en={card.title}
+                  data-sw={card.titleSw}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  class="mt-2 text-sm leading-relaxed text-muted"
+                  data-i18n
+                  data-en={card.body}
+                  data-sw={card.bodySw}
+                >
+                  {card.body}
+                </p>
+              </Tag>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<!-- ============================= FINAL CTA ============================= -->
+<section class="py-16 lg:py-20">
+  <div class="container-px">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy via-navy to-[#06204d] px-6 py-14 text-center shadow-lift sm:px-12" data-reveal>
+      <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/20 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
+      <h2
+        class="mx-auto max-w-2xl text-3xl font-extrabold text-white sm:text-4xl"
+        data-i18n
+        data-en="Bring your group’s finances together"
+        data-sw="Leta fedha za kikundi chako pamoja"
+      >
+        Bring your group’s finances together
+      </h2>
+      <p
+        class="mx-auto mt-4 max-w-xl text-lg text-slate-300"
+        data-i18n
+        data-en="Join the communities across Tanzania running pledges, savings and events on one transparent platform."
+        data-sw="Jiunge na jamii kote Tanzania zinazotumia ahadi, akiba na matukio kwenye jukwaa moja la uwazi."
+      >
+        Join the communities across Tanzania running pledges, savings and events on one transparent platform.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="https://portal.pesajamaa.co.tz/register"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-lift"
+          data-i18n
+          data-en="Start Free"
+          data-sw="Anza Bila Malipo"
+        >
+          Start Free
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-navy shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift"
+          data-i18n
+          data-en="Talk to an Advisor"
+          data-sw="Zungumza na Mshauri"
+        >
+          Talk to an Advisor
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

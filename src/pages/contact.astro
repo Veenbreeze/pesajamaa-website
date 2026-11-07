@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InfoPage from '../components/InfoPage.astro';
+import { contactPage } from '../data/info-pages';
+---
+
+<BaseLayout title="Contact · PesaJamaa" description={contactPage.intro}>
+  <InfoPage page={contactPage} category="Company" categorySw="Kampuni" />
+</BaseLayout>

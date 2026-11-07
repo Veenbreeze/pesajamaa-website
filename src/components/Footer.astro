@@ -3,42 +3,71 @@
  * Footer — deep navy. The real logo has dark text, so it sits on a white
  * rounded chip here (never directly on the navy).
  */
+const link = (label: string, labelSw: string, href: string) => ({ label, labelSw, href });
+
 const columns = [
   {
     title: 'Solutions',
     swTitle: 'Ufumbuzi',
-    links: ['Churches', 'VICOBA / Chamas', 'NGOs', 'Event Organizers', 'Schools'],
-    swLinks: ['Makanisa', 'VICOBA / Chamas', 'NGOs', 'Waandaji wa Matukio', 'Shule'],
+    links: [
+      link('Churches', 'Makanisa', '/solutions/churches'),
+      link('VICOBA / Chamas', 'VICOBA / Chamas', '/solutions/vicoba-chamas'),
+      link('NGOs', 'NGOs', '/solutions/ngos'),
+      link('Event Organizers', 'Waandaji wa Matukio', '/solutions/event-organizers'),
+      link('Schools', 'Shule', '/solutions/schools'),
+    ],
   },
   {
     title: 'Features',
     swTitle: 'Vipengele',
-    links: ['Pledges', 'Events', 'Bulk SMS', 'Group Savings', 'Receipts'],
-    swLinks: ['Ahadi', 'Matukio', 'SMS za Wingi', 'Akiba ya Kikundi', 'Risiti'],
+    links: [
+      link('Pledges', 'Ahadi', '/features/pledges'),
+      link('Events', 'Matukio', '/features/events'),
+      link('Bulk SMS', 'SMS za Wingi', '/features/bulk-sms'),
+      link('Group Savings', 'Akiba ya Kikundi', '/features/group-savings'),
+      link('Receipts', 'Risiti', '/features/receipts'),
+    ],
   },
   {
     title: 'Tools',
     swTitle: 'Zana',
-    links: ['Web Portal', 'Android App', 'Reports', 'Notifications', 'Payments'],
-    swLinks: ['Portal ya Wavuti', 'Programu ya Android', 'Ripoti', 'Arifa', 'Malipo'],
+    links: [
+      link('Web Portal', 'Portal ya Wavuti', '/tools/web-portal'),
+      link('Android App', 'Programu ya Android', '/tools/android-app'),
+      link('Reports', 'Ripoti', '/tools/reports'),
+      link('Notifications', 'Arifa', '/tools/notifications'),
+      link('Payments', 'Malipo', '/tools/payments'),
+    ],
   },
   {
     title: 'Resources',
     swTitle: 'Rasilimali',
-    links: ['Insights', 'How it works', 'Help Center', 'Guides'],
-    swLinks: ['Maarifa', 'Inafanya kazi vipi', 'Kituo cha Usaidizi', 'Mwongozo'],
+    links: [
+      link('Insights', 'Maarifa', '/insights'),
+      link('How it works', 'Inafanya kazi vipi', '/how-it-works'),
+      link('Help Center', 'Kituo cha Usaidizi', '/help-center'),
+      link('Guides', 'Mwongozo', '/guides'),
+    ],
   },
   {
     title: 'Company',
     swTitle: 'Kampuni',
-    links: ['About', 'Careers', 'Contact', 'Partners'],
-    swLinks: ['Kuhusu', 'Kazi', 'Mawasiliano', 'Washirika'],
+    links: [
+      link('About', 'Kuhusu', '/about'),
+      link('Careers', 'Kazi', '/careers'),
+      link('Contact', 'Mawasiliano', '/contact'),
+      link('Partners', 'Washirika', '/partners'),
+    ],
   },
   {
     title: 'Legal',
     swTitle: 'Kisheria',
-    links: ['Privacy', 'Terms', 'Security', 'Cookies'],
-    swLinks: ['Faragha', 'Masharti', 'Usalama', 'Vidakuzi'],
+    links: [
+      link('Privacy', 'Faragha', '/legal/privacy'),
+      link('Terms', 'Masharti', '/legal/terms'),
+      link('Security', 'Usalama', '/legal/security'),
+      link('Cookies', 'Vidakuzi', '/legal/cookies'),
+    ],
   },
 ];
 ---
@@ -88,16 +117,16 @@ const columns = [
                 {col.title}
               </h3>
               <ul class="mt-4 space-y-2.5">
-                {col.links.map((link, index) => (
+                {col.links.map((item) => (
                   <li>
                     <a
-                      href="#"
+                      href={item.href}
                       class="text-[15px] text-slate-400 transition-colors hover:text-accent"
                       data-i18n
-                      data-en={link}
-                      data-sw={col.swLinks[index]}
+                      data-en={item.label}
+                      data-sw={item.labelSw}
                     >
-                      {link}
+                      {item.label}
                     </a>
                   </li>
                 ))}

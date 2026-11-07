@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { insights } from '../data/insights';
+---
+
+<BaseLayout
+  title="Insights · PesaJamaa"
+  description="Ideas, guides and lessons for running a stronger community: pledges, savings, events and member engagement."
+>
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-tint via-white to-white"></div>
+    <div class="pointer-events-none absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="container-px py-14 lg:py-20">
+      <nav class="mb-6 text-sm font-semibold text-muted" aria-label="Breadcrumb" data-reveal>
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/" class="text-primary hover:underline" data-i18n data-en="Home" data-sw="Mwanzo">Home</a></li>
+          <li aria-hidden="true" class="text-slate-300">/</li>
+          <li data-i18n data-en="Resources" data-sw="Rasilimali">Resources</li>
+        </ol>
+      </nav>
+      <div class="max-w-3xl" data-reveal>
+        <p
+          class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-slate shadow-soft"
+          data-i18n
+          data-en="Resources · Insights"
+          data-sw="Rasilimali · Maarifa"
+        >
+          <span class="h-2 w-2 rounded-full bg-accent"></span>
+          Resources · Insights
+        </p>
+        <h1
+          class="mt-5 text-4xl font-extrabold leading-[1.1] text-heading sm:text-5xl"
+          data-i18n
+          data-en="Ideas for running a stronger community"
+          data-sw="Mawazo ya kuendesha jamii yenye nguvu zaidi"
+        >
+          Ideas for running a stronger community
+        </h1>
+        <p
+          class="mt-5 max-w-2xl text-lg leading-relaxed text-muted"
+          data-i18n
+          data-en="Practical lessons on pledges, savings, events and member engagement, written for Tanzanian community groups."
+          data-sw="Masomo ya vitendo kuhusu ahadi, akiba, matukio na ushiriki wa wanachama, yaliyoandikwa kwa ajili ya vikundi vya jamii vya Tanzania."
+        >
+          Practical lessons on pledges, savings, events and member engagement, written for Tanzanian community groups.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-16">
+    <div class="container-px">
+      <div class="grid gap-6 lg:grid-cols-3" data-reveal-stagger>
+        {
+          insights.map((article) => (
+            <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+              <div class="relative flex h-40 items-center justify-center bg-gradient-to-br from-tint to-accent/10">
+                <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-extrabold text-primary shadow-soft" data-i18n data-en={article.category} data-sw={article.categorySw}>{article.category}</span>
+                <svg class="h-12 w-12 text-primary/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <p class="text-xs font-bold text-muted" data-i18n data-en={`${article.date} · ${article.read}`} data-sw={`${article.date} · ${article.readSw}`}>{article.date} · {article.read}</p>
+                <h2 class="mt-2 text-lg font-extrabold leading-snug text-heading" data-i18n data-en={article.title} data-sw={article.titleSw}>{article.title}</h2>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-muted" data-i18n data-en={article.excerpt} data-sw={article.excerptSw}>{article.excerpt}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row" data-reveal>
+        <a href="/guides" class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-lift" data-i18n data-en="Browse the guides" data-sw="Vinjari miongozo">Browse the guides</a>
+        <a href="/how-it-works" class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-tint hover:shadow-soft" data-i18n data-en="See how it works" data-sw="Ona inavyofanya kazi">See how it works</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

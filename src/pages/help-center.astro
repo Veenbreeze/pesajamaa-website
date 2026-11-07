@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InfoPage from '../components/InfoPage.astro';
+import { helpCenterPage } from '../data/info-pages';
+---
+
+<BaseLayout title="Help Center · PesaJamaa" description={helpCenterPage.intro}>
+  <InfoPage page={helpCenterPage} category="Resources" categorySw="Rasilimali" />
+</BaseLayout>
