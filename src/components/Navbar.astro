@@ -53,17 +53,24 @@ const nav = [
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/85 backdrop-blur-md transition-shadow"
+  class="sticky top-0 z-50 w-full border-b border-white/70 bg-gradient-to-r from-leaf-soft/95 via-white/95 to-leaf-soft/95 backdrop-blur-xl transition-shadow"
 >
-  <nav class="container-px flex h-20 items-center justify-between" aria-label="Primary">
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute -left-20 -top-24 h-56 w-56 rounded-full bg-leaf/20 blur-3xl"></div>
+    <div class="absolute -bottom-28 -right-20 h-56 w-56 rounded-full bg-accent/20 blur-3xl"></div>
+    <div class="leaf-dots absolute inset-0 opacity-50"></div>
+    <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-leaf to-transparent opacity-80"></div>
+  </div>
+  <nav class="container-px relative z-10 py-3" aria-label="Primary">
+    <div class="clay-panel clay-panel-leaf flex h-[4.5rem] items-center justify-between px-4 sm:px-5">
     <!-- Logo -->
-    <a href="/" class="flex shrink-0 items-center" aria-label="PesaJamaa home">
+    <a href="/" class="clay-pill clay-pill-leaf flex shrink-0 items-center rounded-2xl px-3 py-1.5" aria-label="PesaJamaa home">
       <img
         src="/pesajamaa-logo.svg"
         alt="PesaJamaa"
         width="122"
         height="56"
-        class="h-14 w-auto"
+        class="h-11 w-auto"
       />
     </a>
 
@@ -74,7 +81,7 @@ const nav = [
           <li class="group relative">
             <button
               type="button"
-              class="flex items-center gap-1 rounded-md px-3 py-2 text-[15px] font-bold text-heading transition-colors hover:text-primary focus-visible:text-primary"
+              class="relative flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-bold text-heading transition-all hover:bg-white hover:text-leaf-ink focus-visible:text-leaf-ink after:absolute after:bottom-1 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2 after:rounded-full after:bg-leaf after:opacity-0 after:transition-opacity after:duration-200 hover:after:opacity-100 focus-visible:after:opacity-100"
               aria-expanded="false"
               aria-haspopup="true"
               data-i18n
@@ -82,18 +89,18 @@ const nav = [
               data-sw={group.swLabel}
             >
               {group.label}
-              <svg class="h-4 w-4 text-muted transition-transform group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg class="h-4 w-4 text-leaf/70 transition-transform group-hover:rotate-180 group-hover:text-leaf group-focus-within:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.38a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z" clip-rule="evenodd" />
               </svg>
             </button>
             {/* Dropdown: shown on hover or keyboard focus within the group */}
             <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-              <ul class="w-60 rounded-xl border border-slate-100 bg-white p-2 shadow-lift">
+              <ul class="clay-card w-60 rounded-2xl p-2.5">
                 {group.items.map((item) => (
                   <li>
                     <a
                       href={item.href}
-                      class="block rounded-lg px-3 py-2 text-[15px] font-semibold text-muted transition-colors hover:bg-tint hover:text-primary"
+                      class="block rounded-xl px-3 py-2 text-[15px] font-semibold text-muted transition-all hover:bg-leaf-soft hover:text-leaf-ink hover:shadow-soft"
                       data-i18n
                       data-en={item.label}
                       data-sw={item.swLabel}
@@ -110,17 +117,17 @@ const nav = [
     </ul>
 
     <!-- Right side: language + badge + CTAs (desktop) -->
-    <div class="hidden items-center gap-3 lg:flex">
+    <div class="hidden items-center gap-2 lg:flex">
       <button
         id="language-toggle"
         type="button"
-        class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-extrabold uppercase tracking-wide text-slate transition-colors hover:border-primary hover:text-primary"
+        class="clay-pill clay-pill-leaf inline-flex items-center justify-center rounded-full px-3 py-2 text-xs font-extrabold uppercase tracking-wide text-leaf-ink transition-all hover:bg-leaf-soft before:mr-1.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-leaf before:content-['']"
         aria-label="Switch language to Swahili"
       >
         SW
       </button>
       <span
-        class="flex items-center gap-1.5 rounded-full bg-tint px-3 py-1.5 text-xs font-bold text-slate"
+        class="clay-pill clay-pill-leaf flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-bold text-leaf-ink"
         title="Developed in Tanzania"
       >
         <!-- Tanzania flag -->
@@ -134,15 +141,15 @@ const nav = [
         </svg>
         TZ
       </span>
-      <Button href="/#final-cta" variant="secondary" data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
-      <Button href="/#final-cta" variant="primary" data-i18n data-en="Start Free" data-sw="Anza Bila Malipo">Start Free</Button>
+      <Button href="/#final-cta" variant="secondary" class="clay-button !text-leaf-ink !ring-leaf/40 hover:!bg-leaf-soft" data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
+      <Button href="/#final-cta" variant="primary" class="clay-button clay-button-primary clay-button-leaf !bg-leaf hover:!bg-leaf-hover !text-white" data-i18n data-en="Start Free" data-sw="Anza Bila Malipo">Start Free</Button>
     </div>
 
     <!-- Mobile hamburger -->
     <button
       type="button"
       id="menu-toggle"
-      class="inline-flex items-center justify-center rounded-md p-2 text-heading lg:hidden"
+      class="clay-pill clay-pill-leaf inline-flex h-11 w-11 items-center justify-center rounded-2xl text-leaf-ink lg:hidden"
       aria-label="Open menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -151,24 +158,26 @@ const nav = [
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
+    </div>
   </nav>
 
   <!-- Mobile menu panel -->
-  <div id="mobile-menu" class="hidden border-t border-slate-100 bg-white lg:hidden">
-    <div class="container-px space-y-1 py-4">
+  <div id="mobile-menu" class="relative z-10 hidden bg-transparent pb-4 lg:hidden">
+    <div class="container-px">
+      <div class="clay-panel clay-panel-leaf space-y-1 px-4 py-4">
       {
         nav.map((group) => (
-          <details class="group rounded-lg">
-            <summary class="flex cursor-pointer items-center justify-between rounded-lg px-3 py-3 text-[15px] font-bold text-heading marker:content-none">
+          <details class="group clay-card rounded-2xl px-1">
+            <summary class="flex cursor-pointer items-center justify-between rounded-xl px-3 py-3 text-[15px] font-bold text-leaf-ink marker:content-none">
               <span data-i18n data-en={group.label} data-sw={group.swLabel}>{group.label}</span>
-              <svg class="h-4 w-4 text-muted transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg class="h-4 w-4 text-leaf/70 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.38a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z" clip-rule="evenodd" />
               </svg>
             </summary>
             <ul class="space-y-0.5 pb-2 pl-3">
               {group.items.map((item) => (
                 <li>
-                  <a href={item.href} class="block rounded-lg px-3 py-2 text-[15px] font-semibold text-muted hover:text-primary" data-close-menu data-i18n data-en={item.label} data-sw={item.swLabel}>
+                  <a href={item.href} class="block rounded-xl px-3 py-2 text-[15px] font-semibold text-muted transition-all hover:bg-leaf-soft hover:text-leaf-ink" data-close-menu data-i18n data-en={item.label} data-sw={item.swLabel}>
                     {item.label}
                   </a>
                 </li>
@@ -181,12 +190,13 @@ const nav = [
         <button
           id="mobile-language-toggle"
           type="button"
-          class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold uppercase tracking-wide text-slate"
+          class="clay-pill clay-pill-leaf inline-flex items-center justify-center rounded-full px-3 py-2 text-xs font-extrabold uppercase tracking-wide text-leaf-ink transition-all hover:bg-leaf-soft before:mr-1.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-leaf before:content-['']"
         >
           SW
         </button>
-        <Button href="/#final-cta" variant="secondary" class="w-full" data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
-        <Button href="/#final-cta" variant="primary" class="w-full" data-i18n data-en="Start Free" data-sw="Anza Bila Malipo">Start Free</Button>
+        <Button href="/#final-cta" variant="secondary" class="clay-button w-full !text-leaf-ink !ring-leaf/40 hover:!bg-leaf-soft" data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
+        <Button href="/#final-cta" variant="primary" class="clay-button clay-button-primary clay-button-leaf w-full !bg-leaf hover:!bg-leaf-hover !text-white" data-i18n data-en="Start Free" data-sw="Anza Bila Malipo">Start Free</Button>
+      </div>
       </div>
     </div>
   </div>

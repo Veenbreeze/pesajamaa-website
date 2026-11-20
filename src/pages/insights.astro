@@ -20,7 +20,7 @@ import { insights } from '../data/insights';
       </nav>
       <div class="max-w-3xl" data-reveal>
         <p
-          class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-slate shadow-soft"
+          class="clay-pill inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-slate"
           data-i18n
           data-en="Resources · Insights"
           data-sw="Rasilimali · Maarifa"
@@ -53,9 +53,9 @@ import { insights } from '../data/insights';
       <div class="grid gap-6 lg:grid-cols-3" data-reveal-stagger>
         {
           insights.map((article) => (
-            <article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+            <article class="clay-card group flex flex-col overflow-hidden rounded-2xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
               <div class="relative flex h-40 items-center justify-center bg-gradient-to-br from-tint to-accent/10">
-                <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-extrabold text-primary shadow-soft" data-i18n data-en={article.category} data-sw={article.categorySw}>{article.category}</span>
+                <span class="clay-pill absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-extrabold text-primary" data-i18n data-en={article.category} data-sw={article.categorySw}>{article.category}</span>
                 <svg class="h-12 w-12 text-primary/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="flex flex-1 flex-col p-5">
@@ -69,8 +69,8 @@ import { insights } from '../data/insights';
       </div>
 
       <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row" data-reveal>
-        <a href="/guides" class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-lift" data-i18n data-en="Browse the guides" data-sw="Vinjari miongozo">Browse the guides</a>
-        <a href="/how-it-works" class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-tint hover:shadow-soft" data-i18n data-en="See how it works" data-sw="Ona inavyofanya kazi">See how it works</a>
+        <a href="/guides" class="clay-button clay-button-primary inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover" data-i18n data-en="Browse the guides" data-sw="Vinjari miongozo">Browse the guides</a>
+        <a href="/how-it-works" class="clay-button inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-tint" data-i18n data-en="See how it works" data-sw="Ona inavyofanya kazi">See how it works</a>
       </div>
     </div>
   </section>

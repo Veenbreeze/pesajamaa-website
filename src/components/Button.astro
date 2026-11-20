@@ -26,6 +26,8 @@ const {
 
 const base =
   'inline-flex items-center justify-center gap-2 font-bold whitespace-nowrap transition-all duration-200 focus-visible:outline-none active:translate-y-0';
+const clayBase = variant === 'ghost' ? '' : 'clay-button';
+const clayPrimary = variant === 'primary' ? 'clay-button-primary' : '';
 
 const sizes = {
   md: 'px-5 py-2.5 text-[15px]',
@@ -43,7 +45,7 @@ const variants = {
 };
 
 const radius = pill ? 'rounded-full' : 'rounded-btn';
-const cls = [base, sizes[size], variants[variant], radius, className].join(' ');
+const cls = [base, clayBase, clayPrimary, sizes[size], variants[variant], radius, className].join(' ');
 const Tag = href ? 'a' : 'button';
 ---
 

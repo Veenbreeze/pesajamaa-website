@@ -10,13 +10,13 @@ import Button from './Button.astro';
 
 <div
   id="sticky-cta"
-  class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 shadow-[0_-8px_30px_rgba(16,24,40,0.12)] backdrop-blur-md"
+  class="clay-panel fixed inset-x-0 bottom-0 z-40 backdrop-blur-md"
   role="region"
   aria-label="Get started with PesaJamaa"
 >
   <div class="container-px flex items-center justify-between gap-3 py-3">
     <div class="flex items-center gap-3">
-      <span class="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-tint text-primary sm:flex">
+      <span class="clay-tile hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl text-primary sm:flex">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6"/></svg>
       </span>
       <div class="leading-tight">
@@ -41,7 +41,7 @@ import Button from './Button.astro';
       <button
         id="sticky-cta-close"
         type="button"
-        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:bg-gray-bg hover:text-heading"
+        class="clay-pill flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:text-heading"
         aria-label="Dismiss"
       >
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -75,6 +75,7 @@ import Button from './Button.astro';
     const update = () => {
       const show = !dismissed && !finalInView && window.scrollY > 700;
       bar.classList.toggle('is-shown', show);
+      document.body.classList.toggle('sticky-cta-visible', show);
     };
 
     closeBtn?.addEventListener('click', () => {

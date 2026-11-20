@@ -17,6 +17,12 @@ export default {
           DEFAULT: '#18B49C', // teal from the logo: secondary highlights, success
           hover: '#15B89C',   // button hover pair
         },
+        leaf: {
+          DEFAULT: '#0B815E', // green header accent — deep enough for white CTA text
+          hover: '#087A58',
+          soft: '#E9F8F1',
+          ink: '#075E46',
+        },
         navy: '#010B2A',       // dark sections / footer background
         slate: '#18303C',      // logo's dark text colour; deep headings on tint
         tint: '#EFF7FF',       // light blue section backgrounds / icon tiles
@@ -36,6 +42,7 @@ export default {
         soft: '0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.06)',
         lift: '0 10px 30px rgba(16, 24, 40, 0.12)',
         glow: '0 10px 40px rgba(2, 109, 222, 0.18)',
+        leaf: '0 12px 28px rgba(11, 129, 94, 0.24)',
       },
       maxWidth: {
         container: '1200px',

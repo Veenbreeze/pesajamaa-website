@@ -17,10 +17,10 @@ const steps = [
 ];
 ---
 
-<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+<div class="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
   <!-- Steps (light up in sync) -->
-  <div data-reveal>
-    <span class="inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-accent" data-i18n data-en="30-second demo" data-sw="Onyesho la sekunde 30">30-second demo</span>
+  <div class="clay-card rounded-[2rem] p-6 sm:p-8" data-reveal>
+    <span class="clay-pill inline-block rounded-full px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-accent" data-i18n data-en="30-second demo" data-sw="Onyesho la sekunde 30">30-second demo</span>
     <h2 class="mt-4 text-3xl font-extrabold leading-tight text-heading sm:text-4xl" data-i18n data-en="See PesaJamaa in action" data-sw="Ona PesaJamaa ikifanya kazi">
       See PesaJamaa in action
     </h2>
@@ -31,8 +31,8 @@ const steps = [
     <ol class="mt-8 space-y-2.5">
       {
         steps.map((s, i) => (
-          <li class="demo-step flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
-            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-extrabold text-white">{i + 1}</span>
+          <li class="demo-step flex items-center gap-3 rounded-2xl px-4 py-3">
+            <span class="clay-button clay-button-primary flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-extrabold text-white">{i + 1}</span>
             <span class="text-[15px] font-bold text-heading" data-i18n data-en={s.en} data-sw={s.sw}>{s.en}</span>
           </li>
         ))
@@ -41,37 +41,38 @@ const steps = [
   </div>
 
   <!-- Phone -->
-  <div class="flex justify-center" data-reveal>
-    <div class="relative w-[270px] rounded-[2.4rem] border-[7px] border-navy bg-navy shadow-lift">
+  <div class="clay-card relative flex items-center justify-center overflow-hidden rounded-[2rem] p-6 sm:p-8" data-reveal>
+    <div class="pointer-events-none absolute h-[480px] w-[260px] rounded-[4rem] bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl"></div>
+    <div class="relative w-[216px] rounded-[2.4rem] border-[7px] border-navy bg-navy shadow-[inset_0_2px_2px_rgba(255,255,255,0.18),0_24px_48px_rgba(1,11,42,0.28)] sm:w-[236px]">
       <!-- notch -->
-      <div class="absolute left-1/2 top-0 z-20 h-5 w-28 -translate-x-1/2 rounded-b-2xl bg-navy"></div>
+      <div class="absolute left-1/2 top-0 z-20 h-4 w-20 -translate-x-1/2 rounded-b-xl bg-navy shadow-[inset_0_-2px_3px_rgba(255,255,255,0.12)]"></div>
 
       <!-- screen -->
-      <div class="relative h-[540px] overflow-hidden rounded-[1.9rem] bg-tint">
+      <div class="clay-dots relative h-[420px] overflow-hidden rounded-[1.6rem] bg-gradient-to-b from-tint to-white sm:h-[440px]">
         <!-- REC badge -->
-        <div class="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-white/80 px-2 py-0.5 text-[10px] font-extrabold text-rose-600 backdrop-blur">
+        <div class="clay-pill absolute right-2.5 top-2.5 z-20 flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-extrabold text-rose-600">
           <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-rose-500"></span> REC
         </div>
 
         <!-- screens (wrapped so nth-child counts only screens) -->
         <div class="absolute inset-0">
         <!-- ===== Screen 1: Create a campaign ===== -->
-        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+        <div class="demo-screen flex flex-col gap-2.5 p-4 pt-8">
           <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="New campaign" data-sw="Kampeni mpya">New campaign</p>
-          <div class="rounded-2xl bg-white p-4 shadow-soft">
+          <div class="clay-card rounded-2xl p-4">
             <p class="text-[11px] font-bold text-muted" data-i18n data-en="Campaign name" data-sw="Jina la kampeni">Campaign name</p>
             <p class="mt-1 text-lg font-extrabold text-heading">Tujenge Kanisa Letu</p>
             <div class="mt-3 h-px w-full bg-slate-100"></div>
             <p class="mt-3 text-[11px] font-bold text-muted" data-i18n data-en="Goal" data-sw="Lengo">Goal</p>
             <p class="mt-1 text-lg font-extrabold text-primary">TZS 100,000,000</p>
           </div>
-          <div class="mt-1 rounded-btn bg-primary py-3 text-center text-sm font-bold text-white" data-i18n data-en="Create campaign" data-sw="Tengeneza kampeni">Create campaign</div>
+          <div class="clay-button clay-button-primary mt-1 rounded-btn bg-primary py-3 text-center text-sm font-bold text-white" data-i18n data-en="Create campaign" data-sw="Tengeneza kampeni">Create campaign</div>
         </div>
 
         <!-- ===== Screen 2: Invite members ===== -->
-        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+        <div class="demo-screen flex flex-col gap-2.5 p-4 pt-8">
           <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Invite members" data-sw="Alika wanachama">Invite members</p>
-          <div class="rounded-2xl bg-white p-3 shadow-soft">
+          <div class="clay-card rounded-2xl p-3">
             {[
               ['Mary K.', '+255 7••• •••'],
               ['John M.', '+255 7••• •••'],
@@ -79,7 +80,7 @@ const steps = [
             ].map(([n, p]) => (
               <div class="flex items-center justify-between border-b border-slate-100 py-2 last:border-0">
                 <div class="flex items-center gap-2">
-                  <span class="flex h-7 w-7 items-center justify-center rounded-full bg-tint text-[11px] font-extrabold text-primary">{n.charAt(0)}</span>
+                  <span class="clay-tile flex h-7 w-7 items-center justify-center rounded-full text-[11px] font-extrabold text-primary">{n.charAt(0)}</span>
                   <div>
                     <p class="text-xs font-bold text-heading">{n}</p>
                     <p class="text-[10px] text-muted">{p}</p>
@@ -89,13 +90,13 @@ const steps = [
               </div>
             ))}
           </div>
-          <div class="mt-1 rounded-btn bg-accent py-3 text-center text-sm font-bold text-white" data-i18n data-en="Send SMS invites" data-sw="Tuma mialiko ya SMS">Send SMS invites</div>
+          <div class="clay-button mt-1 rounded-btn bg-accent py-3 text-center text-sm font-bold text-white" data-i18n data-en="Send SMS invites" data-sw="Tuma mialiko ya SMS">Send SMS invites</div>
         </div>
 
         <!-- ===== Screen 3: Contribute + progress ===== -->
-        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+        <div class="demo-screen flex flex-col gap-2.5 p-4 pt-8">
           <p class="text-xs font-bold uppercase tracking-wider text-muted">Tujenge Kanisa Letu</p>
-          <div class="rounded-2xl bg-white p-4 shadow-soft">
+          <div class="clay-card rounded-2xl p-4">
             <p class="text-[11px] font-bold text-muted" data-i18n data-en="Raised" data-sw="Imekusanywa">Raised</p>
             <p class="text-2xl font-extrabold text-heading">TZS 52.3M</p>
             <div class="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
@@ -103,7 +104,7 @@ const steps = [
             </div>
             <p class="mt-2 text-[11px] font-bold text-accent">52% • <span data-i18n data-en="1,284 contributions" data-sw="michango 1,284">1,284 contributions</span></p>
           </div>
-          <div class="rounded-2xl bg-white p-3 shadow-soft">
+          <div class="clay-card rounded-2xl p-3">
             <div class="flex items-center justify-between py-1">
               <span class="text-xs font-bold text-heading">Anonymous</span>
               <span class="text-xs font-extrabold text-accent">+ TZS 250,000</span>
@@ -116,26 +117,26 @@ const steps = [
         </div>
 
         <!-- ===== Screen 4: SMS reminder ===== -->
-        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+        <div class="demo-screen flex flex-col gap-2.5 p-4 pt-8">
           <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Bulk SMS sent" data-sw="SMS za wingi zimetumwa">Bulk SMS sent</p>
-          <div class="rounded-2xl bg-white p-3 shadow-soft">
-            <div class="rounded-2xl rounded-bl-sm bg-tint p-3">
+          <div class="clay-card rounded-2xl p-3">
+            <div class="clay-tile rounded-2xl rounded-bl-sm p-3">
               <p class="text-[11px] leading-relaxed text-heading">
                 Habari! Mchango wa Tujenge Kanisa Letu umefika <span class="font-bold text-accent">TZS 52.3M</span>. Asante kwa ahadi yako. Lipa *150*00#. PesaJamaa
               </p>
             </div>
             <p class="mt-2 text-right text-[10px] font-bold text-accent" data-i18n data-en="Delivered to 1,284" data-sw="Imefika kwa 1,284">Delivered to 1,284</p>
           </div>
-          <div class="flex items-center justify-center gap-1.5 rounded-btn bg-accent/10 py-2.5 text-xs font-bold text-accent">
+          <div class="clay-tile flex items-center justify-center gap-1.5 rounded-btn py-2.5 text-xs font-bold text-accent">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span data-i18n data-en="All members notified" data-sw="Wanachama wote wamearifiwa">All members notified</span>
           </div>
         </div>
 
         <!-- ===== Screen 5: Receipt + report ===== -->
-        <div class="demo-screen flex flex-col gap-3 p-5 pt-10">
+        <div class="demo-screen flex flex-col gap-2.5 p-4 pt-8">
           <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Receipt" data-sw="Risiti">Receipt</p>
-          <div class="rounded-2xl bg-white p-4 shadow-soft">
+          <div class="clay-card rounded-2xl p-4">
             <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-2">
               <span class="text-sm font-extrabold text-heading">#PJ-204815</span>
               <span class="rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-bold text-accent" data-i18n data-en="Paid" data-sw="Imelipwa">Paid</span>
@@ -145,7 +146,7 @@ const steps = [
               <div class="flex justify-between"><span class="text-muted" data-i18n data-en="Amount" data-sw="Kiasi">Amount</span><span class="font-extrabold text-accent">TZS 50,000</span></div>
             </div>
           </div>
-          <div class="rounded-2xl bg-white p-3 shadow-soft">
+          <div class="clay-card rounded-2xl p-3">
             <p class="text-[11px] font-extrabold text-heading" data-i18n data-en="Monthly report" data-sw="Ripoti ya mwezi">Monthly report</p>
             <div class="mt-2 flex h-12 items-end gap-1.5">
               {[40, 70, 55, 85, 68].map((h) => (

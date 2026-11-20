@@ -28,7 +28,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
 
     <div class="max-w-3xl" data-reveal>
       <p
-        class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-slate shadow-soft"
+        class="clay-pill inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-slate"
         data-i18n
         data-en={page.eyebrow}
         data-sw={page.eyebrowSw}
@@ -55,7 +55,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <a
           href="https://portal.pesajamaa.co.tz/register"
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-lift"
+          class="clay-button clay-button-primary inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover"
           data-i18n
           data-en="Start Free"
           data-sw="Anza Bila Malipo"
@@ -64,7 +64,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
         </a>
         <a
           href="/contact"
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-tint hover:shadow-soft"
+          class="clay-button inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-tint"
           data-i18n
           data-en="Talk to an Advisor"
           data-sw="Zungumza na Mshauri"
@@ -82,7 +82,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
     <section class="border-y border-slate-100 bg-gray-bg py-10">
       <div class="container-px grid gap-8 sm:grid-cols-3" data-reveal-stagger>
         {stats.map((stat) => (
-          <div>
+          <div class="clay-card rounded-2xl p-5">
             <p class="text-3xl font-extrabold text-primary">{stat.value}</p>
             <p
               class="mt-1 text-sm font-semibold text-muted"
@@ -162,7 +162,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
             const Tag = card.href ? 'a' : 'div';
             return (
               <Tag
-                class="group flex flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift"
+                class="clay-card group flex flex-col rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lift"
                 {...(card.href ? { href: card.href } : {})}
               >
                 <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-tint text-primary transition-transform duration-200 group-hover:scale-110">
@@ -198,8 +198,8 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
 <!-- ============================= FINAL CTA ============================= -->
 <section class="py-16 lg:py-20">
   <div class="container-px">
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy via-navy to-[#06204d] px-6 py-14 text-center shadow-lift sm:px-12" data-reveal>
-      <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/20 blur-3xl"></div>
+    <div class="clay-dark-surface relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy via-navy to-[#06204d] px-6 py-14 text-center sm:px-12" data-reveal>
+      <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-leaf/25 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
       <h2
         class="mx-auto max-w-2xl text-3xl font-extrabold text-white sm:text-4xl"
@@ -220,7 +220,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
       <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a
           href="https://portal.pesajamaa.co.tz/register"
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-lift"
+          class="clay-button clay-button-primary inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover"
           data-i18n
           data-en="Start Free"
           data-sw="Anza Bila Malipo"
@@ -229,7 +229,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
         </a>
         <a
           href="/contact"
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-navy shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift"
+          class="clay-button inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-navy transition-all duration-200 hover:-translate-y-0.5"
           data-i18n
           data-en="Talk to an Advisor"
           data-sw="Zungumza na Mshauri"

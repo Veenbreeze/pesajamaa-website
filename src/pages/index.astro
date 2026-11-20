@@ -163,101 +163,107 @@ const faqs = [
   <!-- ============================= HERO ============================= -->
   <section class="relative overflow-hidden">
     <!-- soft blue/teal wash -->
-    <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-tint via-white to-white"></div>
-    <div class="pointer-events-none absolute -left-24 -top-24 -z-10 h-80 w-80 rounded-full bg-primary/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute -right-20 top-24 -z-10 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
+    <div class="clay-dots pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-tint via-white to-white opacity-70"></div>
+    <div class="pointer-events-none absolute -left-24 -top-24 -z-10 h-80 w-80 rounded-full bg-primary/15 blur-3xl"></div>
+    <div class="pointer-events-none absolute -right-20 top-24 -z-10 h-96 w-96 rounded-full bg-accent/15 blur-3xl"></div>
+    <div class="pointer-events-none absolute bottom-0 left-1/3 -z-10 h-56 w-56 rounded-full bg-primary/10 blur-3xl"></div>
 
-    <div class="container-px grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-8 lg:py-24">
-      <!-- Copy -->
-      <div data-reveal>
-        <span
-          class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-xs font-bold text-slate shadow-soft"
-          data-i18n
-          data-en="Community Finance &amp; Engagement, built for Tanzania"
-          data-sw="Fedha na Ushirikiano wa Jamii, kwa ajili ya Tanzania"
-        >
-          <span class="h-2 w-2 rounded-full bg-accent"></span>
-          Community Finance &amp; Engagement, built for Tanzania
-        </span>
-        <h1 class="mt-5 text-4xl font-extrabold leading-[1.08] text-heading sm:text-5xl lg:text-[3.5rem]">
-          <span data-i18n data-en="One Platform to Run Your Community’s" data-sw="Jukwaa Moja la Kuendesha">One Platform to Run Your Community’s</span>
-          <span class="marker-underline text-accent" data-i18n data-en="Finances" data-sw="Fedha za Jamii Yako">Finances</span>
-        </h1>
-        <p
-          class="mt-6 max-w-xl text-lg leading-relaxed text-muted"
-          data-i18n
-          data-en="From pledges to payments, PesaJamaa replaces paper lists and chat groups with one transparent platform, so your group can focus on its goals, not bookkeeping."
-          data-sw="Kutoka kwa ahadi hadi malipo, PesaJamaa inachukua nafasi ya orodha za karatasi na vikundi vya gumzo kwa kutumia jukwaa moja la uwazi, ili kikundi chako kiweze kuzingatia malengo yake, si uhasibu wa karatasi."
-        >
-          From pledges to payments, PesaJamaa replaces paper lists and chat
-          groups with one transparent platform, so your group can focus on its
-          goals, not bookkeeping.
-        </p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href="#demo" variant="primary" size="lg" pill data-i18n data-en="See How It Works" data-sw="Tazama Inavyofanya Kazi">See How It Works</Button>
-          <Button href="#final-cta" variant="secondary" size="lg" pill data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
-        </div>
-        <p
-          class="mt-4 text-sm font-semibold text-muted"
-          data-i18n
-          data-en="Free to get started, no credit card required."
-          data-sw="Bila malipo kuanza, hakuna kadi ya mkopo inayohitajika."
-        >
-          Free to get started, no credit card required.
-        </p>
-      </div>
-
-      <!-- Product mockup -->
-      <div class="relative" data-reveal>
-        <!-- floating accent chips -->
-        <div class="absolute -top-14 right-6 z-10 hidden animate-float rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-lift lg:block">
-          <p class="text-xs font-bold text-muted" data-i18n data-en="New pledge" data-sw="Ahadi mpya">New pledge</p>
-          <p class="text-sm font-extrabold text-accent">+ TZS 100,000</p>
-        </div>
-        <div class="absolute -bottom-14 left-6 z-10 hidden animate-float-slow rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-lift lg:block">
-          <p class="text-xs font-bold text-muted" data-i18n data-en="Members" data-sw="Wanachama">Members</p>
-          <p class="text-sm font-extrabold text-primary" data-i18n data-en="9,200+ active" data-sw="9,200+ hai">9,200+ active</p>
-        </div>
-
-        <!-- Dashboard card -->
-        <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Group dashboard" data-sw="Dashibodi ya Kikundi">Group dashboard</p>
-              <p class="text-lg font-extrabold text-heading">Imani Community Group</p>
-            </div>
-            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-tint text-primary">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="container-px py-12 lg:py-20">
+      <div class="clay-panel rounded-[2.25rem] p-3 sm:p-5" data-reveal>
+        <div class="grid items-stretch gap-3 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-5">
+          <!-- Copy -->
+          <div class="clay-card flex flex-col justify-center rounded-[1.75rem] p-6 sm:p-8 lg:p-10">
+            <span
+              class="clay-pill inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-bold text-slate"
+              data-i18n
+              data-en="Community Finance &amp; Engagement, built for Tanzania"
+              data-sw="Fedha na Ushirikiano wa Jamii, kwa ajili ya Tanzania"
+            >
+              <span class="h-2 w-2 rounded-full bg-leaf shadow-[0_0_0_4px_rgba(11,129,94,0.16)]"></span>
+              Community Finance &amp; Engagement, built for Tanzania
             </span>
+            <h1 class="mt-5 text-4xl font-extrabold leading-[1.08] text-heading sm:text-5xl lg:text-[3.5rem]">
+              <span data-i18n data-en="One Platform to Run Your Community’s" data-sw="Jukwaa Moja la Kuendesha">One Platform to Run Your Community’s</span>
+              <span class="marker-underline text-accent" data-i18n data-en="Finances" data-sw="Fedha za Jamii Yako">Finances</span>
+            </h1>
+            <p
+              class="mt-6 max-w-xl text-lg leading-relaxed text-muted"
+              data-i18n
+              data-en="From pledges to payments, PesaJamaa replaces paper lists and chat groups with one transparent platform, so your group can focus on its goals, not bookkeeping."
+              data-sw="Kutoka kwa ahadi hadi malipo, PesaJamaa inachukua nafasi ya orodha za karatasi na vikundi vya gumzo kwa kutumia jukwaa moja la uwazi, ili kikundi chako kiweze kuzingatia malengo yake, si uhasibu wa karatasi."
+            >
+              From pledges to payments, PesaJamaa replaces paper lists and chat
+              groups with one transparent platform, so your group can focus on its
+              goals, not bookkeeping.
+            </p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="#demo" variant="primary" size="lg" pill class="clay-button clay-button-primary" data-i18n data-en="See How It Works" data-sw="Tazama Inavyofanya Kazi">See How It Works</Button>
+              <Button href="#final-cta" variant="secondary" size="lg" pill class="clay-button" data-i18n data-en="Talk to an Advisor" data-sw="Zungumza na Mshauri">Talk to an Advisor</Button>
+            </div>
+            <p
+              class="mt-4 text-sm font-semibold text-muted"
+              data-i18n
+              data-en="Free to get started, no credit card required."
+              data-sw="Bila malipo kuanza, hakuna kadi ya mkopo inayohitajika."
+            >
+              Free to get started, no credit card required.
+            </p>
           </div>
 
-          <div class="mt-5 grid grid-cols-2 gap-3">
-            <div class="rounded-2xl bg-tint p-4">
-              <p class="text-xs font-bold text-muted" data-i18n data-en="Total raised" data-sw="Jumla iliyokusanywa">Total raised</p>
-              <p class="mt-1 text-xl font-extrabold text-heading">TZS 52.3M</p>
+          <!-- Product mockup -->
+          <div class="clay-card relative flex items-center justify-center overflow-hidden rounded-[1.75rem] p-6 sm:p-8 lg:p-10">
+            <div class="pointer-events-none absolute inset-0 z-0 rounded-[1.75rem] bg-gradient-to-br from-primary/10 via-transparent to-accent/10 blur-2xl"></div>
+            <!-- floating accent chips -->
+            <div class="clay-panel absolute right-4 top-4 z-20 hidden animate-float rounded-2xl px-4 py-3 lg:block">
+              <p class="text-xs font-bold text-muted" data-i18n data-en="New pledge" data-sw="Ahadi mpya"><span class="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-leaf"></span>New pledge</p>
+              <p class="text-sm font-extrabold text-leaf-ink">+ TZS 100,000</p>
             </div>
-            <div class="rounded-2xl bg-accent/10 p-4">
-              <p class="text-xs font-bold text-muted" data-i18n data-en="This month" data-sw="Mwezi huu">This month</p>
-              <p class="mt-1 text-xl font-extrabold text-accent">+ TZS 6.1M</p>
+            <div class="clay-panel absolute bottom-4 left-4 z-20 hidden animate-float-slow rounded-2xl px-4 py-3 lg:block">
+              <p class="text-xs font-bold text-muted" data-i18n data-en="Members" data-sw="Wanachama">Members</p>
+              <p class="text-sm font-extrabold text-primary" data-i18n data-en="9,200+ active" data-sw="9,200+ hai">9,200+ active</p>
             </div>
-          </div>
 
-          <div class="mt-4 rounded-2xl border border-slate-100 p-4">
-            <div class="mb-2 flex items-center justify-between text-sm">
-              <span class="font-bold text-heading" data-i18n data-en="Church Building" data-sw="Ujenzi wa Kanisa">Church Building</span>
-              <span class="font-bold text-accent">52%</span>
-            </div>
-            <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-100" data-progress="52">
-              <div class="h-full w-0 rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-1000 ease-out" data-progress-fill></div>
-            </div>
-            <div class="mt-4 space-y-2">
-              <div class="flex items-center justify-between rounded-xl bg-gray-bg px-3 py-2">
-                <span class="text-sm font-semibold text-heading">Mary K.</span>
-                <span class="text-sm font-bold text-accent">+ TZS 50,000</span>
+            <!-- Dashboard card -->
+            <div class="clay-panel relative z-10 w-full rounded-3xl p-5 sm:p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-muted" data-i18n data-en="Group dashboard" data-sw="Dashibodi ya Kikundi">Group dashboard</p>
+                  <p class="text-lg font-extrabold text-heading">Imani Community Group</p>
+                </div>
+                <span class="clay-tile flex h-11 w-11 items-center justify-center rounded-2xl text-primary">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
               </div>
-              <div class="flex items-center justify-between rounded-xl bg-gray-bg px-3 py-2">
-                <span class="text-sm font-semibold text-heading" data-i18n data-en="Anonymous" data-sw="Bila jina">Anonymous</span>
-                <span class="text-sm font-bold text-accent">+ TZS 250,000</span>
+
+              <div class="mt-5 grid grid-cols-2 gap-3">
+                <div class="clay-tile rounded-2xl p-4">
+                  <p class="text-xs font-bold text-muted" data-i18n data-en="Total raised" data-sw="Jumla iliyokusanywa">Total raised</p>
+                  <p class="mt-1 text-xl font-extrabold text-heading">TZS 52.3M</p>
+                </div>
+                <div class="clay-tile rounded-2xl p-4">
+                  <p class="text-xs font-bold text-muted" data-i18n data-en="This month" data-sw="Mwezi huu">This month</p>
+                  <p class="mt-1 text-xl font-extrabold text-accent">+ TZS 6.1M</p>
+                </div>
+              </div>
+
+              <div class="clay-card mt-4 rounded-2xl p-4">
+                <div class="mb-2 flex items-center justify-between text-sm">
+                  <span class="font-bold text-heading" data-i18n data-en="Church Building" data-sw="Ujenzi wa Kanisa">Church Building</span>
+                  <span class="font-bold text-accent">52%</span>
+                </div>
+                <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-100" data-progress="52">
+                  <div class="h-full w-0 rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-1000 ease-out" data-progress-fill></div>
+                </div>
+                <div class="mt-4 space-y-2">
+                  <div class="clay-tile flex items-center justify-between rounded-xl px-3 py-2">
+                    <span class="text-sm font-semibold text-heading">Mary K.</span>
+                    <span class="text-sm font-bold text-accent">+ TZS 50,000</span>
+                  </div>
+                  <div class="clay-tile flex items-center justify-between rounded-xl px-3 py-2">
+                    <span class="text-sm font-semibold text-heading" data-i18n data-en="Anonymous" data-sw="Bila jina">Anonymous</span>
+                    <span class="text-sm font-bold text-accent">+ TZS 250,000</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -267,7 +273,8 @@ const faqs = [
   </section>
 
   <!-- ============================= TRUST STRIP ============================= -->
-  <section id="trust" class="border-y border-slate-100 bg-white py-8">
+  <section id="trust" class="relative border-y border-slate-100 bg-white py-8">
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-leaf/50 to-transparent"></div>
     <div class="container-px">
       <p
         class="text-center text-sm font-extrabold uppercase tracking-wider text-muted"
@@ -283,7 +290,7 @@ const faqs = [
         <div class="marquee-track">
           {[...partners, ...partners].map((p) => (
             <div
-              class="marquee-item flex items-center justify-center rounded-xl border border-slate-100 bg-gray-bg px-4 py-4 shadow-sm"
+              class="clay-shadow marquee-item flex items-center justify-center rounded-xl bg-gray-bg px-4 py-4"
             >
               <img
                 src={`/partners/${p.file}`}
@@ -335,7 +342,7 @@ const faqs = [
   </section>
 
   <!-- ============================= APP DEMO (self-playing) ============================= -->
-  <section id="demo" class="bg-gradient-to-b from-white to-tint py-20">
+  <section id="demo" class="clay-dots bg-gradient-to-b from-white via-tint/60 to-tint py-20">
     <div class="container-px">
       <AppDemo />
     </div>
@@ -369,11 +376,11 @@ const faqs = [
         </p>
       </div>
 
-      <div class="mx-auto mt-12 max-w-4xl rounded-3xl border border-white/10 bg-white p-5 text-left shadow-lift sm:p-8" data-reveal>
+      <div class="clay-panel mx-auto mt-12 max-w-4xl rounded-3xl p-5 text-left sm:p-8" data-reveal>
         <div class="grid gap-8 lg:grid-cols-2">
           <!-- Campaign side -->
           <div>
-            <span class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-extrabold text-accent" data-i18n data-en="Active campaign" data-sw="Kampeni hai">
+            <span class="clay-shadow inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-extrabold text-accent" data-i18n data-en="Active campaign" data-sw="Kampeni hai">
               Active campaign
             </span>
             <h3 class="mt-3 text-2xl font-extrabold text-heading" data-i18n data-en="Build Our Church" data-sw="Tujenge Kanisa Letu">Build Our Church</h3>
@@ -401,11 +408,11 @@ const faqs = [
             </div>
 
             <div class="mt-5 grid grid-cols-2 gap-3">
-              <div class="rounded-2xl bg-tint p-4">
+              <div class="clay-shadow rounded-2xl bg-tint p-4">
                 <p class="text-2xl font-extrabold text-primary">52%</p>
                 <p class="text-xs font-bold text-muted" data-i18n data-en="of goal reached" data-sw="ya lengo imefikiwa">of goal reached</p>
               </div>
-              <div class="rounded-2xl bg-accent/10 p-4">
+              <div class="clay-shadow rounded-2xl bg-accent/10 p-4">
                 <p class="text-2xl font-extrabold text-accent">
                   <span data-countup="1284" data-duration="2200">0</span>
                 </p>
@@ -420,7 +427,7 @@ const faqs = [
           </div>
 
           <!-- Live feed side -->
-          <div class="rounded-2xl bg-gray-bg p-5">
+          <div class="clay-shadow rounded-2xl bg-gray-bg p-5">
             <LiveFeed />
           </div>
         </div>
@@ -464,7 +471,7 @@ const faqs = [
           ]}
         >
           <!-- Mockup: pledge table -->
-          <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
+          <div class="clay-panel rounded-3xl p-5">
             <div class="flex items-center justify-between">
               <p class="font-extrabold text-heading" data-i18n data-en="Harvest Pledges" data-sw="Ahadi za Mavuno">Harvest Pledges</p>
               <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary" data-i18n data-en="124 members" data-sw="wanachama 124">124 members</span>
@@ -515,7 +522,7 @@ const faqs = [
           ]}
         >
           <!-- Mockup: SMS composer -->
-          <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
+          <div class="clay-panel rounded-3xl p-5">
             <div class="flex items-center justify-between">
               <p class="font-extrabold text-heading" data-i18n data-en="New message" data-sw="Ujumbe mpya">New message</p>
               <span class="rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-accent" data-i18n data-en="1,284 recipients" data-sw="wapokeaji 1,284">1,284 recipients</span>
@@ -560,7 +567,7 @@ const faqs = [
           ]}
         >
           <!-- Mockup: ledger -->
-          <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
+          <div class="clay-panel rounded-3xl p-5">
             <div class="flex items-center justify-between">
               <p class="font-extrabold text-heading" data-i18n data-en="Group Fund Ledger" data-sw="Daftari la Mfuko wa Kikundi">Group Fund Ledger</p>
               <span class="text-sm font-extrabold text-accent" data-i18n data-en="Balance: TZS 18.0M" data-sw="Salio: TZS 18.0M">Balance: TZS 18.0M</span>
@@ -602,7 +609,7 @@ const faqs = [
           ]}
         >
           <!-- Mockup: footprint chart -->
-          <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
+          <div class="clay-panel rounded-3xl p-5">
             <div class="flex items-center justify-between">
               <p class="font-extrabold text-heading" data-i18n data-en="Financial Footprint" data-sw="Alama ya Kifedha">Financial Footprint</p>
               <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary" data-i18n data-en="+18% YoY" data-sw="+18% kwa mwaka">+18% YoY</span>
@@ -641,8 +648,8 @@ const faqs = [
           ]}
         >
           <!-- Mockup: web + phone -->
-          <div class="relative rounded-3xl border border-slate-100 bg-gradient-to-br from-tint to-white p-6 shadow-lift">
-            <div class="rounded-2xl border border-slate-100 bg-white p-4 shadow-soft">
+          <div class="clay-panel relative rounded-3xl p-6">
+            <div class="clay-card rounded-2xl p-4">
               <div class="mb-3 flex gap-1.5">
                 <span class="h-2.5 w-2.5 rounded-full bg-rose-300"></span>
                 <span class="h-2.5 w-2.5 rounded-full bg-amber-300"></span>
@@ -690,7 +697,7 @@ const faqs = [
         >
           <!-- Mockup: receipt + report -->
           <div class="relative">
-            <div class="rounded-3xl border border-slate-100 bg-white p-5 shadow-lift">
+        <div class="clay-panel rounded-[2rem] p-5 sm:p-6">
               <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-3">
                 <p class="font-extrabold text-heading" data-i18n data-en="Receipt" data-sw="Risiti">Receipt</p>
                 <span class="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-bold text-accent" data-i18n data-en="Paid" data-sw="Imelipwa">Paid</span>
@@ -702,7 +709,7 @@ const faqs = [
                 <div class="flex justify-between border-t border-slate-100 pt-2"><span class="text-muted" data-i18n data-en="Amount" data-sw="Kiasi">Amount</span><span class="font-extrabold text-accent">TZS 50,000</span></div>
               </div>
             </div>
-            <div class="absolute -bottom-5 -right-3 hidden w-40 rotate-3 rounded-2xl border border-slate-100 bg-white p-3 shadow-lift sm:block">
+            <div class="clay-card absolute -bottom-5 -right-3 hidden w-40 rotate-3 rounded-2xl p-3 sm:block">
               <p class="text-xs font-extrabold text-heading" data-i18n data-en="October Report" data-sw="Ripoti ya Oktoba">October Report</p>
               <div class="mt-2 flex h-14 items-end gap-1.5">
                 {[40,70,55,85].map((h) => (
@@ -780,7 +787,7 @@ const faqs = [
               {i < flow.length - 1 && (
                 <div class="absolute left-[60%] top-7 hidden h-px w-[80%] bg-gradient-to-r from-accent/50 to-transparent lg:block" aria-hidden="true" />
               )}
-              <div class="relative mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-accent">
+              <div class="clay-dark-surface relative mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-accent">
                 <Fragment set:html={f.icon} />
                 <span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] font-extrabold text-navy">{i + 1}</span>
               </div>
@@ -810,7 +817,7 @@ const faqs = [
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
         {
           whyTrust.map((w) => (
-            <div class="group rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+            <div class="group clay-card rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
               <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-tint text-primary transition-transform duration-200 group-hover:scale-110">
                 <Fragment set:html={w.icon} />
               </span>
@@ -840,7 +847,7 @@ const faqs = [
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
         {
           security.map((s) => (
-            <div class="group rounded-2xl border border-white bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+            <div class="clay-card group rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
               <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-200 group-hover:scale-110">
                 <Fragment set:html={s.icon} />
               </span>
@@ -860,7 +867,7 @@ const faqs = [
       <div class="mt-12 grid gap-6 lg:grid-cols-3" data-reveal-stagger>
         {
           testimonials.map((t) => (
-            <figure class="flex flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+            <figure class="flex flex-col clay-card rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
               <div class="mb-4 flex gap-0.5 text-accent" aria-hidden="true">
                 {[0, 1, 2, 3, 4].map(() => (
                   <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 15l-5.2 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5Z"/></svg>
@@ -888,9 +895,9 @@ const faqs = [
       <div class="mt-12 grid gap-6 lg:grid-cols-3" data-reveal-stagger>
         {
           insights.map((a) => (
-            <a href="/insights" class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+            <a href="/insights" class="clay-card group flex flex-col overflow-hidden rounded-2xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
               <div class="relative flex h-40 items-center justify-center bg-gradient-to-br from-tint to-accent/10">
-                <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-extrabold text-primary shadow-soft" data-i18n data-en={a.category} data-sw={a.categorySw}>{a.category}</span>
+                <span class="clay-pill absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-extrabold text-primary" data-i18n data-en={a.category} data-sw={a.categorySw}>{a.category}</span>
                 <svg class="h-12 w-12 text-primary/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="flex flex-1 flex-col p-5">
@@ -920,10 +927,10 @@ const faqs = [
       <div class="mx-auto mt-12 max-w-3xl space-y-3" data-reveal>
         {
           faqs.map((f) => (
-            <details class="group rounded-2xl border border-slate-100 bg-white px-5 shadow-soft transition-shadow open:shadow-lift">
+            <details class="clay-card group rounded-2xl px-5 transition-shadow open:shadow-lift">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 marker:content-none">
                 <span class="text-[15px] font-extrabold text-heading sm:text-base" data-i18n data-en={f.q} data-sw={f.qSw}>{f.q}</span>
-                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-tint text-primary transition-transform duration-200 group-open:rotate-45">
+                  <span class="clay-shadow flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-tint text-primary transition-transform duration-200 group-open:rotate-45">
                   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
                 </span>
               </summary>
@@ -938,8 +945,8 @@ const faqs = [
   <!-- ============================= FINAL CTA ============================= -->
   <section id="final-cta" class="py-20">
     <div class="container-px">
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy via-navy to-[#06204d] px-6 py-16 text-center shadow-lift sm:px-12" data-reveal>
-        <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/20 blur-3xl"></div>
+      <div class="clay-dark-surface relative overflow-hidden rounded-3xl bg-gradient-to-br from-navy via-navy to-[#06204d] px-6 py-16 text-center sm:px-12" data-reveal>
+        <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-leaf/25 blur-3xl"></div>
         <div class="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
         <h2
           class="mx-auto max-w-2xl text-3xl font-extrabold text-white sm:text-4xl"

@@ -39,9 +39,9 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
   >
     {
       seed.map((row) => (
-        <li class="flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3">
+        <li class="clay-card flex items-center justify-between gap-3 rounded-xl px-4 py-3">
           <div class="flex items-center gap-3">
-            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">
+            <span class="clay-shadow flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">
               {row.name === 'Anonymous' ? '?' : row.name.charAt(0)}
             </span>
             <div>
@@ -103,10 +103,10 @@ const fmt = (n: number) => 'TZS ' + n.toLocaleString('en-US');
       const display = raw === 'Anonymous' ? labels.anon : raw;
       const li = document.createElement('li');
       li.className =
-        'feed-row-new flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3';
+        'clay-card feed-row-new flex items-center justify-between gap-3 rounded-xl px-4 py-3';
       li.innerHTML = `
         <div class="flex items-center gap-3">
-          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">${raw === 'Anonymous' ? '?' : raw.charAt(0)}</span>
+          <span class="clay-shadow flex h-8 w-8 items-center justify-center rounded-full bg-tint text-xs font-extrabold text-primary">${raw === 'Anonymous' ? '?' : raw.charAt(0)}</span>
           <div>
             <p class="text-sm font-bold text-heading">${display}</p>
             <p class="text-xs text-muted">${labels.now}</p>
