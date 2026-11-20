@@ -30,6 +30,10 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          PUBLIC_QARIBUBOT_API_KEY: ${{ vars.PUBLIC_QARIBUBOT_API_KEY || secrets.QARIBUBOT_API_KEY }}
+          PUBLIC_QARIBUBOT_API_BASE: ${{ vars.PUBLIC_QARIBUBOT_API_BASE || 'https://qaribubot.com' }}
+          PUBLIC_QARIBUBOT_WIDGET_URL: ${{ vars.PUBLIC_QARIBUBOT_WIDGET_URL || 'https://qaribubot.com/widget.js' }}
         run: npm run build
 
       - name: Upload build artifact

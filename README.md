@@ -15,6 +15,76 @@ npm install
 npm run dev      # http://localhost:4321
 ```
 
+## QaribuBot AI chatbot
+
+The site uses the **official QaribuBot website widget** — the integration method
+documented at <https://qaribubot.com/docs/install-the-widget>. There is no
+publicly documented chat API for a custom frontend/backend, so no API endpoints
+or request formats have been invented.
+
+QaribuBot's `pk_live_…` value is a **public, domain-locked website key** that the
+official widget must load in the browser. It is not a secret token. Keep it out
+of Git by using environment variables; never put a secret/API token in a
+`PUBLIC_` variable.
+
+### Local configuration
+
+```bash
+cp .env.example .env
+```
+
+Fill in the values from **QaribuBot dashboard → Domains → `</> Code snippet`**:
+
+| Variable | Meaning |
+| --- | --- |
+| `PUBLIC_QARIBUBOT_API_KEY` | The `pk_live_…` key from the snippet. Leave blank to disable the widget. |
+| `PUBLIC_QARIBUBOT_API_BASE` | The `data-api-base` value from the snippet (normally `https://qaribubot.com`). |
+| `PUBLIC_QARIBUBOT_WIDGET_URL` | The snippet's `src` (normally `https://qaribubot.com/widget.js`). |
+
+Restart `npm run dev` after changing `.env`. The shared script is rendered at
+the end of `<body>` in `src/layouts/BaseLayout.astro`, so it appears on every
+page without duplicating it.
+
+### Production configuration
+
+The GitHub Actions build reads the same values from repository **Variables**
+(preferred, because the key is public) or, if preferred, from **Secrets**:
+`PUBLIC_QARIBUBOT_API_KEY`, `PUBLIC_QARIBUBOT_API_BASE`,
+`PUBLIC_QARIBUBOT_WIDGET_URL`. PR builds without them simply omit the widget.
+
+### QaribuBot dashboard setup
+
+- Register the exact public domain visitors use (`pesajamaa.co.tz` / `www`).
+  The widget will not answer from `localhost` or a staging URL unless that
+  address is registered too; the official widget allows local testing via its
+  own localhost bypass.
+- Let QaribuBot read the public pages, then check **Knowledge** and **Conversations**.
+- Under **Widget**, set a bilingual greeting, tone/persona (English + Kiswahili,
+  professional, never invent prices or business facts), position **bottom right**,
+  and brand colours (`#026DDE` primary, `#18B49C` accent).
+- Publish support hours, physical location and contact details on public pages
+  or add them via **Knowledge → Add knowledge manually**; the bot must not guess
+  them. The site currently publishes `support@pesajamaa.co.tz`, which QaribuBot
+  can turn into an Email contact button.
+- The official widget already provides the launcher, smooth open/close,
+  responsive panel, greeting, separate message bubbles, typing indicator,
+  auto-scroll, error messages, source links, contact buttons and feedback votes.
+  It does **not** expose timestamps or a clear-conversation control, so those
+  are intentionally not faked with a custom UI.
+
+### Testing checklist
+
+1. Run `npm run dev`, open the site, and confirm the launcher appears.
+2. Open the chat and confirm the configured greeting appears.
+3. Ask an English question and a Kiswahili question; confirm real answers from
+   QaribuBot and the conversation appearing in the dashboard.
+4. Submit an empty message — the widget must not send a request.
+5. Block `qaribubot.com` in DevTools/network (or use an invalid key) and confirm
+   the widget shows its error message rather than a fake reply.
+6. Check a phone viewport (~375px) and verify the panel/launcher fit.
+7. In DevTools, confirm the only credential present is the public `pk_live_…`
+   website key; no secret/token is shipped to the browser.
+
 ## Build & preview
 
 ```bash
@@ -115,7 +185,8 @@ deploy/                 VPS setup script + Nginx config (Contabo)
 public/                 logo, favicon, OG image
 src/
   components/           Navbar, Footer, Button, SectionTitle, ModuleCard,
-                        FeatureRow, AudienceCard, StatCounter, ProgressBar, LiveFeed
+                        FeatureRow, AudienceCard, StatCounter, ProgressBar, LiveFeed,
+                        QaribuBotWidget (official widget snippet)
   layouts/BaseLayout    <head> (SEO/OG/fonts/favicon) + Navbar + Footer shell
   pages/index.astro     the single-page scroll (all sections, in order)
   scripts/motion.js     scroll-reveal · count-up · progress-bar fills

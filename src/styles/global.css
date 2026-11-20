@@ -216,10 +216,10 @@
   animation: demo-step 25s infinite;
 }
 .demo-step:nth-child(1) { animation-delay: 0s; }
-.demo-step:nth-child(2) { animation-delay: 5s; }
-.demo-step:nth-child(3) { animation-delay: 10s; }
-.demo-step:nth-child(4) { animation-delay: 15s; }
-.demo-step:nth-child(5) { animation-delay: 20s; }
+.demo-step:nth-child(2) { animation-delay: 2s; }
+.demo-step:nth-child(3) { animation-delay: 4s; }
+.demo-step:nth-child(4) { animation-delay: 6s; }
+.demo-step:nth-child(5) { animation-delay: 8s; }
 
 @keyframes demo-step {
   0%, 20%, 100% {
