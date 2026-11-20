@@ -85,14 +85,16 @@ jobs:
             dist/ "$VPS_USER@$VPS_HOST:/var/www/jamaa/dist/"
 
       - name: Health check
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://pesajamaa.co.tz/' }}
         run: |
           set -euo pipefail
           for i in $(seq 1 10); do
-            if curl -fsS -o /dev/null http://144.91.122.226/; then
+            if curl -fsS --max-time 10 -o /dev/null "$SITE_URL"; then
               echo "Website is healthy!"
               exit 0
             fi
             sleep 3
           done
-          echo "Health check failed"
+          echo "Health check failed: $SITE_URL"
           exit 1
