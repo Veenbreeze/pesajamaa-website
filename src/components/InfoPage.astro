@@ -13,7 +13,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
 
 <!-- ============================= SUB-PAGE HERO ============================= -->
 <section class="relative overflow-hidden">
-  <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-tint via-white to-white"></div>
+  <div class="clay-dots pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-tint via-white to-white"></div>
   <div class="pointer-events-none absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
   <div class="pointer-events-none absolute -left-20 top-24 -z-10 h-72 w-72 rounded-full bg-accent/10 blur-3xl"></div>
 
@@ -26,7 +26,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
       </ol>
     </nav>
 
-    <div class="max-w-3xl" data-reveal>
+    <div class="clay-panel max-w-3xl rounded-3xl p-6 sm:p-8" data-reveal>
       <p
         class="clay-pill inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-extrabold uppercase tracking-wider text-slate"
         data-i18n
@@ -64,7 +64,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
         </a>
         <a
           href="/contact"
-          class="clay-button inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/70 transition-all duration-200 hover:-translate-y-0.5 hover:bg-tint"
+          class="clay-button clay-pill inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-bold text-primary ring-1 ring-inset ring-primary/35 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white"
           data-i18n
           data-en="Talk to an Advisor"
           data-sw="Zungumza na Mshauri"
@@ -79,7 +79,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
 <!-- ============================= STATS ============================= -->
 {
   stats && stats.length > 0 && (
-    <section class="border-y border-slate-100 bg-gray-bg py-10">
+    <section class="clay-dots border-y border-slate-100 bg-gray-bg py-10">
       <div class="container-px grid gap-8 sm:grid-cols-3" data-reveal-stagger>
         {stats.map((stat) => (
           <div class="clay-card rounded-2xl p-5">
@@ -105,7 +105,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
     <div class="mx-auto max-w-4xl space-y-12">
       {
         sections.map((section) => (
-          <article class="grid gap-5 border-b border-slate-100 pb-12 last:border-b-0 last:pb-0 lg:grid-cols-[0.9fr_1.1fr]" data-reveal>
+          <article class="clay-card grid gap-5 rounded-2xl p-6 lg:grid-cols-[0.9fr_1.1fr]" data-reveal>
             <h2
               class="text-2xl font-extrabold leading-tight text-heading"
               data-i18n
@@ -127,7 +127,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
                 <ul class="mt-5 space-y-3">
                   {section.bullets.map((bullet) => (
                     <li class="flex items-start gap-3">
-                      <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
+                      <span class="clay-tile mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-accent">
                         <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
                           <path d="M4 10.5l3.5 3.5L16 5.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -165,7 +165,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
                 class="clay-card group flex flex-col rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lift"
                 {...(card.href ? { href: card.href } : {})}
               >
-                <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-tint text-primary transition-transform duration-200 group-hover:scale-110">
+                <span class="clay-tile flex h-11 w-11 items-center justify-center rounded-xl text-primary transition-transform duration-200 group-hover:scale-110">
                   <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" />
                   </svg>
@@ -229,7 +229,7 @@ const { title, titleSw, intro, introSw, stats, sections, cards } = page;
         </a>
         <a
           href="/contact"
-          class="clay-button inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-navy transition-all duration-200 hover:-translate-y-0.5"
+          class="clay-button clay-pill inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-bold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-white"
           data-i18n
           data-en="Talk to an Advisor"
           data-sw="Zungumza na Mshauri"

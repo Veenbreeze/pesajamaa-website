@@ -53,7 +53,7 @@ const nav = [
 
 <header
   id="site-header"
-  class="sticky top-0 z-50 w-full border-b border-white/70 bg-gradient-to-r from-leaf-soft/95 via-white/95 to-leaf-soft/95 backdrop-blur-xl transition-shadow"
+  class="clay-shadow sticky top-0 z-50 w-full border-b border-white/70 bg-gradient-to-r from-leaf-soft/95 via-white/95 to-leaf-soft/95 backdrop-blur-xl transition-shadow"
 >
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
     <div class="absolute -left-20 -top-24 h-56 w-56 rounded-full bg-leaf/20 blur-3xl"></div>
@@ -81,7 +81,7 @@ const nav = [
           <li class="group relative">
             <button
               type="button"
-              class="relative flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-bold text-heading transition-all hover:bg-white hover:text-leaf-ink focus-visible:text-leaf-ink after:absolute after:bottom-1 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2 after:rounded-full after:bg-leaf after:opacity-0 after:transition-opacity after:duration-200 hover:after:opacity-100 focus-visible:after:opacity-100"
+              class="clay-pill relative flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-bold text-heading transition-all hover:bg-white hover:text-leaf-ink focus-visible:text-leaf-ink after:absolute after:bottom-1 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2 after:rounded-full after:bg-leaf after:opacity-0 after:transition-opacity after:duration-200 hover:after:opacity-100 focus-visible:after:opacity-100"
               aria-expanded="false"
               aria-haspopup="true"
               data-i18n
@@ -100,7 +100,7 @@ const nav = [
                   <li>
                     <a
                       href={item.href}
-                      class="block rounded-xl px-3 py-2 text-[15px] font-semibold text-muted transition-all hover:bg-leaf-soft hover:text-leaf-ink hover:shadow-soft"
+                      class="clay-pill block rounded-xl px-3 py-2 text-[15px] font-semibold text-muted transition-all hover:bg-white hover:text-leaf-ink"
                       data-i18n
                       data-en={item.label}
                       data-sw={item.swLabel}
@@ -168,7 +168,7 @@ const nav = [
       {
         nav.map((group) => (
           <details class="group clay-card rounded-2xl px-1">
-            <summary class="flex cursor-pointer items-center justify-between rounded-xl px-3 py-3 text-[15px] font-bold text-leaf-ink marker:content-none">
+            <summary class="clay-pill flex cursor-pointer items-center justify-between rounded-xl px-3 py-3 text-[15px] font-bold text-leaf-ink marker:content-none">
               <span data-i18n data-en={group.label} data-sw={group.swLabel}>{group.label}</span>
               <svg class="h-4 w-4 text-leaf/70 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.38a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z" clip-rule="evenodd" />
@@ -177,7 +177,7 @@ const nav = [
             <ul class="space-y-0.5 pb-2 pl-3">
               {group.items.map((item) => (
                 <li>
-                  <a href={item.href} class="block rounded-xl px-3 py-2 text-[15px] font-semibold text-muted transition-all hover:bg-leaf-soft hover:text-leaf-ink" data-close-menu data-i18n data-en={item.label} data-sw={item.swLabel}>
+                  <a href={item.href} class="clay-pill block rounded-xl px-3 py-2 text-[15px] font-semibold text-muted transition-all hover:bg-white hover:text-leaf-ink" data-close-menu data-i18n data-en={item.label} data-sw={item.swLabel}>
                     {item.label}
                   </a>
                 </li>

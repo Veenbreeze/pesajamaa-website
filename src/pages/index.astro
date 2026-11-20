@@ -251,8 +251,8 @@ const faqs = [
                   <span class="font-bold text-heading" data-i18n data-en="Church Building" data-sw="Ujenzi wa Kanisa">Church Building</span>
                   <span class="font-bold text-accent">52%</span>
                 </div>
-                <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-100" data-progress="52">
-                  <div class="h-full w-0 rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-1000 ease-out" data-progress-fill></div>
+                <div class="clay-shadow h-2.5 w-full overflow-hidden rounded-full bg-slate-100" data-progress="52">
+                  <div class="clay-button h-full w-0 rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-1000 ease-out" data-progress-fill></div>
                 </div>
                 <div class="mt-4 space-y-2">
                   <div class="clay-tile flex items-center justify-between rounded-xl px-3 py-2">
@@ -273,7 +273,7 @@ const faqs = [
   </section>
 
   <!-- ============================= TRUST STRIP ============================= -->
-  <section id="trust" class="relative border-y border-slate-100 bg-white py-8">
+  <section id="trust" class="clay-shadow clay-dots relative border-y border-slate-100 bg-white py-8">
     <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-leaf/50 to-transparent"></div>
     <div class="container-px">
       <p
@@ -290,7 +290,7 @@ const faqs = [
         <div class="marquee-track">
           {[...partners, ...partners].map((p) => (
             <div
-              class="clay-shadow marquee-item flex items-center justify-center rounded-xl bg-gray-bg px-4 py-4"
+              class="clay-panel marquee-item flex items-center justify-center rounded-xl px-4 py-4"
             >
               <img
                 src={`/partners/${p.file}`}
@@ -336,7 +336,7 @@ const faqs = [
         </div>
       </div>
       <div class="mt-6 text-center" data-reveal>
-        <Button href="#demo" variant="ghost" data-i18n data-en="View all modules →" data-sw="Ona moduli zote →">View all modules →</Button>
+        <Button href="#demo" variant="leaf" size="lg" pill data-i18n data-en="View all modules →" data-sw="Ona moduli zote →">View all modules →</Button>
       </div>
     </div>
   </section>
@@ -349,7 +349,7 @@ const faqs = [
   </section>
 
   <!-- ============================= STAT COUNTERS ============================= -->
-  <section class="bg-gray-bg py-20">
+  <section class="clay-dots bg-gray-bg py-20">
     <div class="container-px">
       <div class="grid gap-10 sm:grid-cols-3">
         <StatCounter value={150} suffix="+" caption="Community Groups" captionSw="Vikundi vya Jamii" />
@@ -380,7 +380,7 @@ const faqs = [
         <div class="grid gap-8 lg:grid-cols-2">
           <!-- Campaign side -->
           <div>
-            <span class="clay-shadow inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-extrabold text-accent" data-i18n data-en="Active campaign" data-sw="Kampeni hai">
+            <span class="clay-pill inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-extrabold text-accent" data-i18n data-en="Active campaign" data-sw="Kampeni hai">
               Active campaign
             </span>
             <h3 class="mt-3 text-2xl font-extrabold text-heading" data-i18n data-en="Build Our Church" data-sw="Tujenge Kanisa Letu">Build Our Church</h3>
@@ -396,7 +396,7 @@ const faqs = [
             </div>
 
             <div
-              class="mt-5 h-4 w-full overflow-hidden rounded-full bg-slate-100"
+              class="clay-shadow mt-5 h-4 w-full overflow-hidden rounded-full bg-slate-100"
               data-progress="52"
               role="progressbar"
               aria-valuenow="52"
@@ -404,15 +404,15 @@ const faqs = [
               aria-valuemax="100"
               aria-label="Build Our Church: 52%"
             >
-              <div class="h-full w-0 rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-[1600ms] ease-out" data-progress-fill></div>
+              <div class="clay-button h-full w-0 rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-[1600ms] ease-out" data-progress-fill></div>
             </div>
 
             <div class="mt-5 grid grid-cols-2 gap-3">
-              <div class="clay-shadow rounded-2xl bg-tint p-4">
+              <div class="clay-tile rounded-2xl p-4">
                 <p class="text-2xl font-extrabold text-primary">52%</p>
                 <p class="text-xs font-bold text-muted" data-i18n data-en="of goal reached" data-sw="ya lengo imefikiwa">of goal reached</p>
               </div>
-              <div class="clay-shadow rounded-2xl bg-accent/10 p-4">
+              <div class="clay-tile rounded-2xl p-4">
                 <p class="text-2xl font-extrabold text-accent">
                   <span data-countup="1284" data-duration="2200">0</span>
                 </p>
@@ -427,7 +427,7 @@ const faqs = [
           </div>
 
           <!-- Live feed side -->
-          <div class="clay-shadow rounded-2xl bg-gray-bg p-5">
+          <div class="clay-panel rounded-2xl p-5">
             <LiveFeed />
           </div>
         </div>
@@ -474,7 +474,7 @@ const faqs = [
           <div class="clay-panel rounded-3xl p-5">
             <div class="flex items-center justify-between">
               <p class="font-extrabold text-heading" data-i18n data-en="Harvest Pledges" data-sw="Ahadi za Mavuno">Harvest Pledges</p>
-              <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary" data-i18n data-en="124 members" data-sw="wanachama 124">124 members</span>
+              <span class="clay-pill rounded-full px-3 py-1 text-xs font-bold text-primary" data-i18n data-en="124 members" data-sw="wanachama 124">124 members</span>
             </div>
             <div class="mt-4 space-y-2 text-sm">
               {[
@@ -484,12 +484,12 @@ const faqs = [
                 ['Peter S.', 'TZS 120,000', 'Paid'],
                 ['Asha R.', 'TZS 40,000', 'Unpaid'],
               ].map(([name, amt, status]) => (
-                <div class="flex items-center justify-between rounded-xl bg-gray-bg px-3 py-2.5">
+                <div class="clay-tile flex items-center justify-between rounded-xl px-3 py-2.5">
                   <span class="font-semibold text-heading">{name}</span>
                   <div class="flex items-center gap-3">
                     <span class="font-bold text-heading">{amt}</span>
                     <span
-                      class={`rounded-full px-2.5 py-0.5 text-xs font-bold ${status === 'Paid' ? 'bg-accent/15 text-accent' : 'bg-rose-100 text-rose-600'}`}
+                      class={`clay-pill rounded-full px-2.5 py-0.5 text-xs font-bold ${status === 'Paid' ? '!bg-accent/15 text-accent' : '!bg-rose-100 text-rose-600'}`}
                       data-i18n
                       data-en={status}
                       data-sw={status === 'Paid' ? 'Imelipwa' : 'Haijalipwa'}
@@ -525,9 +525,9 @@ const faqs = [
           <div class="clay-panel rounded-3xl p-5">
             <div class="flex items-center justify-between">
               <p class="font-extrabold text-heading" data-i18n data-en="New message" data-sw="Ujumbe mpya">New message</p>
-              <span class="rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-accent" data-i18n data-en="1,284 recipients" data-sw="wapokeaji 1,284">1,284 recipients</span>
+              <span class="clay-pill rounded-full px-3 py-1 text-xs font-bold text-accent" data-i18n data-en="1,284 recipients" data-sw="wapokeaji 1,284">1,284 recipients</span>
             </div>
-            <div class="mt-4 rounded-2xl bg-gray-bg p-4">
+            <div class="clay-tile mt-4 rounded-2xl p-4">
               <p class="text-sm leading-relaxed text-heading">
                 Habari Imani family! Our Build Our Church fund has reached
                 <span class="font-bold text-accent"> TZS 52.3M</span>. Asante for
@@ -539,7 +539,7 @@ const faqs = [
               <span class="font-bold text-primary" data-i18n data-en="Deliver now" data-sw="Tuma sasa">Deliver now</span>
             </div>
             <div class="mt-4 flex items-center justify-end">
-              <span class="inline-flex items-center gap-2 rounded-btn bg-primary px-4 py-2 text-sm font-bold text-white">
+              <span class="clay-button clay-button-primary inline-flex items-center gap-2 rounded-btn bg-primary px-4 py-2 text-sm font-bold text-white">
                 <span data-i18n data-i18n-text data-en="Send SMS" data-sw="Tuma SMS">Send SMS</span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -579,7 +579,7 @@ const faqs = [
                 ['Repayment: Neema L.', 'Marejesho: Neema L.', '+ TZS 150,000', 'in'],
                 ['Interest earned', 'Riba iliyopatikana', '+ TZS 36,000', 'in'],
               ].map(([label, labelSw, amt, dir]) => (
-                <div class="flex items-center justify-between rounded-xl bg-gray-bg px-3 py-2.5">
+                <div class="clay-tile flex items-center justify-between rounded-xl px-3 py-2.5">
                   <span class="font-semibold text-heading" data-i18n data-en={label} data-sw={labelSw}>{label}</span>
                   <span class={`font-bold ${dir === 'in' ? 'text-accent' : 'text-rose-600'}`}>{amt}</span>
                 </div>
@@ -590,7 +590,7 @@ const faqs = [
 
         <!-- 4. Financial Inclusion -->
         <FeatureRow
-          reverse
+          fullWidth
           label="Data & Inclusion"
           labelSw="Data na Ujumuishwaji"
           title="Data-Driven Financial Inclusion"
@@ -607,26 +607,7 @@ const faqs = [
             'Mienendo ya michango na maarifa ya wanachama',
             'Data tayari kusafirishwa kwa washirika na wakopeshaji',
           ]}
-        >
-          <!-- Mockup: footprint chart -->
-          <div class="clay-panel rounded-3xl p-5">
-            <div class="flex items-center justify-between">
-              <p class="font-extrabold text-heading" data-i18n data-en="Financial Footprint" data-sw="Alama ya Kifedha">Financial Footprint</p>
-              <span class="rounded-full bg-tint px-3 py-1 text-xs font-bold text-primary" data-i18n data-en="+18% YoY" data-sw="+18% kwa mwaka">+18% YoY</span>
-            </div>
-            <div class="mt-6 flex h-40 items-end justify-between gap-2.5">
-              {[35, 52, 44, 68, 60, 82, 74, 95].map((h, i) => (
-                <div class="flex flex-1 flex-col items-center gap-2">
-                  <div
-                    class={`w-full rounded-t-lg ${i % 2 === 0 ? 'bg-primary/80' : 'bg-accent/80'}`}
-                    style={`height:${h}%`}
-                  />
-                  <span class="text-[10px] font-bold text-muted">{['J','F','M','A','M','J','J','A'][i]}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </FeatureRow>
+        />
 
         <!-- 5. Web or Mobile -->
         <FeatureRow
@@ -656,19 +637,19 @@ const faqs = [
                 <span class="h-2.5 w-2.5 rounded-full bg-accent"></span>
               </div>
               <div class="space-y-2">
-                <div class="h-2.5 w-2/3 rounded-full bg-slate-100"></div>
-                <div class="h-2.5 w-full rounded-full bg-slate-100"></div>
-                <div class="h-16 w-full rounded-xl bg-tint"></div>
-                <div class="h-2.5 w-1/2 rounded-full bg-slate-100"></div>
+                <div class="clay-tile h-2.5 w-2/3 rounded-full"></div>
+                <div class="clay-tile h-2.5 w-full rounded-full"></div>
+                <div class="clay-tile h-16 w-full rounded-xl"></div>
+                <div class="clay-tile h-2.5 w-1/2 rounded-full"></div>
               </div>
             </div>
             <!-- phone -->
-            <div class="absolute -bottom-4 right-6 w-28 rounded-[1.4rem] border-4 border-navy bg-white p-2 shadow-lift">
-              <div class="rounded-xl bg-navy p-2 text-center">
+            <div class="clay-card absolute -bottom-4 right-6 w-28 rounded-[1.4rem] border-4 border-navy p-2 shadow-lift">
+              <div class="clay-dark rounded-xl p-2 text-center">
                 <p class="text-[9px] font-bold text-slate-300" data-i18n data-en="Raised" data-sw="Imekusanywa">Raised</p>
                 <p class="text-xs font-extrabold text-white">TZS 52.3M</p>
-                <div class="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/20">
-                  <div class="h-full w-1/2 rounded-full bg-accent"></div>
+                <div class="clay-shadow mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/20">
+                  <div class="clay-button h-full w-1/2 rounded-full bg-accent"></div>
                 </div>
               </div>
             </div>
@@ -700,7 +681,7 @@ const faqs = [
         <div class="clay-panel rounded-[2rem] p-5 sm:p-6">
               <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-3">
                 <p class="font-extrabold text-heading" data-i18n data-en="Receipt" data-sw="Risiti">Receipt</p>
-                <span class="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-bold text-accent" data-i18n data-en="Paid" data-sw="Imelipwa">Paid</span>
+                <span class="clay-pill rounded-full px-2.5 py-0.5 text-xs font-bold text-accent" data-i18n data-en="Paid" data-sw="Imelipwa">Paid</span>
               </div>
               <div class="mt-3 space-y-2 text-sm">
                 <div class="flex justify-between"><span class="text-muted" data-i18n data-en="Receipt no." data-sw="Nambari ya risiti">Receipt no.</span><span class="font-bold text-heading">#PJ-204815</span></div>
@@ -713,7 +694,7 @@ const faqs = [
               <p class="text-xs font-extrabold text-heading" data-i18n data-en="October Report" data-sw="Ripoti ya Oktoba">October Report</p>
               <div class="mt-2 flex h-14 items-end gap-1.5">
                 {[40,70,55,85].map((h) => (
-                  <div class="flex-1 rounded-t bg-primary/70" style={`height:${h}%`}></div>
+                  <div class="clay-button flex-1 rounded-t bg-primary/70" style={`height:${h}%`}></div>
                 ))}
               </div>
             </div>
@@ -724,7 +705,7 @@ const faqs = [
   </section>
 
   <!-- ============================= SHARED GOALS ============================= -->
-  <section class="bg-gray-bg py-20">
+  <section class="clay-dots bg-gray-bg py-20">
     <div class="container-px">
       <SectionTitle
         eyebrow="Goals growing"
@@ -787,9 +768,9 @@ const faqs = [
               {i < flow.length - 1 && (
                 <div class="absolute left-[60%] top-7 hidden h-px w-[80%] bg-gradient-to-r from-accent/50 to-transparent lg:block" aria-hidden="true" />
               )}
-              <div class="clay-dark-surface relative mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-accent">
+              <div class="clay-dark-surface relative mx-auto flex h-14 w-14 items-center justify-center rounded-2xl text-accent">
                 <Fragment set:html={f.icon} />
-                <span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] font-extrabold text-navy">{i + 1}</span>
+                <span class="clay-pill absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full !bg-accent text-[10px] font-extrabold text-navy">{i + 1}</span>
               </div>
               <h3 class="mt-4 text-base font-extrabold text-white" data-i18n data-en={f.step} data-sw={f.stepSw}>{f.step}</h3>
               <p class="mt-1.5 text-sm leading-relaxed text-slate-300" data-i18n data-en={f.line} data-sw={f.lineSw}>{f.line}</p>
@@ -818,7 +799,7 @@ const faqs = [
         {
           whyTrust.map((w) => (
             <div class="group clay-card rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
-              <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-tint text-primary transition-transform duration-200 group-hover:scale-110">
+              <span class="clay-tile flex h-12 w-12 items-center justify-center rounded-xl text-primary transition-transform duration-200 group-hover:scale-110">
                 <Fragment set:html={w.icon} />
               </span>
               <h3 class="mt-4 text-base font-extrabold text-heading" data-i18n data-en={w.title} data-sw={w.titleSw}>{w.title}</h3>
@@ -831,7 +812,7 @@ const faqs = [
   </section>
 
   <!-- ============================= SECURITY ============================= -->
-  <section class="bg-tint py-20">
+  <section class="clay-dots bg-tint py-20">
     <div class="container-px">
       <SectionTitle
         eyebrow="Security"
@@ -848,7 +829,7 @@ const faqs = [
         {
           security.map((s) => (
             <div class="clay-card group rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
-              <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-200 group-hover:scale-110">
+              <span class="clay-tile flex h-12 w-12 items-center justify-center rounded-xl text-accent transition-transform duration-200 group-hover:scale-110">
                 <Fragment set:html={s.icon} />
               </span>
               <h3 class="mt-4 text-base font-extrabold text-heading" data-i18n data-en={s.title} data-sw={s.titleSw}>{s.title}</h3>
@@ -875,7 +856,7 @@ const faqs = [
               </div>
               <blockquote class="flex-1 text-[15px] leading-relaxed text-heading" data-i18n data-en={`“${t.quote}”`} data-sw={`“${t.quoteSw}”`}>“{t.quote}”</blockquote>
               <figcaption class="mt-5 flex items-center gap-3 border-t border-slate-100 pt-4">
-                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-tint text-sm font-extrabold text-primary">{t.name.charAt(0)}</span>
+                <span class="clay-tile flex h-10 w-10 items-center justify-center rounded-full text-sm font-extrabold text-primary">{t.name.charAt(0)}</span>
                 <div>
                   <p class="text-sm font-extrabold text-heading">{t.name}</p>
                   <p class="text-xs text-muted" data-i18n data-en={t.role} data-sw={t.roleSw}>{t.role}</p>
@@ -896,7 +877,7 @@ const faqs = [
         {
           insights.map((a) => (
             <a href="/insights" class="clay-card group flex flex-col overflow-hidden rounded-2xl transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
-              <div class="relative flex h-40 items-center justify-center bg-gradient-to-br from-tint to-accent/10">
+              <div class="clay-tile relative flex h-40 items-center justify-center">
                 <span class="clay-pill absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-extrabold text-primary" data-i18n data-en={a.category} data-sw={a.categorySw}>{a.category}</span>
                 <svg class="h-12 w-12 text-primary/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l3-4 3 2 4-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
@@ -930,7 +911,7 @@ const faqs = [
             <details class="clay-card group rounded-2xl px-5 transition-shadow open:shadow-lift">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 marker:content-none">
                 <span class="text-[15px] font-extrabold text-heading sm:text-base" data-i18n data-en={f.q} data-sw={f.qSw}>{f.q}</span>
-                  <span class="clay-shadow flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-tint text-primary transition-transform duration-200 group-open:rotate-45">
+                  <span class="clay-tile flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-primary transition-transform duration-200 group-open:rotate-45">
                   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
                 </span>
               </summary>
